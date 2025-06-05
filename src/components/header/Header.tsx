@@ -1,0 +1,118 @@
+import { useState } from "react"
+import { Menu, X, ShoppingBag } from "lucide-react"
+import { Link } from "react-router-dom"
+
+export default function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  return (
+    <header className="bg-white/95 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+        
+          <div className="flex items-center">
+            <Link to="/" className="flex items-center space-x-2">
+              <div className="w-8 h-8 bg-teal-500 rounded-lg flex items-center justify-center">
+                <ShoppingBag className="w-5 h-5 text-white" />
+              </div>
+              <span className="text-xl font-bold text-gray-900">BidMarket</span>
+            </Link>
+          </div>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center space-x-8">
+            <Link to="/account-type" className="text-gray-700 hover:text-teal-600 transition-colors">
+              Account Type Selection
+            </Link>
+            <Link to="/" className="text-gray-700 hover:text-teal-600 transition-colors">
+              Home
+            </Link>
+            <Link to="/about" className="text-gray-700 hover:text-teal-600 transition-colors">
+              About
+            </Link>
+            <Link to="/contact" className="text-gray-700 hover:text-teal-600 transition-colors">
+              Contact
+            </Link>
+          </nav>
+
+          {/* Desktop Auth Buttons */}
+          <div className="hidden md:flex items-center space-x-4">
+            <Link to="/login" className="text-gray-700 hover:text-teal-600 transition-colors">
+              Login
+            </Link>
+            <Link
+              to="/signup"
+              className="bg-[#00707B] hover:bg-[#00636D] text-white px-4 py-2 rounded-md transition-colors"
+            >
+              Sign Up
+            </Link>
+          </div>
+
+          {/* Mobile menu button */}
+          <div className="md:hidden">
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="text-gray-700 hover:text-teal-600 transition-colors"
+            >
+              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Navigation */}
+        {isMenuOpen && (
+          <div className="md:hidden">
+            <div className="px-2 pt-2 pb-3 space-y-1 bg-white border-t border-gray-200">
+              <Link
+                to="/marketplace"
+                className="block px-3 py-2 text-gray-700 hover:text-teal-600 transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Marketplace
+              </Link>
+              <Link
+                to="/how-it-works"
+                className="block px-3 py-2 text-gray-700 hover:text-teal-600 transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                How it Works
+              </Link>
+              <Link
+                to="/about"
+                className="block px-3 py-2 text-gray-700 hover:text-teal-600 transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                About
+              </Link>
+              <Link
+                to="/contact"
+                className="block px-3 py-2 text-gray-700 hover:text-teal-600 transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Contact
+              </Link>
+              <div className="border-t border-gray-200 pt-4 pb-3">
+                <div className="flex items-center space-x-3">
+                  <Link
+                    to="/login"
+                    className="block px-3 py-2 text-gray-700 hover:text-teal-600 transition-colors"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Login
+                  </Link>
+                  <Link
+                    to="/signup"
+                    className="bg-teal-500 text-white px-4 py-2 rounded-md hover:bg-teal-600 transition-colors"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Sign Up
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </header>
+  )
+}
