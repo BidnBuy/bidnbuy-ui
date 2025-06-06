@@ -71,11 +71,11 @@ export default function Header() {
                 Marketplace
               </Link>
               <Link
-                to="/how-it-works"
+                to="/home"
                 className="block px-3 py-2 text-gray-700 hover:text-teal-600 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
-                How it Works
+                Home
               </Link>
               <Link
                 to="/about"
