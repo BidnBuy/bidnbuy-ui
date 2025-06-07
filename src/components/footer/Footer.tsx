@@ -1,6 +1,8 @@
 import { ShoppingBag, Facebook, Twitter, Instagram, Linkedin } from "lucide-react"
 import { Link } from "react-router-dom"
 
+import BidnBuyLogo from "@/assets/bidnbuy-logo.png"
+
 export default function Footer() {
   return (
     <footer className="bg-gray-900 text-white">
@@ -10,10 +12,11 @@ export default function Footer() {
 
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 bg-teal-500 rounded-lg flex items-center justify-center">
-                <ShoppingBag className="w-5 h-5 text-white" />
+              <div className="w-8 h-8 rounded-lg flex items-center justify-center">
+              
+                <img src={BidnBuyLogo} alt="Background" className="w-full h-full object-cover" />
               </div>
-              <span className="text-xl font-bold">BidMarket</span>
+              <span className="text-xl font-bold">BidnBuy</span>
             </div>
             <p className="text-gray-400 mb-4 max-w-md">
               Africa's most innovative digital economy platform. Discover your next favorite find with just one bid.

@@ -36,7 +36,7 @@ const DesktopHome = () => {
 
     
           <div className="space-y-4">
-            <Button className="w-full py-4 bg-button-primary hover:bg-[#00636D] text-white font-medium rounded-lg transition-colors text-lg">
+            <Button className="w-full py-4 bg-[#00707B] hover:bg-[#00636D] text-white font-medium rounded-lg transition-colors text-lg">
               Create an account
             </Button>
 

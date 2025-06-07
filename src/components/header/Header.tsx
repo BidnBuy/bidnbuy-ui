@@ -2,6 +2,8 @@ import { useState } from "react"
 import { Menu, X, ShoppingBag } from "lucide-react"
 import { Link } from "react-router-dom"
 
+import BidnBuyDarkLogo from "@/assets/bidnbuy-dark-logo.png"
+
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
@@ -12,10 +14,11 @@ export default function Header() {
         
           <div className="flex items-center">
             <Link to="/" className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-teal-500 rounded-lg flex items-center justify-center">
-                <ShoppingBag className="w-5 h-5 text-white" />
+              <div className="w-8 h-8 rounded-lg flex items-center justify-center">
+                {/* <ShoppingBag className="w-5 h-5 text-white" /> */}
+                <img src={BidnBuyDarkLogo} alt="Background" className="w-full h-full object-cover" />
               </div>
-              <span className="text-xl font-bold text-gray-900">BidMarket</span>
+              <span className="text-xl font-bold text-gray-900">BidnBuy</span>
             </Link>
           </div>
 
@@ -64,11 +67,11 @@ export default function Header() {
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 bg-white border-t border-gray-200">
               <Link
-                to="/marketplace"
+                to="/account-type"
                 className="block px-3 py-2 text-gray-700 hover:text-teal-600 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Marketplace
+                Account Type
               </Link>
               <Link
                 to="/home"
