@@ -54,29 +54,13 @@ const CustomerSignUp = () => {
           </div>
         </div>
 
-        {/* <div className="relative">
+      
+          
 
-
-          <div className="relative">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 1440 320"
-              className="w-full text-[#00707B]"
-              preserveAspectRatio="none"
-            >
-              <path
-                fill="currentColor"
-                fillOpacity="1"
-                d="M0,224L80,213.3C160,203,320,181,480,181.3C640,181,800,203,960,202.7C1120,203,1280,181,1360,170.7L1440,160L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"
-              ></path>
-            </svg>
-          </div>
-        </div> */}
-
-        {/* Form section */}
+    
         <div className="bg-[#01151C] px-6 pb-8 pt-8">
           <div className="max-w-sm mx-auto space-y-5">
-            {/* Name field */}
+      
             <div className="space-y-2">
               <Label htmlFor="name" className="text-white text-sm font-medium">
                 Name
@@ -86,12 +70,11 @@ const CustomerSignUp = () => {
                 <Input
                   id="name"
                   placeholder="johndoe"
-                  className="bg-[#00707B] border-teal-500/50 pl-10 h-12 text-white placeholder:text-teal-200/80 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 rounded-lg"
+                  className="bg-[#00707B]/30 border-teal-500/50 pl-10 h-12 text-white placeholder:text-teal-200/80 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 rounded-md"
                 />
               </div>
             </div>
 
-            {/* Email field */}
             <div className="space-y-2">
               <Label htmlFor="email" className="text-white text-sm font-medium">
                 Email Address
@@ -102,7 +85,7 @@ const CustomerSignUp = () => {
                   id="email"
                   type="email"
                   placeholder="johndoe@gmail.com"
-                  className="bg-[#00707B] border-teal-500/50 pl-10 h-12 text-white placeholder:text-teal-200/80 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 rounded-lg"
+                  className="bg-[#00707B]/30 border-teal-500/50 pl-10 h-12 text-white placeholder:text-teal-200/80 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 rounded-md"
                 />
               </div>
             </div>
@@ -117,7 +100,7 @@ const CustomerSignUp = () => {
                   id="phone"
                   type="tel"
                   placeholder="+234706748047G"
-                  className="bg-[#00707B] border-teal-500/50 pl-10 h-12 text-white placeholder:text-teal-200/80 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 rounded-lg"
+                  className="bg-[#00707B]/30 border-teal-500/50 pl-10 h-12 text-white placeholder:text-teal-200/80 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 rounded-md"
                 />
               </div>
             </div>
@@ -134,7 +117,7 @@ const CustomerSignUp = () => {
                   id="password"
                   type={showPassword ? "text" : "password"}
                   placeholder="Enter Your Password"
-                  className="bg-[#00707B] border-teal-500/50 pr-10 h-12 text-white placeholder:text-teal-200/80 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 rounded-lg"
+                  className="bg-[#00707B]/30 border-teal-500/50 pr-10 h-12 text-white placeholder:text-teal-200/80 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 rounded-md"
                 />
                 <button
                   type="button"
@@ -163,7 +146,7 @@ const CustomerSignUp = () => {
                   id="confirm-password"
                   type={showConfirmPassword ? "text" : "password"}
                   placeholder="Confirm Your Password"
-                  className="bg-[#00707B] border-teal-500/50 pr-10 h-12 text-white placeholder:text-teal-200/80 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 rounded-lg"
+                  className="bg-[#00707B]/30 border-teal-500/50 pr-10 h-12 text-white placeholder:text-teal-200/80 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 rounded-md"
                 />
                 <button
                   type="button"
@@ -183,7 +166,7 @@ const CustomerSignUp = () => {
             </div>
 
             <div className="pt-4">
-              <Button className="w-full bg-[#00707B] hover:bg-teal-600 text-white font-semibold py-3 h-12 rounded-lg text-base transition-colors shadow-lg">
+              <Button className="w-full bg-teal-500 hover:bg-teal-600 text-white font-semibold py-3 h-12 rounded-md text-base transition-colors shadow-lg">
                 Proceed →
               </Button>
             </div>
@@ -203,9 +186,9 @@ const CustomerSignUp = () => {
         </div>
       </div>
 
-      {/* Desktop version */}
+      
       <div className="hidden lg:block min-h-screen relative">
-        {/* Full screen background image */}
+       
         <div className="absolute inset-0">
           <img
             src={CustomerBackgroundImage}
@@ -250,7 +233,7 @@ const CustomerSignUp = () => {
                       <Input
                         id="desktop-name"
                         placeholder="Johndoe"
-                        className="bg-[#00707B] border-teal-500/50 pl-10 h-12 text-white placeholder:text-teal-200/80 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 rounded-lg"
+                        className="bg-[#00707B]/30 border-teal-500/50 pl-10 h-12 text-white placeholder:text-teal-200/80 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 rounded-md"
                       />
                     </div>
                   </div>
@@ -268,12 +251,12 @@ const CustomerSignUp = () => {
                         id="desktop-email"
                         type="email"
                         placeholder="johndoe@gmail.com"
-                        className="bg-[#00707B] border-teal-500/50 pl-10 h-12 text-white placeholder:text-teal-200/80 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 rounded-lg"
+                        className="bg-[#00707B]/30 border-teal-500/50 pl-10 h-12 text-white placeholder:text-teal-200/80 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 rounded-md"
                       />
                     </div>
                   </div>
 
-                  {/* Phone field */}
+               
                   <div className="space-y-2">
                     <Label
                       htmlFor="desktop-phone"
@@ -287,12 +270,11 @@ const CustomerSignUp = () => {
                         id="desktop-phone"
                         type="tel"
                         placeholder="+234707383849"
-                        className="bg-[#00707B] border-teal-500/50 pl-10 h-12 text-white placeholder:text-teal-200/80 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 rounded-lg"
+                        className="bg-[#00707B]/30 border-teal-500/50 pl-10 h-12 text-white placeholder:text-teal-200/80 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 rounded-md"
                       />
                     </div>
                   </div>
 
-                  {/* Password field */}
                   <div className="space-y-2">
                     <Label
                       htmlFor="desktop-password"
@@ -305,7 +287,7 @@ const CustomerSignUp = () => {
                         id="desktop-password"
                         type={showPassword ? "text" : "password"}
                         placeholder="Enter Your Password"
-                        className="bg-[#00707B] border-teal-500/50 pr-10 h-12 text-white placeholder:text-teal-200/80 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 rounded-lg"
+                        className="bg-[#00707B]/30 border-teal-500/50 pr-10 h-12 text-white placeholder:text-teal-200/80 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 rounded-md"
                       />
                       <button
                         type="button"
@@ -324,7 +306,7 @@ const CustomerSignUp = () => {
                     </div>
                   </div>
 
-                  {/* Confirm Password field */}
+                 
                   <div className="space-y-2">
                     <Label
                       htmlFor="desktop-confirm-password"
@@ -337,7 +319,7 @@ const CustomerSignUp = () => {
                         id="desktop-confirm-password"
                         type={showConfirmPassword ? "text" : "password"}
                         placeholder="Confirm Your Password"
-                        className="bg-[#00707B] border-teal-500/50 pr-10 h-12 text-white placeholder:text-teal-200/80 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 rounded-lg"
+                        className="bg-[#00707B]/30 border-teal-500/50 pr-10 h-12 text-white placeholder:text-teal-200/80 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 rounded-md"
                       />
                       <button
                         type="button"
@@ -360,14 +342,13 @@ const CustomerSignUp = () => {
                     </div>
                   </div>
 
-                  {/* Proceed button */}
                   <div className="pt-4">
-                    <Button className="w-full bg-[teal-500] hover:bg-teal-600 text-white font-semibold py-3 h-12 rounded-lg text-base transition-colors shadow-lg">
+                    <Button className="w-full bg-teal-500 hover:bg-teal-600 text-white font-semibold py-3 h-12 rounded-md text-base transition-colors shadow-lg">
                       Proceed
                     </Button>
                   </div>
 
-                  {/* Login link */}
+                  
                   <div className="text-center pt-6">
                     <p className="text-teal-100 text-sm">
                       Already have an account?{" "}
