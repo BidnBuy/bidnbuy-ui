@@ -3,7 +3,13 @@ import { Link } from "react-router-dom";
 import ShoppingImage from '@/assets/shopping-person.png'
 import { Button } from "@/components/ui/button";
 
+import { useNavigate } from "react-router-dom"
+
 const MobileHome = () => {
+  const navigate = useNavigate()
+
+  const handleNavigate = () => navigate('/account-type')
+
   return (
     <div className="lg:hidden relative h-screen w-full overflow-hidden">
       <div className="absolute inset-0 z-0">
@@ -34,7 +40,9 @@ const MobileHome = () => {
         </div>
 
         <div className="space-y-4">
-          <Button className="w-full py-4 bg-[#00707B] hover:bg-[#00636D] text-white font-medium rounded-md transition-colors">
+          <Button 
+          onClick={handleNavigate}
+            className="w-full py-4 bg-[#00707B] hover:bg-[#00636D] cursor-pointer text-white font-medium rounded-md transition-colors">
             Create an account
           </Button>
           <p className="text-center text-white">

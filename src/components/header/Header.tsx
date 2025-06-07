@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Menu, X, ShoppingBag } from "lucide-react"
+import { Menu, X } from "lucide-react"
 import { Link } from "react-router-dom"
 
 import BidnBuyDarkLogo from "@/assets/bidnbuy-dark-logo.png"
@@ -33,7 +33,7 @@ export default function Header() {
             <Link to="/about" className="text-gray-700 hover:text-teal-600 transition-colors">
               About
             </Link>
-            <Link to="/contact" className="text-gray-700 hover:text-teal-600 transition-colors">
+            <Link to="/customer-sign-up" className="text-gray-700 hover:text-teal-600 transition-colors">
               Contact
             </Link>
           </nav>
@@ -88,7 +88,7 @@ export default function Header() {
                 About
               </Link>
               <Link
-                to="/contact"
+                to="/customer-sign-up"
                 className="block px-3 py-2 text-gray-700 hover:text-teal-600 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >

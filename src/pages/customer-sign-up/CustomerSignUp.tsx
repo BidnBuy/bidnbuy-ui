@@ -2,11 +2,13 @@ import { useState } from "react"
 import { Eye, EyeOff, Mail, Phone, User } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 
 import BidnBuyLogo from "@/assets/bidnbuy-logo.png"
 import { Link } from "react-router-dom"
+
+import CustomerOverlayImage from "@/assets/customer-overlay-img.jpg"
+import CustomerSignUpMobile from "@/assets/customer-sign-up-mobile.jpg"
+import CustomerBackgroundImage from "@/assets/customer-bg-img.jpg"
 
 const CustomerSignUp = () => {
   const [showPassword, setShowPassword] = useState(false)
@@ -14,24 +16,25 @@ const CustomerSignUp = () => {
 
   return (
     <div className="min-h-screen bg-[#01151C]">
-      {/* Mobile version */}
+   
       <div className="lg:hidden">
-        {/* Top section with background image and curved bottom */}
+
         <div className="relative">
-          {/* Background image section */}
+         
+         {/* Mobile Version */}
           <div className="relative h-80 overflow-hidden">
-            <img src="/shopping-background.jpg" alt="Shopping background" className="w-full h-full object-cover" />
-            {/* Gradient overlay */}
+            <img src={CustomerSignUpMobile} alt="Shopping background" className="w-full h-full object-cover" />
+         
             <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/60" />
 
-            {/* Content */}
+           
             <div className="relative z-10 flex flex-col items-center justify-center h-full px-6 text-center">
-              {/* Logo */}
+      
               <div className="mb-8">
-                <img src="/bidnbuy-logo.png" alt="Bid and Buy Logo" width={100} height={100} className="mx-auto" />
+                <img src={BidnBuyLogo} alt="Bid and Buy Logo" width={100} height={100} className="mx-auto" />
               </div>
 
-              {/* Header text */}
+              
               <div className="space-y-3">
                 <h1 className="text-3xl font-bold text-white leading-tight">Create your personal account</h1>
                 <p className="text-gray-200 text-base opacity-90">You are one step away from smarter shopping.</p>
@@ -39,7 +42,7 @@ const CustomerSignUp = () => {
             </div>
           </div>
 
-          {/* Curved transition exactly as in Figma */}
+         
           <div className="relative">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -61,12 +64,12 @@ const CustomerSignUp = () => {
           <div className="max-w-sm mx-auto space-y-5">
             {/* Name field */}
             <div className="space-y-2">
-              <Label htmlFor="name" className="text-white text-sm font-medium">
+              <label htmlFor="name" className="text-white text-sm font-medium">
                 Name
-              </Label>
+              </label>
               <div className="relative">
                 <User className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-teal-300" />
-                <Input
+                <input
                   id="name"
                   placeholder="johndoe"
                   className="bg-[#00707B]/80 border-teal-500/50 pl-10 h-12 text-white placeholder:text-teal-200/80 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 rounded-lg"
@@ -76,12 +79,12 @@ const CustomerSignUp = () => {
 
             {/* Email field */}
             <div className="space-y-2">
-              <Label htmlFor="email" className="text-white text-sm font-medium">
+              <label htmlFor="email" className="text-white text-sm font-medium">
                 Email Address
-              </Label>
+              </label>
               <div className="relative">
                 <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-teal-300" />
-                <Input
+                <input
                   id="email"
                   type="email"
                   placeholder="johndoe@gmail.com"
@@ -92,12 +95,12 @@ const CustomerSignUp = () => {
 
             {/* Phone field */}
             <div className="space-y-2">
-              <Label htmlFor="phone" className="text-white text-sm font-medium">
+              <label htmlFor="phone" className="text-white text-sm font-medium">
                 Phone Number
-              </Label>
+              </label>
               <div className="relative">
                 <Phone className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-teal-300" />
-                <Input
+                <input
                   id="phone"
                   type="tel"
                   placeholder="+234706748047G"
@@ -108,11 +111,11 @@ const CustomerSignUp = () => {
 
             {/* Password field */}
             <div className="space-y-2">
-              <Label htmlFor="password" className="text-white text-sm font-medium">
+              <label htmlFor="password" className="text-white text-sm font-medium">
                 Password
-              </Label>
+              </label>
               <div className="relative">
-                <Input
+                <input
                   id="password"
                   type={showPassword ? "text" : "password"}
                   placeholder="Enter Your Password"
@@ -131,11 +134,11 @@ const CustomerSignUp = () => {
 
             {/* Confirm Password field */}
             <div className="space-y-2">
-              <Label htmlFor="confirm-password" className="text-white text-sm font-medium">
+              <label htmlFor="confirm-password" className="text-white text-sm font-medium">
                 Confirm Password
-              </Label>
+              </label>
               <div className="relative">
-                <Input
+                <input
                   id="confirm-password"
                   type={showConfirmPassword ? "text" : "password"}
                   placeholder="Confirm Your Password"
@@ -179,7 +182,7 @@ const CustomerSignUp = () => {
       <div className="hidden lg:block min-h-screen relative">
         {/* Full screen background image */}
         <div className="absolute inset-0">
-          <img src="/customer-bg-img.jpg" alt="Shopping background" className="w-full h-full object-cover" />
+          <img src={CustomerBackgroundImage} alt="Shopping background" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-black/20" />
         </div>
 
@@ -204,12 +207,12 @@ const CustomerSignUp = () => {
                 <div className="space-y-5">
                   {/* Name field */}
                   <div className="space-y-2">
-                    <Label htmlFor="desktop-name" className="text-white text-sm font-medium">
+                    <label htmlFor="desktop-name" className="text-white text-sm font-medium">
                       Name
-                    </Label>
+                    </label>
                     <div className="relative">
                       <User className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-teal-300" />
-                      <Input
+                      <input
                         id="desktop-name"
                         placeholder="Johndoe"
                         className="bg-[#00707B]/80 border-teal-500/50 pl-10 h-12 text-white placeholder:text-teal-200/80 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 rounded-lg"
@@ -219,12 +222,12 @@ const CustomerSignUp = () => {
 
                   {/* Email field */}
                   <div className="space-y-2">
-                    <Label htmlFor="desktop-email" className="text-white text-sm font-medium">
+                    <label htmlFor="desktop-email" className="text-white text-sm font-medium">
                       Email Address
-                    </Label>
+                    </label>
                     <div className="relative">
                       <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-teal-300" />
-                      <Input
+                      <input
                         id="desktop-email"
                         type="email"
                         placeholder="johndoe@gmail.com"
@@ -235,12 +238,12 @@ const CustomerSignUp = () => {
 
                   {/* Phone field */}
                   <div className="space-y-2">
-                    <Label htmlFor="desktop-phone" className="text-white text-sm font-medium">
+                    <label htmlFor="desktop-phone" className="text-white text-sm font-medium">
                       Phone Number
-                    </Label>
+                    </label>
                     <div className="relative">
                       <Phone className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-teal-300" />
-                      <Input
+                      <input
                         id="desktop-phone"
                         type="tel"
                         placeholder="+234707383849"
@@ -251,11 +254,11 @@ const CustomerSignUp = () => {
 
                   {/* Password field */}
                   <div className="space-y-2">
-                    <Label htmlFor="desktop-password" className="text-white text-sm font-medium">
+                    <label htmlFor="desktop-password" className="text-white text-sm font-medium">
                       Password
-                    </Label>
+                    </label>
                     <div className="relative">
-                      <Input
+                      <input
                         id="desktop-password"
                         type={showPassword ? "text" : "password"}
                         placeholder="Enter Your Password"
@@ -274,11 +277,11 @@ const CustomerSignUp = () => {
 
                   {/* Confirm Password field */}
                   <div className="space-y-2">
-                    <Label htmlFor="desktop-confirm-password" className="text-white text-sm font-medium">
+                    <label htmlFor="desktop-confirm-password" className="text-white text-sm font-medium">
                       Confirm Password
-                    </Label>
+                    </label>
                     <div className="relative">
-                      <Input
+                      <input
                         id="desktop-confirm-password"
                         type={showConfirmPassword ? "text" : "password"}
                         placeholder="Confirm Your Password"
@@ -307,7 +310,7 @@ const CustomerSignUp = () => {
                     <p className="text-teal-100 text-sm">
                       Already have an account?{" "}
                       <Link
-                        href="/login"
+                        to="/login"
                         className="text-white hover:text-teal-200 font-medium underline underline-offset-2 transition-colors"
                       >
                         Login
@@ -318,13 +321,13 @@ const CustomerSignUp = () => {
               </div>
             </div>
 
-            {/* Right side - Image */}
+         
             <div className="w-1/2 relative bg-gray-100">
-              {/* Using a div with background image for more precise control over the image display */}
+              
               <div
                 className="absolute inset-0 rounded-r-3xl"
                 style={{
-                  backgroundImage: `url('/customer-overlay-img.jpg')`,
+                  backgroundImage: `url(${CustomerOverlayImage})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                 }}
