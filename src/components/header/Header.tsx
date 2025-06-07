@@ -15,7 +15,7 @@ export default function Header() {
           <div className="flex items-center">
             <Link to="/" className="flex items-center space-x-2">
               <div className="w-8 h-8 rounded-lg flex items-center justify-center">
-                {/* <ShoppingBag className="w-5 h-5 text-white" /> */}
+               
                 <img src={BidnBuyDarkLogo} alt="Background" className="w-full h-full object-cover" />
               </div>
               <span className="text-xl font-bold text-gray-900">BidnBuy</span>
@@ -33,7 +33,7 @@ export default function Header() {
             <Link to="/about" className="text-gray-700 hover:text-teal-600 transition-colors">
               About
             </Link>
-            <Link to="/customer-sign-up" className="text-gray-700 hover:text-teal-600 transition-colors">
+            <Link to="/" className="text-gray-700 hover:text-teal-600 transition-colors">
               Contact
             </Link>
           </nav>
@@ -88,7 +88,7 @@ export default function Header() {
                 About
               </Link>
               <Link
-                to="/customer-sign-up"
+                to="/"
                 className="block px-3 py-2 text-gray-700 hover:text-teal-600 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >

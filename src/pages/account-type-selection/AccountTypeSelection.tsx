@@ -1,6 +1,5 @@
-
-
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 
@@ -10,29 +9,38 @@ import ShoppingBagImage from "@/assets/shopping-bag.jpg"
 import BidnBuyLogo from "@/assets/bidnbuy-logo.png"
 import { Link } from "react-router-dom"
 
-export default function SignupPage() {
+export default function AccountTypeSelection() {
   const [selectedType, setSelectedType] = useState<"customer" | "vendor">("customer")
   const isDesktop = useMediaQuery("(min-width: 768px)")
+  const navigate = useNavigate()
+
+  const handleProceed = () => {
+    navigate(`/signup/${selectedType}`)
+  }
 
   return (
     <div className="min-h-screen w-full relative bg-slate-800 flex items-center justify-center p-8">
-      {/* Background Image */}
+  
       <div className="absolute inset-0 z-0">
         <img src={ShoppingBagImage} alt="Background" className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-slate-800/75 md:bg-slate-800/40" />
       </div>
 
-      {/* Content Container */}
+  
       <div className={`relative z-10 w-full ${isDesktop ? "max-w-lg" : ""}`}>
-        {/* Desktop Card Container */}
+      
         <div
-          className={`${isDesktop ? "rounded-3xl overflow-hidden shadow-2xl mx-auto my-8" : "min-h-screen"}`}
+          className={`${
+            isDesktop ? "rounded-3xl overflow-hidden shadow-2xl mx-auto my-8" : "min-h-screen"
+          }`}
           style={isDesktop ? { backgroundColor: "#01151C" } : {}}
         >
-          {/* Content */}
+          
           <div className="relative z-10 flex flex-col px-8 py-8 md:px-10 md:py-12">
-            {/* Logo - Left aligned on desktop */}
-            <div className={`flex ${isDesktop ? "justify-start" : "justify-center"} pb-8 md:pb-6`}>
+     
+            <div
+              className={`flex ${isDesktop ? "justify-start" : "justify-center"} pb-8 md:pb-6`}
+            >
               <img
                 src={BidnBuyLogo}
                 alt="Bid and Buy Logo"
@@ -42,9 +50,10 @@ export default function SignupPage() {
               />
             </div>
 
-            {/* Welcome Text */}
             <div className={`${isDesktop ? "text-left" : "text-center"} mb-8 md:mb-8`}>
-              <h1 className="text-white text-3xl md:text-4xl font-bold mb-4 leading-tight">Welcome To Bid and Buy</h1>
+              <h1 className="text-white text-3xl md:text-4xl font-bold mb-4 leading-tight">
+                Welcome To Bid and Buy
+              </h1>
               <p className="text-gray-300 text-base md:text-lg leading-relaxed">
                 New Here? We've Been Waiting for You
                 <br />
@@ -53,12 +62,12 @@ export default function SignupPage() {
               </p>
             </div>
 
-            {/* Sign up section */}
+           
             <div className="flex-1 flex flex-col justify-center">
               <div className="mb-8 md:mb-8">
                 <p className="text-white text-lg md:text-xl mb-6 font-medium">Sign up as:</p>
 
-                {/* Selection Buttons */}
+              
                 <div className="space-y-4 md:space-y-4 mb-8 md:mb-8">
                   <button
                     onClick={() => setSelectedType("customer")}
@@ -66,8 +75,8 @@ export default function SignupPage() {
                       selectedType === "customer"
                         ? "border-teal-400 bg-teal-400/20 text-teal-300"
                         : isDesktop
-                          ? "border-teal-600/70 bg-transparent text-gray-300 hover:border-teal-500"
-                          : "border-teal-600/40 bg-slate-700/40 text-gray-300"
+                        ? "border-teal-600/70 bg-transparent text-gray-300 hover:border-teal-500"
+                        : "border-teal-600/40 bg-slate-700/40 text-gray-300"
                     }`}
                   >
                     Customer
@@ -79,16 +88,17 @@ export default function SignupPage() {
                       selectedType === "vendor"
                         ? "border-teal-400 bg-teal-400/20 text-teal-300"
                         : isDesktop
-                          ? "border-teal-600/70 bg-transparent text-gray-300 hover:border-teal-500"
-                          : "border-teal-600/40 bg-slate-700/40 text-gray-300"
+                        ? "border-teal-600/70 bg-transparent text-gray-300 hover:border-teal-500"
+                        : "border-teal-600/40 bg-slate-700/40 text-gray-300"
                     }`}
                   >
                     Vendor
                   </button>
                 </div>
 
-                {/* Proceed Button */}
+              
                 <Button
+                  onClick={handleProceed}
                   className={`w-full bg-teal-500 hover:bg-teal-600 text-white py-6 md:py-4 rounded-xl md:rounded-lg font-semibold text-lg md:text-lg`}
                   size="lg"
                 >
@@ -98,11 +108,15 @@ export default function SignupPage() {
               </div>
             </div>
 
-            {/* Login Link */}
+        
+        
             <div className={`${isDesktop ? "text-left" : "text-center"} pb-4`}>
               <p className="text-gray-400 text-base md:text-lg">
                 Already have an account?{" "}
-                <Link to="/login" className="text-teal-400 hover:text-teal-300 transition-colors font-medium">
+                <Link
+                  to="/login"
+                  className="text-teal-400 hover:text-teal-300 transition-colors font-medium"
+                >
                   Login
                 </Link>
               </p>
