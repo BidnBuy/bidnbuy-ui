@@ -8,9 +8,9 @@ import { Input } from "@/components/ui/input";
 import BidnBuyLogo from "@/assets/bidnbuy-logo.png";
 import { Link } from "react-router-dom";
 
-import CustomerOverlayImage from "@/assets/customer-overlay-img.jpg";
-import CustomerSignUpMobile from "@/assets/customer-sign-up-mobile.jpg";
-import CustomerBackgroundImage from "@/assets/customer-bg-img.jpg";
+import VendorBackgroundImage from "@/assets/vendor-bg-img.jpg";
+import VendorSignUpMobile from "@/assets/vendor-sign-up.jpg";
+import VendorOverlayImage from "@/assets/vendor-overlay-img.jpg";
 
 const VendorSignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -26,7 +26,7 @@ const VendorSignUp = () => {
             <img
               className="w-full h-full object-cover"
               alt="Customer Sign Up background"
-              src={CustomerSignUpMobile}
+              src={VendorSignUpMobile}
             />
           </div>
 
@@ -44,10 +44,10 @@ const VendorSignUp = () => {
 
               <div className="space-y-3">
                 <h1 className="text-3xl font-bold text-white leading-tight">
-                  Create your personal account
+                  Create your business account
                 </h1>
                 <p className="text-gray-200 text-base opacity-90">
-                  You are one step away from smarter shopping.
+                  Reach more buyers. Sell faster. Earn more.
                 </p>
               </div>
             </div>
@@ -63,7 +63,7 @@ const VendorSignUp = () => {
       
             <div className="space-y-2">
               <Label htmlFor="name" className="text-white text-sm font-medium">
-                Name
+                Business Name
               </Label>
               <div className="relative">
                 <User className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-teal-300" />
@@ -77,7 +77,7 @@ const VendorSignUp = () => {
 
             <div className="space-y-2">
               <Label htmlFor="email" className="text-white text-sm font-medium">
-                Email Address
+                Business Email Address
               </Label>
               <div className="relative">
                 <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-teal-300" />
@@ -191,8 +191,8 @@ const VendorSignUp = () => {
        
         <div className="absolute inset-0">
           <img
-            src={CustomerBackgroundImage}
-            alt="Shopping background"
+            src={VendorBackgroundImage}
+            alt="Vendor background"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-black/20" />
@@ -368,7 +368,7 @@ const VendorSignUp = () => {
               <div
                 className="absolute inset-0 rounded-r-3xl"
                 style={{
-                  backgroundImage: `url(${CustomerOverlayImage})`,
+                  backgroundImage: `url(${VendorOverlayImage})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                 }}
