@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-import ShoppingImage from '@/assets/shopping-person.png'
+import ShoppingImage from '@/assets/shopping-person.jpg'
 import { Button } from "@/components/ui/button";
 
 import { useNavigate } from "react-router-dom"

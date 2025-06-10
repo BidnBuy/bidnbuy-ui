@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Link, useNavigate } from "react-router-dom";
 
-import ShoppingImage from "@/assets/shopping-person.png"
+import ShoppingImage from "@/assets/shopping-person.jpg"
 
 const DesktopHome = () => {
   const navigate = useNavigate()

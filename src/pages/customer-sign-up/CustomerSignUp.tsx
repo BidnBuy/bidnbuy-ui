@@ -353,7 +353,7 @@ const CustomerSignUp = () => {
                     <p className="text-teal-100 text-sm">
                       Already have an account?{" "}
                       <Link
-                        to="/login"
+                        to="/login/customer"
                         className="text-white hover:text-teal-200 font-medium underline underline-offset-2 transition-colors"
                       >
                         Login
