@@ -9,8 +9,9 @@ import AccountTypeSelection from './pages/account-type-selection/AccountTypeSele
 import VendorSignUp from './pages/vendor-sign-up/VendorSignUp'
 import CustomerLogin from './pages/customer-login/CustomerLogin'
 import VendorLogin from './pages/vendor-login/VendorLogin'
-// import OnboardingScreen from './pages/home/Onboarding'
-function App() {
+
+
+const App = () => {
 
   return (
     <Routes>

@@ -1,9 +1,17 @@
 import { useState } from "react";
 import { Eye, EyeOff, Mail, Phone, User } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import { signupSchema, type SignupFormData } from "@/lib/validations/auth";
+import { authService } from "@/services/auth";
+import { useAuthStore } from "@/store/auth";
 
 import BidnBuyLogo from "@/assets/bidnbuy-logo.png";
 import { Link } from "react-router-dom";
@@ -15,17 +23,41 @@ import VendorOverlayImage from "@/assets/vendor-overlay-img.jpg";
 const VendorSignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const navigate = useNavigate();
+  const setAuth = useAuthStore((state) => state.setAuth);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<SignupFormData>({
+    resolver: zodResolver(signupSchema),
+  });
+
+  const signupMutation = useMutation({
+    mutationFn: authService.signup,
+    onSuccess: (data) => {
+      setAuth(data.token, data.user);
+      toast.success("Sign up successful!");
+      navigate("/vendor/dashboard");
+    },
+    onError: (error: any) => {
+      toast.error(error.response?.data?.message || "Sign up failed");
+    },
+  });
+
+  const onSubmit = (data: SignupFormData) => {
+    signupMutation.mutate(data);
+  };
 
   return (
     <div className="min-h-screen bg-[#01151C]">
       <div className="lg:hidden">
         <div className="relative w-full">
-          <div
-            className="relative h-80 overflow-hidden"
-          >
+          <div className="relative h-80 overflow-hidden">
             <img
               className="w-full h-full object-cover"
-              alt="Customer Sign Up background"
+              alt="Vendor Sign Up background"
               src={VendorSignUpMobile}
             />
           </div>
@@ -54,13 +86,8 @@ const VendorSignUp = () => {
           </div>
         </div>
 
-      
-          
-
-    
         <div className="bg-[#01151C] px-6 pb-8 pt-8">
-          <div className="max-w-sm mx-auto space-y-5">
-      
+          <form onSubmit={handleSubmit(onSubmit)} className="max-w-sm mx-auto space-y-5">
             <div className="space-y-2">
               <Label htmlFor="name" className="text-white text-sm font-medium">
                 Business Name
@@ -71,8 +98,12 @@ const VendorSignUp = () => {
                   id="name"
                   placeholder="johndoe"
                   className="bg-[#00707B]/30 border-teal-500/50 pl-10 h-12 text-white placeholder:text-teal-200/80 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 rounded-md"
+                  {...register("name")}
                 />
               </div>
+              {errors.name && (
+                <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
+              )}
             </div>
 
             <div className="space-y-2">
@@ -86,8 +117,12 @@ const VendorSignUp = () => {
                   type="email"
                   placeholder="johndoe@gmail.com"
                   className="bg-[#00707B]/30 border-teal-500/50 pl-10 h-12 text-white placeholder:text-teal-200/80 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 rounded-md"
+                  {...register("email")}
                 />
               </div>
+              {errors.email && (
+                <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
+              )}
             </div>
 
             <div className="space-y-2">
@@ -99,17 +134,18 @@ const VendorSignUp = () => {
                 <Input
                   id="phone"
                   type="tel"
-                  placeholder="+234706748047G"
+                  placeholder="+234706748047"
                   className="bg-[#00707B]/30 border-teal-500/50 pl-10 h-12 text-white placeholder:text-teal-200/80 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 rounded-md"
+                  {...register("phone")}
                 />
               </div>
+              {errors.phone && (
+                <p className="text-red-500 text-sm mt-1">{errors.phone.message}</p>
+              )}
             </div>
 
             <div className="space-y-2">
-              <Label
-                htmlFor="password"
-                className="text-white text-sm font-medium"
-              >
+              <Label htmlFor="password" className="text-white text-sm font-medium">
                 Password
               </Label>
               <div className="relative">
@@ -118,12 +154,13 @@ const VendorSignUp = () => {
                   type={showPassword ? "text" : "password"}
                   placeholder="Enter Your Password"
                   className="bg-[#00707B]/30 border-teal-500/50 pr-10 h-12 text-white placeholder:text-teal-200/80 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 rounded-md"
+                  {...register("password")}
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-teal-300 hover:text-teal-200 transition-colors"
-                  aria-Label={showPassword ? "Hide password" : "Show password"}
+                  aria-label={showPassword ? "Hide password" : "Show password"}
                 >
                   {showPassword ? (
                     <EyeOff className="h-4 w-4" />
@@ -132,29 +169,28 @@ const VendorSignUp = () => {
                   )}
                 </button>
               </div>
+              {errors.password && (
+                <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>
+              )}
             </div>
 
             <div className="space-y-2">
-              <Label
-                htmlFor="confirm-password"
-                className="text-white text-sm font-medium"
-              >
+              <Label htmlFor="confirmPassword" className="text-white text-sm font-medium">
                 Confirm Password
               </Label>
               <div className="relative">
                 <Input
-                  id="confirm-password"
+                  id="confirmPassword"
                   type={showConfirmPassword ? "text" : "password"}
                   placeholder="Confirm Your Password"
                   className="bg-[#00707B]/30 border-teal-500/50 pr-10 h-12 text-white placeholder:text-teal-200/80 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 rounded-md"
+                  {...register("confirmPassword")}
                 />
                 <button
                   type="button"
                   onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-teal-300 hover:text-teal-200 transition-colors"
-                  aria-Label={
-                    showConfirmPassword ? "Hide password" : "Show password"
-                  }
+                  aria-label={showConfirmPassword ? "Hide password" : "Show password"}
                 >
                   {showConfirmPassword ? (
                     <EyeOff className="h-4 w-4" />
@@ -163,11 +199,18 @@ const VendorSignUp = () => {
                   )}
                 </button>
               </div>
+              {errors.confirmPassword && (
+                <p className="text-red-500 text-sm mt-1">{errors.confirmPassword.message}</p>
+              )}
             </div>
 
             <div className="pt-4">
-              <Button className="w-full bg-teal-500 hover:bg-teal-600 text-white font-semibold py-3 h-12 rounded-md text-base transition-colors shadow-lg">
-                Proceed →
+              <Button
+                type="submit"
+                className="w-full bg-teal-500 hover:bg-teal-600 text-white font-semibold py-3 h-12 rounded-md text-base transition-colors shadow-lg"
+                disabled={signupMutation.isPending}
+              >
+                {signupMutation.isPending ? "Signing up..." : "Proceed →"}
               </Button>
             </div>
 
@@ -175,20 +218,18 @@ const VendorSignUp = () => {
               <p className="text-teal-100 text-sm">
                 Already have an account?{" "}
                 <Link
-                  to="/login"
+                  to="/login/vendor"
                   className="text-white hover:text-teal-200 font-medium underline underline-offset-2 transition-colors"
                 >
                   Login
                 </Link>
               </p>
             </div>
-          </div>
+          </form>
         </div>
       </div>
 
-      
       <div className="hidden lg:block min-h-screen relative">
-       
         <div className="absolute inset-0">
           <img
             src={VendorBackgroundImage}
@@ -213,20 +254,17 @@ const VendorSignUp = () => {
 
                 <div className="space-y-3 mb-8">
                   <h1 className="text-4xl font-bold text-white leading-tight">
-                    Create your personal account
+                    Create your business account
                   </h1>
                   <p className="text-gray-200 text-lg">
-                    You are one step away from smarter shopping.
+                    Reach more buyers. Sell faster. Earn more.
                   </p>
                 </div>
 
-                <div className="space-y-5">
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
                   <div className="space-y-2">
-                    <Label
-                      htmlFor="desktop-name"
-                      className="text-white text-sm font-medium"
-                    >
-                      Name
+                    <Label htmlFor="desktop-name" className="text-white text-sm font-medium">
+                      Business Name
                     </Label>
                     <div className="relative">
                       <User className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-teal-300" />
@@ -234,16 +272,17 @@ const VendorSignUp = () => {
                         id="desktop-name"
                         placeholder="Johndoe"
                         className="bg-[#00707B]/30 border-teal-500/50 pl-10 h-12 text-white placeholder:text-teal-200/80 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 rounded-md"
+                        {...register("name")}
                       />
                     </div>
+                    {errors.name && (
+                      <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
+                    )}
                   </div>
 
                   <div className="space-y-2">
-                    <Label
-                      htmlFor="desktop-email"
-                      className="text-white text-sm font-medium"
-                    >
-                      Email Address
+                    <Label htmlFor="desktop-email" className="text-white text-sm font-medium">
+                      Business Email Address
                     </Label>
                     <div className="relative">
                       <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-teal-300" />
@@ -252,16 +291,16 @@ const VendorSignUp = () => {
                         type="email"
                         placeholder="johndoe@gmail.com"
                         className="bg-[#00707B]/30 border-teal-500/50 pl-10 h-12 text-white placeholder:text-teal-200/80 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 rounded-md"
+                        {...register("email")}
                       />
                     </div>
+                    {errors.email && (
+                      <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
+                    )}
                   </div>
 
-               
                   <div className="space-y-2">
-                    <Label
-                      htmlFor="desktop-phone"
-                      className="text-white text-sm font-medium"
-                    >
+                    <Label htmlFor="desktop-phone" className="text-white text-sm font-medium">
                       Phone Number
                     </Label>
                     <div className="relative">
@@ -271,15 +310,16 @@ const VendorSignUp = () => {
                         type="tel"
                         placeholder="+234707383849"
                         className="bg-[#00707B]/30 border-teal-500/50 pl-10 h-12 text-white placeholder:text-teal-200/80 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 rounded-md"
+                        {...register("phone")}
                       />
                     </div>
+                    {errors.phone && (
+                      <p className="text-red-500 text-sm mt-1">{errors.phone.message}</p>
+                    )}
                   </div>
 
                   <div className="space-y-2">
-                    <Label
-                      htmlFor="desktop-password"
-                      className="text-white text-sm font-medium"
-                    >
+                    <Label htmlFor="desktop-password" className="text-white text-sm font-medium">
                       Password
                     </Label>
                     <div className="relative">
@@ -288,14 +328,13 @@ const VendorSignUp = () => {
                         type={showPassword ? "text" : "password"}
                         placeholder="Enter Your Password"
                         className="bg-[#00707B]/30 border-teal-500/50 pr-10 h-12 text-white placeholder:text-teal-200/80 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 rounded-md"
+                        {...register("password")}
                       />
                       <button
                         type="button"
                         onClick={() => setShowPassword(!showPassword)}
                         className="absolute right-3 top-1/2 -translate-y-1/2 text-teal-300 hover:text-teal-200 transition-colors"
-                        aria-Label={
-                          showPassword ? "Hide password" : "Show password"
-                        }
+                        aria-label={showPassword ? "Hide password" : "Show password"}
                       >
                         {showPassword ? (
                           <EyeOff className="h-4 w-4" />
@@ -304,14 +343,13 @@ const VendorSignUp = () => {
                         )}
                       </button>
                     </div>
+                    {errors.password && (
+                      <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>
+                    )}
                   </div>
 
-                 
                   <div className="space-y-2">
-                    <Label
-                      htmlFor="desktop-confirm-password"
-                      className="text-white text-sm font-medium"
-                    >
+                    <Label htmlFor="desktop-confirm-password" className="text-white text-sm font-medium">
                       Confirm Password
                     </Label>
                     <div className="relative">
@@ -320,18 +358,13 @@ const VendorSignUp = () => {
                         type={showConfirmPassword ? "text" : "password"}
                         placeholder="Confirm Your Password"
                         className="bg-[#00707B]/30 border-teal-500/50 pr-10 h-12 text-white placeholder:text-teal-200/80 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 rounded-md"
+                        {...register("confirmPassword")}
                       />
                       <button
                         type="button"
-                        onClick={() =>
-                          setShowConfirmPassword(!showConfirmPassword)
-                        }
+                        onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                         className="absolute right-3 top-1/2 -translate-y-1/2 text-teal-300 hover:text-teal-200 transition-colors"
-                        aria-Label={
-                          showConfirmPassword
-                            ? "Hide password"
-                            : "Show password"
-                        }
+                        aria-label={showConfirmPassword ? "Hide password" : "Show password"}
                       >
                         {showConfirmPassword ? (
                           <EyeOff className="h-4 w-4" />
@@ -340,15 +373,21 @@ const VendorSignUp = () => {
                         )}
                       </button>
                     </div>
+                    {errors.confirmPassword && (
+                      <p className="text-red-500 text-sm mt-1">{errors.confirmPassword.message}</p>
+                    )}
                   </div>
 
                   <div className="pt-4">
-                    <Button className="w-full bg-teal-500 hover:bg-teal-600 text-white font-semibold py-3 h-12 rounded-md text-base transition-colors shadow-lg">
-                      Proceed
+                    <Button
+                      type="submit"
+                      className="w-full bg-teal-500 hover:bg-teal-600 text-white font-semibold py-3 h-12 rounded-md text-base transition-colors shadow-lg"
+                      disabled={signupMutation.isPending}
+                    >
+                      {signupMutation.isPending ? "Signing up..." : "Proceed"}
                     </Button>
                   </div>
 
-                  
                   <div className="text-center pt-6">
                     <p className="text-teal-100 text-sm">
                       Already have an account?{" "}
@@ -360,7 +399,7 @@ const VendorSignUp = () => {
                       </Link>
                     </p>
                   </div>
-                </div>
+                </form>
               </div>
             </div>
 

@@ -1,9 +1,17 @@
 import { useState } from "react";
 import { Eye, EyeOff, Mail } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import { loginSchema, type LoginFormData } from "@/lib/validations/auth";
+import { authService } from "@/services/auth";
+import { useAuthStore } from "@/store/auth";
 
 import BidnBuyLogo from "@/assets/bidnbuy-logo.png";
 import { Link } from "react-router-dom";
@@ -14,15 +22,43 @@ import CustomerBackgroundImage from "@/assets/customer-bg-login.jpg";
 
 const CustomerLogin = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const navigate = useNavigate();
+  const setAuth = useAuthStore((state) => state.setAuth);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<LoginFormData>({
+    resolver: zodResolver(loginSchema),
+    mode: "onChange",
+  });
+
+  const loginMutation = useMutation({
+    mutationFn: authService.login,
+    onSuccess: (data) => {
+      setAuth(data.token, data.user);
+      toast.success("Login successful!");
+      navigate("/dashboard");
+    },
+    onError: (error: any) => {
+      toast.error(error.response?.data?.message || "Login failed");
+    },
+  });
+
+  const onSubmit = async (data: LoginFormData) => {
+    try {
+      await loginMutation.mutateAsync(data);
+    } catch (error) {
+      // Error is handled by mutation
+    }
+  };
 
   return (
     <div className="min-h-screen bg-[#01151C]">
       <div className="lg:hidden">
         <div className="relative w-full">
-          <div
-            className="relative h-80 overflow-hidden"
-          >
+          <div className="relative h-80 overflow-hidden">
             <img
               className="w-full h-full object-cover"
               alt="Customer Sign Up background"
@@ -54,14 +90,8 @@ const CustomerLogin = () => {
           </div>
         </div>
 
-      
-          
-
-    
         <div className="bg-[#01151C] px-6 pb-8 pt-8">
-          <div className="max-w-sm mx-auto space-y-5">
-    
-
+          <form onSubmit={handleSubmit(onSubmit)} className="max-w-sm mx-auto space-y-5">
             <div className="space-y-2">
               <Label htmlFor="email" className="text-white text-sm font-medium">
                 Email Address
@@ -73,16 +103,16 @@ const CustomerLogin = () => {
                   type="email"
                   placeholder="johndoe@gmail.com"
                   className="bg-[#00707B]/30 border-teal-500/50 pl-10 h-12 text-white placeholder:text-teal-200/80 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 rounded-md"
+                  {...register("email", { required: true })}
                 />
               </div>
+              {errors.email && (
+                <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
+              )}
             </div>
 
-
             <div className="space-y-2">
-              <Label
-                htmlFor="password"
-                className="text-white text-sm font-medium"
-              >
+              <Label htmlFor="password" className="text-white text-sm font-medium">
                 Password
               </Label>
               <div className="relative">
@@ -91,12 +121,13 @@ const CustomerLogin = () => {
                   type={showPassword ? "text" : "password"}
                   placeholder="Enter Your Password"
                   className="bg-[#00707B]/30 border-teal-500/50 pr-10 h-12 text-white placeholder:text-teal-200/80 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 rounded-md"
+                  {...register("password", { required: true })}
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-teal-300 hover:text-teal-200 transition-colors"
-                  aria-Label={showPassword ? "Hide password" : "Show password"}
+                  aria-label={showPassword ? "Hide password" : "Show password"}
                 >
                   {showPassword ? (
                     <EyeOff className="h-4 w-4" />
@@ -105,42 +136,18 @@ const CustomerLogin = () => {
                   )}
                 </button>
               </div>
-            </div>
-
-            <div className="space-y-2">
-              <Label
-                htmlFor="confirm-password"
-                className="text-white text-sm font-medium"
-              >
-                Confirm Password
-              </Label>
-              <div className="relative">
-                <Input
-                  id="confirm-password"
-                  type={showConfirmPassword ? "text" : "password"}
-                  placeholder="Confirm Your Password"
-                  className="bg-[#00707B]/30 border-teal-500/50 pr-10 h-12 text-white placeholder:text-teal-200/80 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 rounded-md"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-teal-300 hover:text-teal-200 transition-colors"
-                  aria-Label={
-                    showConfirmPassword ? "Hide password" : "Show password"
-                  }
-                >
-                  {showConfirmPassword ? (
-                    <EyeOff className="h-4 w-4" />
-                  ) : (
-                    <Eye className="h-4 w-4" />
-                  )}
-                </button>
-              </div>
+              {errors.password && (
+                <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>
+              )}
             </div>
 
             <div className="pt-4">
-              <Button className="w-full bg-teal-500 hover:bg-teal-600 text-white font-semibold py-3 h-12 rounded-md text-base transition-colors shadow-lg">
-                Log in
+              <Button
+                type="submit"
+                className="w-full bg-teal-500 hover:bg-teal-600 text-white font-semibold py-3 h-12 rounded-md text-base transition-colors shadow-lg"
+                disabled={isSubmitting || loginMutation.isPending}
+              >
+                {isSubmitting || loginMutation.isPending ? "Logging in..." : "Log in"}
               </Button>
             </div>
 
@@ -155,13 +162,11 @@ const CustomerLogin = () => {
                 </Link>
               </p>
             </div>
-          </div>
+          </form>
         </div>
       </div>
 
-      
       <div className="hidden lg:block min-h-screen relative">
-       
         <div className="absolute inset-0">
           <img
             src={CustomerBackgroundImage}
@@ -193,13 +198,9 @@ const CustomerLogin = () => {
                   </p>
                 </div>
 
-                <div className="space-y-5">
-                
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
                   <div className="space-y-2">
-                    <Label
-                      htmlFor="desktop-email"
-                      className="text-white text-sm font-medium"
-                    >
+                    <Label htmlFor="desktop-email" className="text-white text-sm font-medium">
                       Email Address
                     </Label>
                     <div className="relative">
@@ -209,15 +210,16 @@ const CustomerLogin = () => {
                         type="email"
                         placeholder="johndoe@gmail.com"
                         className="bg-[#00707B]/30 border-teal-500/50 pl-10 h-12 text-white placeholder:text-teal-200/80 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 rounded-md"
+                        {...register("email", { required: true })}
                       />
                     </div>
+                    {errors.email && (
+                      <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
+                    )}
                   </div>
 
                   <div className="space-y-2">
-                    <Label
-                      htmlFor="desktop-password"
-                      className="text-white text-sm font-medium"
-                    >
+                    <Label htmlFor="desktop-password" className="text-white text-sm font-medium">
                       Password
                     </Label>
                     <div className="relative">
@@ -226,14 +228,13 @@ const CustomerLogin = () => {
                         type={showPassword ? "text" : "password"}
                         placeholder="Enter Your Password"
                         className="bg-[#00707B]/30 border-teal-500/50 pr-10 h-12 text-white placeholder:text-teal-200/80 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 rounded-md"
+                        {...register("password", { required: true })}
                       />
                       <button
                         type="button"
                         onClick={() => setShowPassword(!showPassword)}
                         className="absolute right-3 top-1/2 -translate-y-1/2 text-teal-300 hover:text-teal-200 transition-colors"
-                        aria-Label={
-                          showPassword ? "Hide password" : "Show password"
-                        }
+                        aria-label={showPassword ? "Hide password" : "Show password"}
                       >
                         {showPassword ? (
                           <EyeOff className="h-4 w-4" />
@@ -242,18 +243,23 @@ const CustomerLogin = () => {
                         )}
                       </button>
                     </div>
+                    {errors.password && (
+                      <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>
+                    )}
                   </div>
 
                   <div className="text-white">Forgot password?</div>
-                
 
                   <div className="pt-4">
-                    <Button className="w-full bg-teal-500 hover:bg-teal-600 text-white font-semibold py-3 h-12 rounded-md text-base transition-colors shadow-lg">
-                      Login
+                    <Button
+                      type="submit"
+                      className="w-full bg-teal-500 hover:bg-teal-600 text-white font-semibold py-3 h-12 rounded-md text-base transition-colors shadow-lg"
+                      disabled={isSubmitting || loginMutation.isPending}
+                    >
+                      {isSubmitting || loginMutation.isPending ? "Logging in..." : "Log in"}
                     </Button>
                   </div>
 
-                  
                   <div className="text-center pt-6">
                     <p className="text-teal-100 text-sm">
                       Don't have an account?{" "}
@@ -261,22 +267,19 @@ const CustomerLogin = () => {
                         to="/signup/customer"
                         className="text-white hover:text-teal-200 font-medium underline underline-offset-2 transition-colors"
                       >
-                        Sign up
+                        Sign Up
                       </Link>
                     </p>
                   </div>
-                </div>
+                </form>
               </div>
             </div>
 
-            <div className="w-1/2 relative bg-gray-100">
-              <div
-                className="absolute inset-0 rounded-r-3xl"
-                style={{
-                  backgroundImage: `url(${CustomerOverlayImage})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                }}
+            <div className="w-1/2 relative">
+              <img
+                src={CustomerOverlayImage}
+                alt="Customer login overlay"
+                className="w-full h-full object-cover"
               />
             </div>
           </div>
