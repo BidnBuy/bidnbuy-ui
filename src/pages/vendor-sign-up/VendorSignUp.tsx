@@ -56,7 +56,7 @@ const VendorSignUp = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#01151C]">
+    <div className="lg:min-h-screen min-h-full bg-[#01151C]">
       <div className="lg:hidden">
         <div className="relative w-full">
           <div className="relative h-80 overflow-hidden">
