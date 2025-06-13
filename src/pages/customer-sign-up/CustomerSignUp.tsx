@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Eye, EyeOff, Mail, Phone, User } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -50,6 +50,8 @@ const CustomerSignUp = () => {
       toast.error(error.response?.data?.message || "Sign up failed");
     },
   });
+
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
   const onSubmit = async (data: SignupFormData) => {
     try {
@@ -153,7 +155,21 @@ const CustomerSignUp = () => {
               )}
             </div>
 
-            <div className="space-y-2">
+            
+            <Input
+              id="password"
+              type="text" // Always "text"
+              ref={(e) => {
+                register("password", { required: true }).ref(e);
+                inputRef.current = e;
+              }}
+              placeholder="Enter Your Password"
+              className={`bg-[#00707B]/30 border-teal-500/50 pr-10 h-12 text-white placeholder:text-teal-200/80 focus:border-teal-400 focus:ring-0 rounded-md ${
+                showPassword ? "" : "password-mask"
+              }`}
+            />
+
+            {/* <div className="space-y-2">
               <Label htmlFor="password" className="text-white text-sm font-medium">
                 Password
               </Label>
@@ -170,7 +186,7 @@ const CustomerSignUp = () => {
                   onClick={showPasswordHandler}
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-teal-300 hover:text-teal-200 transition-colors"
                   aria-label={showPassword ? "Hide password" : "Show password"}
-                  tabIndex={-1}
+                 
                 >
                   {showPassword ? (
                     <EyeOff className="h-4 w-4" />
@@ -182,9 +198,9 @@ const CustomerSignUp = () => {
               {errors.password && (
                 <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>
               )}
-            </div>
+            </div> */}
 
-            <div className="space-y-2">
+            {/* <div className="space-y-2">
               <Label htmlFor="confirmPassword" className="text-white text-sm font-medium">
                 Confirm Password
               </Label>
@@ -201,7 +217,7 @@ const CustomerSignUp = () => {
                   onClick={showConfirmPasswordHandler}
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-teal-300 hover:text-teal-200 transition-colors"
                   aria-label={showConfirmPassword ? "Hide password" : "Show password"}
-                  tabIndex={-1}
+                
                 >
                   {showConfirmPassword ? (
                     <EyeOff className="h-4 w-4" />
@@ -213,7 +229,7 @@ const CustomerSignUp = () => {
               {errors.confirmPassword && (
                 <p className="text-red-500 text-sm mt-1">{errors.confirmPassword.message}</p>
               )}
-            </div>
+            </div> */}
 
             <div className="pt-4">
               <Button
@@ -240,7 +256,7 @@ const CustomerSignUp = () => {
         </div>
       </div>
 
-      <div className="hidden lg:block min-h-screen relative">
+      <div className="desktop hidden lg:block min-h-screen relative">
         <div className="absolute inset-0">
           <img
             src={CustomerBackgroundImage}

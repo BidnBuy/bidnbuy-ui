@@ -130,7 +130,7 @@ const CustomerLogin = () => {
                   onClick={showPasswordHandler}
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-teal-300 hover:text-teal-200 transition-colors"
                   aria-label={showPassword ? "Hide password" : "Show password"}
-                  tabIndex={-1}
+                 
                 >
                   {showPassword ? (
                     <EyeOff className="h-4 w-4" />
