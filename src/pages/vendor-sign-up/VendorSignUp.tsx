@@ -213,9 +213,9 @@ const VendorSignUp = () => {
               <Button
                 type="submit"
                 className="w-full bg-teal-500 hover:bg-teal-600 text-white font-semibold py-3 h-12 rounded-md text-base transition-colors shadow-lg"
-                disabled={signupMutation.isPending}
+                disabled={isSubmitting || signupMutation.isPending}
               >
-                {signupMutation.isPending ? "Signing up..." : "Proceed →"}
+                {isSubmitting || signupMutation.isPending ? "Signing up..." : "Proceed →"}
               </Button>
             </div>
 
@@ -387,9 +387,9 @@ const VendorSignUp = () => {
                     <Button
                       type="submit"
                       className="w-full bg-teal-500 hover:bg-teal-600 text-white font-semibold py-3 h-12 rounded-md text-base transition-colors shadow-lg"
-                      disabled={signupMutation.isPending}
+                      disabled={isSubmitting || signupMutation.isPending}
                     >
-                      {signupMutation.isPending ? "Signing up..." : "Proceed"}
+                      {isSubmitting || signupMutation.isPending ? "Signing up..." : "Proceed"}
                     </Button>
                   </div>
 
