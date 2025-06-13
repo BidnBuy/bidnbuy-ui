@@ -21,7 +21,7 @@ import VendorLoginMobile from "@/assets/customer-sign-up-mobile.jpg";
 import CustomerBackgroundImage from "@/assets/customer-bg-login.jpg";
 
 const VendorLogin = () => {
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword] = useState(false);
   const navigate = useNavigate();
   const setAuth = useAuthStore((state) => state.setAuth);
 
