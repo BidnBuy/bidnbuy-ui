@@ -32,6 +32,7 @@ const VendorLogin = () => {
   } = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
     mode: "onChange",
+    shouldUnregister: false,
   });
 
   const loginMutation = useMutation({

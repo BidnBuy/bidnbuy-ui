@@ -33,6 +33,7 @@ const CustomerSignUp = () => {
   } = useForm<SignupFormData>({
     resolver: zodResolver(signupSchema),
     mode: "onChange",
+    shouldUnregister: false,
   });
 
   const signupMutation = useMutation({
