@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Mail } from "lucide-react";
+import { Mail, Eye, EyeOff } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
@@ -21,7 +21,8 @@ import CustomerLoginMobile from "@/assets/customer-login-mobile.jpg";
 import CustomerBackgroundImage from "@/assets/customer-bg-login.jpg";
 
 const CustomerLogin = () => {
-  const [showPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const showPasswordHandler = () => setShowPassword((prev) => !prev);
   const navigate = useNavigate();
   const setAuth = useAuthStore((state) => state.setAuth);
 
@@ -117,14 +118,26 @@ const CustomerLogin = () => {
                 Password
               </Label>
               <div className="relative">
-                <input
+                <Input
                   id="password"
                   type={showPassword ? "text" : "password"}
                   placeholder="Enter Your Password"
-                  className="bg-[#00707B]/30 border-teal-500/50 pr-10 h-12 text-white placeholder:text-teal-200/80 focus:border-teal-400 focus:ring-0 rounded-md w-full"
+                  className="bg-[#00707B]/30 border-teal-500/50 pr-10 h-12 text-white placeholder:text-teal-200/80 focus:border-teal-400 focus:ring-0 rounded-md"
                   {...register("password", { required: true })}
                 />
-                {/* Show/hide password button removed for debugging */}
+                <Button
+                  type="button"
+                  onClick={showPasswordHandler}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-teal-300 hover:text-teal-200 transition-colors"
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                  tabIndex={-1}
+                >
+                  {showPassword ? (
+                    <EyeOff className="h-4 w-4" />
+                  ) : (
+                    <Eye className="h-4 w-4" />
+                  )}
+                </Button>
               </div>
               {errors.password && (
                 <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>
@@ -220,6 +233,19 @@ const CustomerLogin = () => {
                         className="bg-[#00707B]/30 border-teal-500/50 pr-10 h-12 text-white placeholder:text-teal-200/80 focus:border-teal-400 focus:ring-0 rounded-md"
                         {...register("password", { required: true })}
                       />
+                      <button
+                        type="button"
+                        onClick={showPasswordHandler}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-teal-300 hover:text-teal-200 transition-colors"
+                        aria-label={showPassword ? "Hide password" : "Show password"}
+                        tabIndex={-1}
+                      >
+                        {showPassword ? (
+                          <EyeOff className="h-4 w-4" />
+                        ) : (
+                          <Eye className="h-4 w-4" />
+                        )}
+                      </button>
                     </div>
                     {errors.password && (
                       <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>

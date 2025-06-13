@@ -23,6 +23,9 @@ import CustomerBackgroundImage from "@/assets/customer-bg-img.jpg";
 const CustomerSignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const showPasswordHandler = () => setShowPassword((prev) => !prev);
+  const showConfirmPasswordHandler = () => setShowConfirmPassword((prev) => !prev);
   const navigate = useNavigate();
   const setAuth = useAuthStore((state) => state.setAuth);
 
@@ -155,14 +158,26 @@ const CustomerSignUp = () => {
                 Password
               </Label>
               <div className="relative">
-                <input
+                <Input
                   id="password"
                   type={showPassword ? "text" : "password"}
                   placeholder="Enter Your Password"
-                  className="bg-[#00707B]/30 border-teal-500/50 pr-10 h-12 text-white placeholder:text-teal-200/80 focus:border-teal-400 focus:ring-0 rounded-md w-full"
+                  className="bg-[#00707B]/30 border-teal-500/50 pr-10 h-12 text-white placeholder:text-teal-200/80 focus:border-teal-400 focus:ring-0 rounded-md"
                   {...register("password", { required: true })}
                 />
-                {/* Show/hide password button removed for debugging */}
+                <button
+                  type="button"
+                  onClick={showPasswordHandler}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-teal-300 hover:text-teal-200 transition-colors"
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                  tabIndex={-1}
+                >
+                  {showPassword ? (
+                    <EyeOff className="h-4 w-4" />
+                  ) : (
+                    <Eye className="h-4 w-4" />
+                  )}
+                </button>
               </div>
               {errors.password && (
                 <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>
@@ -174,14 +189,26 @@ const CustomerSignUp = () => {
                 Confirm Password
               </Label>
               <div className="relative">
-                <input
+                <Input
                   id="confirmPassword"
                   type={showConfirmPassword ? "text" : "password"}
                   placeholder="Confirm Your Password"
-                  className="bg-[#00707B]/30 border-teal-500/50 pr-10 h-12 text-white placeholder:text-teal-200/80 focus:border-teal-400 focus:ring-0 rounded-md w-full"
+                  className="bg-[#00707B]/30 border-teal-500/50 pr-10 h-12 text-white placeholder:text-teal-200/80 focus:border-teal-400 focus:ring-0 rounded-md"
                   {...register("confirmPassword", { required: true })}
                 />
-                {/* Show/hide confirm password button removed for debugging */}
+                <button
+                  type="button"
+                  onClick={showConfirmPasswordHandler}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-teal-300 hover:text-teal-200 transition-colors"
+                  aria-label={showConfirmPassword ? "Hide password" : "Show password"}
+                  tabIndex={-1}
+                >
+                  {showConfirmPassword ? (
+                    <EyeOff className="h-4 w-4" />
+                  ) : (
+                    <Eye className="h-4 w-4" />
+                  )}
+                </button>
               </div>
               {errors.confirmPassword && (
                 <p className="text-red-500 text-sm mt-1">{errors.confirmPassword.message}</p>
@@ -316,7 +343,7 @@ const CustomerSignUp = () => {
                       />
                       <button
                         type="button"
-                        onClick={() => setShowPassword(!showPassword)}
+                        onClick={showPasswordHandler}
                         className="absolute right-3 top-1/2 -translate-y-1/2 text-teal-300 hover:text-teal-200 transition-colors"
                         aria-label={showPassword ? "Hide password" : "Show password"}
                       >
@@ -346,7 +373,7 @@ const CustomerSignUp = () => {
                       />
                       <button
                         type="button"
-                        onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                        onClick={showConfirmPasswordHandler}
                         className="absolute right-3 top-1/2 -translate-y-1/2 text-teal-300 hover:text-teal-200 transition-colors"
                         aria-label={showConfirmPassword ? "Hide password" : "Show password"}
                       >
