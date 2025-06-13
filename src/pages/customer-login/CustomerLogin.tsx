@@ -50,7 +50,7 @@ const CustomerLogin = () => {
     try {
       await loginMutation.mutateAsync(data);
     } catch (error) {
-      // Error is handled by mutation
+      console.log(error);
     }
   };
 
@@ -102,7 +102,7 @@ const CustomerLogin = () => {
                   id="email"
                   type="email"
                   placeholder="johndoe@gmail.com"
-                  className="bg-[#00707B]/30 border-teal-500/50 pl-10 h-12 text-white placeholder:text-teal-200/80 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 rounded-md"
+                  className="bg-[#00707B]/30 border-teal-500/50 pl-10 h-12 text-white placeholder:text-teal-200/80 focus:border-teal-400 focus:ring-0 rounded-md"
                   {...register("email", { required: true })}
                 />
               </div>
@@ -120,7 +120,7 @@ const CustomerLogin = () => {
                   id="password"
                   type={showPassword ? "text" : "password"}
                   placeholder="Enter Your Password"
-                  className="bg-[#00707B]/30 border-teal-500/50 pr-10 h-12 text-white placeholder:text-teal-200/80 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 rounded-md"
+                  className="bg-[#00707B]/30 border-teal-500/50 pr-10 h-12 text-white placeholder:text-teal-200/80 focus:border-teal-400 focus:ring-0 rounded-md"
                   {...register("password", { required: true })}
                 />
                 <button
@@ -209,7 +209,7 @@ const CustomerLogin = () => {
                         id="desktop-email"
                         type="email"
                         placeholder="johndoe@gmail.com"
-                        className="bg-[#00707B]/30 border-teal-500/50 pl-10 h-12 text-white placeholder:text-teal-200/80 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 rounded-md"
+                        className="bg-[#00707B]/30 border-teal-500/50 pl-10 h-12 text-white placeholder:text-teal-200/80 focus:border-teal-400 focus:ring-0 rounded-md"
                         {...register("email", { required: true })}
                       />
                     </div>
@@ -227,7 +227,7 @@ const CustomerLogin = () => {
                         id="desktop-password"
                         type={showPassword ? "text" : "password"}
                         placeholder="Enter Your Password"
-                        className="bg-[#00707B]/30 border-teal-500/50 pr-10 h-12 text-white placeholder:text-teal-200/80 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 rounded-md"
+                        className="bg-[#00707B]/30 border-teal-500/50 pr-10 h-12 text-white placeholder:text-teal-200/80 focus:border-teal-400 focus:ring-0 rounded-md"
                         {...register("password", { required: true })}
                       />
                       <button
