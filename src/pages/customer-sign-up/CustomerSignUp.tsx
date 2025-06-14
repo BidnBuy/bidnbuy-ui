@@ -10,7 +10,7 @@ import DesktopCustomerSignUp from "./DesktopCustomerSignUp"
 import MobileCustomerSignUp from "./MobileCustomerSignUp"
 
 
-const CustomerSignupForm = () => {
+const CustomerSignup = () => {
   const form = useForm<SignupFormValues>({
     resolver: zodResolver(signupSchema),
     defaultValues: {
@@ -46,4 +46,4 @@ const CustomerSignupForm = () => {
   )
 }
 
-export default CustomerSignupForm
+export default CustomerSignup

@@ -3,7 +3,7 @@ import type { UseFormReturn } from "react-hook-form"
 import { SignupFormFields } from "@/components/sign-up-form-field/SignUpFormField"
 import type { SignupFormValues } from "@/lib/validations/auth"
 
-import CustomerSignUpMobileImage from "@/assets/customer-sign-up-mobile-img.jpg"
+import VendorSignUpMobile from "@/assets/vendor-sign-up-mobile.jpg";
 import BidnBuyLogo from "@/assets/bidnbuy-logo.png"
 
 
@@ -23,7 +23,7 @@ const MobileCustomerSignUp = ({ form, onSubmit, isLoading }: MobileSignupProps) 
       <div className="relative w-full overflow-hidden aspect-[1408/768] max-h-[768px]">
        
   
-         <img src={CustomerSignUpMobileImage} alt="Shopping background" className="w-full h-full object-cover" />
+         <img src={VendorSignUpMobile} alt="Shopping background" className="w-full h-full object-cover" />
         
       </div>
 

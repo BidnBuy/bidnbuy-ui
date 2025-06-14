@@ -2,8 +2,8 @@ import type { UseFormReturn } from "react-hook-form"
 import type { SignupFormValues } from "@/lib/validations/auth"
 import { SignupFormFields } from "@/components/sign-up-form-field/SignUpFormField"
 
-import CustomerBackgroundImage from "@/assets/customer-bg-img.jpg"
-import CustomerOverlayImage from "@/assets/customer-overlay-img.jpg"
+import VendorBackgroundImage from "@/assets/vendor-bg-img.jpg";
+import VendorOverlayImage from "@/assets/vendor-overlay-img.jpg";
 import BidnBuyLogo from "@/assets/bidnbuy-logo.png"
 
 type DesktopSignupProps = {
@@ -12,12 +12,12 @@ type DesktopSignupProps = {
   isLoading?: boolean
 }
 
-const DesktopCustomerSignup = ({ form, onSubmit, isLoading }: DesktopSignupProps) => {
+const DesktopVendorSignup = ({ form, onSubmit, isLoading }: DesktopSignupProps) => {
   return (
     <div className="hidden lg:block min-h-screen relative">
     
       <div className="absolute inset-0">
-        <img src={CustomerBackgroundImage} alt="Shopping background" className="w-full h-full object-cover" />
+        <img src={VendorBackgroundImage} alt="Shopping background" className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-black/20" />
       </div>
 
@@ -44,13 +44,15 @@ const DesktopCustomerSignup = ({ form, onSubmit, isLoading }: DesktopSignupProps
           <div className="w-1/2 relative">
             <div
               className="absolute inset-0 rounded-r-3xl bg-cover bg-center"
-              style={{ backgroundImage: `url('${CustomerOverlayImage}')` }}
+              style={{ backgroundImage: `url('${VendorOverlayImage}')` }}
             />
           </div>
         </div>
+
+        
       </div>
     </div>
   )
 }
 
-export default DesktopCustomerSignup
+export default DesktopVendorSignup
