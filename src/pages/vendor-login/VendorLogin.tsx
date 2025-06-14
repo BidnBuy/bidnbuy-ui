@@ -9,7 +9,7 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { loginSchema, type LoginFormData } from "@/lib/validations/auth";
+import { loginSchema, type LoginFormValues } from "@/lib/validations/auth";
 import { authService } from "@/services/auth";
 import { useAuthStore } from "@/store/auth";
 
@@ -32,7 +32,7 @@ const VendorLogin = () => {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<LoginFormData>({
+  } = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
     mode: "onChange",
     shouldUnregister: false,
@@ -50,7 +50,7 @@ const VendorLogin = () => {
     },
   });
 
-  const onSubmit = async (data: LoginFormData) => {
+  const onSubmit = async (data: LoginFormValues) => {
     try {
       await loginMutation.mutateAsync(data);
     } catch (error) {

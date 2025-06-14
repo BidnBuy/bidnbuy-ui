@@ -1,5 +1,5 @@
 import { axiosInstance } from '@/lib/axios';
-import type { LoginFormData, SignupFormData } from '@/lib/validations/auth';
+import type { LoginFormValues, SignupFormValues } from '@/lib/validations/auth';
 
 interface AuthResponse {
   token: string;
@@ -12,12 +12,12 @@ interface AuthResponse {
 }
 
 export const authService = {
-  login: async (data: LoginFormData): Promise<AuthResponse> => {
+  login: async (data: LoginFormValues): Promise<AuthResponse> => {
     const response = await axiosInstance.post<AuthResponse>('/auth/login', data);
     return response.data;
   },
 
-  signup: async (data: SignupFormData): Promise<AuthResponse> => {
+  signup: async (data: SignupFormValues): Promise<AuthResponse> => {
     const response = await axiosInstance.post<AuthResponse>('/auth/signup', data);
     return response.data;
   },

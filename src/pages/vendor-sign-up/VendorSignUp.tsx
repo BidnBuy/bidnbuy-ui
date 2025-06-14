@@ -9,7 +9,7 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { signupSchema, type SignupFormData } from "@/lib/validations/auth";
+import { signupSchema, type SignupFormValues } from "@/lib/validations/auth";
 import { authService } from "@/services/auth";
 import { useAuthStore } from "@/store/auth";
 
@@ -35,7 +35,7 @@ const VendorSignUp = () => {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<SignupFormData>({
+  } = useForm<SignupFormValues>({
     resolver: zodResolver(signupSchema),
     mode: "onChange",
   });
@@ -52,7 +52,7 @@ const VendorSignUp = () => {
     },
   });
 
-  const onSubmit = async (data: SignupFormData) => {
+  const onSubmit = async (data: SignupFormValues) => {
     try {
       await signupMutation.mutateAsync(data);
     } catch (error) {
