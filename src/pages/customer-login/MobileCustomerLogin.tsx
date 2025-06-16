@@ -1,12 +1,19 @@
-import type { SignupProps } from "@/lib/types";
+import type { UseFormReturn } from "react-hook-form"
 
 import { SignupFormFields } from "@/components/sign-up-form-field/SignUpFormField"
+import type { SignupFormValues } from "@/lib/validations/auth"
 
-import VendorSignUpMobile from "@/assets/vendor-sign-up-mobile.jpg";
+import CustomerSignUpMobileImage from "@/assets/customer-sign-up-mobile-img.jpg"
 import BidnBuyLogo from "@/assets/bidnbuy-logo.png"
 
 
-const MobileCustomerSignUp = ({ form, onSubmit, isLoading }: SignupProps) => {
+type MobileLoginProps = {
+  form: UseFormReturn<SignupFormValues>
+  onSubmit: (values: SignupFormValues) => void
+  isLoading?: boolean
+}
+
+const MobileCustomerLogin = ({ form, onSubmit, isLoading }: MobileLoginProps) => {
   return (
     <div className="lg:hidden">
 
@@ -16,7 +23,7 @@ const MobileCustomerSignUp = ({ form, onSubmit, isLoading }: SignupProps) => {
       <div className="relative w-full overflow-hidden aspect-[1408/768] max-h-[768px]">
        
   
-         <img src={VendorSignUpMobile} alt="Shopping background" className="w-full h-full object-cover" />
+         <img src={CustomerSignUpMobileImage} alt="Shopping background" className="w-full h-full object-cover" />
         
       </div>
 
@@ -44,4 +51,4 @@ const MobileCustomerSignUp = ({ form, onSubmit, isLoading }: SignupProps) => {
     </div>
   )
 }
-export default MobileCustomerSignUp
+export default MobileCustomerLogin

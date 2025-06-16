@@ -1,19 +1,12 @@
-import type { UseFormReturn } from "react-hook-form"
+import type { SignupProps } from "@/lib/types"
 
 import { SignupFormFields } from "@/components/sign-up-form-field/SignUpFormField"
-import type { SignupFormValues } from "@/lib/validations/auth"
 
 import CustomerSignUpMobileImage from "@/assets/customer-sign-up-mobile-img.jpg"
 import BidnBuyLogo from "@/assets/bidnbuy-logo.png"
 
 
-type MobileSignupProps = {
-  form: UseFormReturn<SignupFormValues>
-  onSubmit: (values: SignupFormValues) => void
-  isLoading?: boolean
-}
-
-const MobileCustomerSignUp = ({ form, onSubmit, isLoading }: MobileSignupProps) => {
+const MobileCustomerSignUp = ({ form, onSubmit, isLoading }: SignupProps) => {
   return (
     <div className="lg:hidden">
 
@@ -39,8 +32,6 @@ const MobileCustomerSignUp = ({ form, onSubmit, isLoading }: MobileSignupProps) 
        
       </div>
     </div>
-
-      
 
    
       <div className="bg-[#01151C] px-6 pb-8 pt-8">

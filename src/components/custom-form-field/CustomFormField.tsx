@@ -1,15 +1,16 @@
 import { useState } from "react"
-import type { UseFormReturn } from "react-hook-form"
+import type { UseFormReturn, FieldValues, Path } from "react-hook-form"
 import { Eye, EyeOff, Mail, Phone, User } from "lucide-react"
 
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form"
-import type { SignupFormValues } from "@/lib/validations/auth"
 
-interface CustomFormFieldProps {
-  form: UseFormReturn<SignupFormValues>
-  name: keyof SignupFormValues
+// Make the component generic for any form type
+
+type CustomFormFieldProps<T extends FieldValues> = {
+  form: UseFormReturn<T>
+  name: Path<T>
   label: string
   placeholder: string
   type?: string
@@ -17,7 +18,7 @@ interface CustomFormFieldProps {
   showPasswordToggle?: boolean
 }
 
-const CustomFormField = ({
+function CustomFormField<T extends FieldValues>({
   form,
   name,
   label,
@@ -25,7 +26,7 @@ const CustomFormField = ({
   type = "text",
   icon,
   showPasswordToggle = false,
-}: CustomFormFieldProps) => {
+}: CustomFormFieldProps<T>) {
   const [showPassword, setShowPassword] = useState(false)
 
   const getIcon = () => {

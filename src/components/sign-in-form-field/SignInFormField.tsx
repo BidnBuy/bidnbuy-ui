@@ -1,52 +1,33 @@
-import type { UseFormReturn } from "react-hook-form"
+import type { UseFormReturn, FieldValues, Path } from "react-hook-form"
 
 import { Button } from "@/components/ui/button"
-import type { SignupFormValues } from "@/lib/validations/auth"
 import { Link } from "react-router-dom"
 import CustomFormField from "../custom-form-field/CustomFormField"
 
-interface SignupFormFieldsProps {
-  form: UseFormReturn<SignupFormValues>
-  onSubmit: (values: SignupFormValues) => void
+type SignInFormFieldsProps<T extends FieldValues> = {
+  form: UseFormReturn<T>
+  onSubmit: (values: T) => void
   isLoading?: boolean
 }
 
-export function SignupFormFields({ form, onSubmit, isLoading = false }: SignupFormFieldsProps) {
+function SignInFormFields<T extends FieldValues>({ form, onSubmit, isLoading = false }: SignInFormFieldsProps<T>) {
   return (
     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
-      <CustomFormField form={form} name="name" label="Name" placeholder="johndoe" icon="user" />
 
-      <CustomFormField
+      <CustomFormField<T>
         form={form}
-        name="email"
+        name={"email" as Path<T>}
         label="Email Address"
         placeholder="johndoe@gmail.com"
         type="email"
         icon="email"
       />
 
-      <CustomFormField
+      <CustomFormField<T>
         form={form}
-        name="phone"
-        label="Phone Number"
-        placeholder="+234706748047G"
-        type="tel"
-        icon="phone"
-      />
-
-      <CustomFormField
-        form={form}
-        name="password"
+        name={"password" as Path<T>}
         label="Password"
         placeholder="Enter Your Password"
-        showPasswordToggle
-      />
-
-      <CustomFormField
-        form={form}
-        name="confirmPassword"
-        label="Confirm Password"
-        placeholder="Confirm Your Password"
         showPasswordToggle
       />
 
@@ -56,21 +37,23 @@ export function SignupFormFields({ form, onSubmit, isLoading = false }: SignupFo
           disabled={isLoading}
           className="w-full bg-teal-500 hover:bg-teal-600 text-white font-semibold py-3 h-12 rounded-lg text-base transition-colors shadow-lg disabled:opacity-50"
         >
-          {isLoading ? "Creating Account..." : "Proceed →"}
+          {isLoading ? "Logging in..." : "Log in"}
         </Button>
       </div>
 
       <div className="text-center pt-6">
         <p className="text-teal-100 text-sm">
-          Already have an account?{" "}
+          Don't have an account?{" "}
           <Link
-            to="/login/customer"
+            to="/signup/customer"
             className="text-white hover:text-teal-200 font-medium underline underline-offset-2 transition-colors"
           >
-            Login
+            Sign Up
           </Link>
         </p>
       </div>
     </form>
   )
 }
+
+export default SignInFormFields
