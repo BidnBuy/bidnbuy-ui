@@ -1,18 +1,13 @@
-import type { UseFormReturn } from "react-hook-form"
-import type { LoginFormValues } from "@/lib/validations/auth"
+import type { SignInProps } from "@/lib/types"
 
-import CustomerBackgroundImage from "@/assets/customer-bg-img.jpg"
-import CustomerOverlayImage from "@/assets/customer-overlay-img.jpg"
-import BidnBuyLogo from "@/assets/bidnbuy-logo.png"
 import SignInFormFields from "@/components/sign-in-form-field/SignInFormField"
 
-type DesktopLoginProps = {
-  form: UseFormReturn<LoginFormValues>
-  onSubmit: (values: LoginFormValues) => void
-  isLoading?: boolean
-}
+import CustomerBackgroundImage from "@/assets/customer-bg-img.jpg"
+import VendorOverlayImage from "@/assets/vendor-overlay-login.jpg";
+import BidnBuyLogo from "@/assets/bidnbuy-logo.png"
 
-const DesktopCustomerLogin = ({ form, onSubmit, isLoading }: DesktopLoginProps) => {
+
+const DesktopCustomerLogin = ({ form, onSubmit, isLoading }: SignInProps) => {
   return (
     <div className="hidden lg:block min-h-screen relative">
     
@@ -33,8 +28,8 @@ const DesktopCustomerLogin = ({ form, onSubmit, isLoading }: DesktopLoginProps) 
 
            
               <div className="space-y-3 mb-8">
-                <h1 className="text-4xl font-bold text-white leading-tight">Create your personal account</h1>
-                <p className="text-gray-200 text-lg">You are one step away from smarter shopping.</p>
+                <h1 className="text-4xl font-bold text-white leading-tight">Welcome Back! 👋</h1>
+                <p className="text-gray-200 text-lg">Login to join the marketplace and start bidding smart.</p>
               </div>
 
               <SignInFormFields form={form} onSubmit={onSubmit} isLoading={isLoading} />
@@ -44,7 +39,7 @@ const DesktopCustomerLogin = ({ form, onSubmit, isLoading }: DesktopLoginProps) 
           <div className="w-1/2 relative">
             <div
               className="absolute inset-0 rounded-r-3xl bg-cover bg-center"
-              style={{ backgroundImage: `url('${CustomerOverlayImage}')` }}
+              style={{ backgroundImage: `url('${VendorOverlayImage}')` }}
             />
           </div>
         </div>

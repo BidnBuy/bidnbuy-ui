@@ -6,8 +6,8 @@ import Layout from './components/layout/Layout'
 import Home from './pages/home/Home'
 import CustomerSignUp from './pages/customer-sign-up/CustomerSignUp'
 import AccountTypeSelection from './pages/account-type-selection/AccountTypeSelection'
-import CustomerLogin from './pages/customer-login old/CustomerLogin'
-import VendorLogin from './pages/vendor-login/VendorLogin'
+import CustomerLogin from './pages/customer-login/CustomerLogin'
+import VendorLogin from './pages/vendor-login/VendorLoginOld'
 import VendorSignup from './pages/vendor-sign-up/VendorSignUp'
 
 

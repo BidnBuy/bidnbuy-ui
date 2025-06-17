@@ -4,31 +4,27 @@ import { toast } from "sonner"
 
 import { Form } from "@/components/ui/form"
 
-import { signupSchema, type SignupFormValues } from "@/lib/validations/auth"
-
-import DesktopCustomerSignUp from "./DesktopCustomerLogin"
-import MobileCustomerSignUp from "./MobileCustomerLogin"
+import { loginSchema, type LoginFormValues } from "@/lib/validations/auth"
+import MobileCustomerLogin from "./MobileCustomerLogin"
+import DesktopCustomerLogin from "./DesktopCustomerLogin"
 
 
 const CustomerLogin = () => {
-  const form = useForm<SignupFormValues>({
-    resolver: zodResolver(signupSchema),
+  const form = useForm<LoginFormValues>({
+    resolver: zodResolver(loginSchema),
     defaultValues: {
-      name: "",
       email: "",
-      phone: "",
-      password: "",
-      confirmPassword: "",
+      password: ""
     },
   })
 
-  async function onSubmit(values: SignupFormValues) {
+  async function onSubmit(values: LoginFormValues) {
     try {
 
       await new Promise((resolve) => setTimeout(resolve, 2000))
 
       console.log("Form submitted:", values)
-      toast.success("Account created successfully!")
+      toast.success("Logged In successfully!")
 
       form.reset()
     } catch (error) {
@@ -39,8 +35,8 @@ const CustomerLogin = () => {
   return (
     <div className="min-h-screen bg-[#01151C]">
       <Form {...form}>
-        <MobileCustomerSignUp form={form} onSubmit={onSubmit} isLoading={form.formState.isSubmitting} />
-        <DesktopCustomerSignUp form={form} onSubmit={onSubmit} isLoading={form.formState.isSubmitting} />
+        <MobileCustomerLogin form={form} onSubmit={onSubmit} isLoading={form.formState.isSubmitting} />
+        <DesktopCustomerLogin form={form} onSubmit={onSubmit} isLoading={form.formState.isSubmitting} />
       </Form>
     </div>
   )

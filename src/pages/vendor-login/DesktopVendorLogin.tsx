@@ -1,19 +1,23 @@
-import type { SignupProps } from "@/lib/types";
+import type { UseFormReturn } from "react-hook-form"
+import type { LoginFormValues } from "@/lib/validations/auth"
 
-import { SignupFormFields } from "@/components/sign-up-form-field/SignUpFormField"
-
-import VendorBackgroundImage from "@/assets/vendor-bg-img.jpg";
-import VendorOverlayImage from "@/assets/vendor-overlay-img.jpg";
+import CustomerBackgroundImage from "@/assets/customer-bg-img.jpg"
+import CustomerOverlayImage from "@/assets/customer-overlay-img.jpg"
 import BidnBuyLogo from "@/assets/bidnbuy-logo.png"
+import SignInFormFields from "@/components/sign-in-form-field/SignInFormField"
 
+type DesktopLoginProps = {
+  form: UseFormReturn<LoginFormValues>
+  onSubmit: (values: LoginFormValues) => void
+  isLoading?: boolean
+}
 
-
-const DesktopVendorSignup = ({ form, onSubmit, isLoading }: SignupProps) => {
+const DesktopCustomerLogin = ({ form, onSubmit, isLoading }: DesktopLoginProps) => {
   return (
     <div className="hidden lg:block min-h-screen relative">
     
       <div className="absolute inset-0">
-        <img src={VendorBackgroundImage} alt="Shopping background" className="w-full h-full object-cover" />
+        <img src={CustomerBackgroundImage} alt="Shopping background" className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-black/20" />
       </div>
 
@@ -29,26 +33,24 @@ const DesktopVendorSignup = ({ form, onSubmit, isLoading }: SignupProps) => {
 
            
               <div className="space-y-3 mb-8">
-                <h1 className="text-4xl font-bold text-white leading-tight">Create your business account</h1>
-                <p className="text-gray-200 text-lg">Reach more buyers, Sell faster, Earn More.</p>
+                <h1 className="text-4xl font-bold text-white leading-tight">Create your personal account</h1>
+                <p className="text-gray-200 text-lg">You are one step away from smarter shopping.</p>
               </div>
 
-              <SignupFormFields form={form} onSubmit={onSubmit} isLoading={isLoading} />
+              <SignInFormFields form={form} onSubmit={onSubmit} isLoading={isLoading} />
             </div>
           </div>
 
           <div className="w-1/2 relative">
             <div
               className="absolute inset-0 rounded-r-3xl bg-cover bg-center"
-              style={{ backgroundImage: `url('${VendorOverlayImage}')` }}
+              style={{ backgroundImage: `url('${CustomerOverlayImage}')` }}
             />
           </div>
         </div>
-
-        
       </div>
     </div>
   )
 }
 
-export default DesktopVendorSignup
+export default DesktopCustomerLogin

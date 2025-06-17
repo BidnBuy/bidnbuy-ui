@@ -1,10 +1,19 @@
+import type { UseFormReturn } from "react-hook-form"
+
+import type { LoginFormValues } from "@/lib/validations/auth"
+
 import CustomerSignUpMobileImage from "@/assets/customer-sign-up-mobile-img.jpg"
 import BidnBuyLogo from "@/assets/bidnbuy-logo.png"
 import SignInFormFields from "@/components/sign-in-form-field/SignInFormField"
-import type { SignInProps } from "@/lib/types"
 
 
-const MobileCustomerLogin = ({ form, onSubmit, isLoading }: SignInProps) => {
+type MobileLoginProps = {
+  form: UseFormReturn<LoginFormValues>
+  onSubmit: (values: LoginFormValues) => void
+  isLoading?: boolean
+}
+
+const MobileCustomerLogin = ({ form, onSubmit, isLoading }: MobileLoginProps) => {
   return (
     <div className="lg:hidden">
 
@@ -25,7 +34,7 @@ const MobileCustomerLogin = ({ form, onSubmit, isLoading }: SignInProps) => {
             </div>
         <div className="space-y-3 pb-4 text-center">
               <h1 className="text-3xl font-bold text-white leading-tight">Welcome Back! 👋</h1>
-              <p className="text-gray-200 text-base opacity-90">Login to join the marketplace and start bidding smart.</p>
+              <p className="text-gray-200 text-base opacity-90">Login and pick up from where you left off.</p>
             </div>
        
       </div>
