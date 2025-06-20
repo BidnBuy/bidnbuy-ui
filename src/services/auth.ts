@@ -1,7 +1,7 @@
 import { axiosInstance } from '@/lib/axios';
 import type { LoginFormValues, SignupFormValues } from '@/lib/validations/auth';
 
-interface AuthResponse {
+export type AuthResponse = {
   token: string;
   user: {
     id: string;
@@ -13,16 +13,19 @@ interface AuthResponse {
 
 export const authService = {
   login: async (data: LoginFormValues): Promise<AuthResponse> => {
-    const response = await axiosInstance.post<AuthResponse>('/auth/login', data);
+    const response = await axiosInstance.post<AuthResponse>('/api/v1/auth/login', data);
+    console.log('Login response:', response.data);
     return response.data;
   },
 
   signup: async (data: SignupFormValues): Promise<AuthResponse> => {
-    const response = await axiosInstance.post<AuthResponse>('/auth/signup', data);
+    const response = await axiosInstance.post<AuthResponse>('/api/v1/auth/signup', data);
+    console.log('Signup response:', response.data);
     return response.data;
   },
 
   logout: async (): Promise<void> => {
-    await axiosInstance.post('/auth/logout');
+    const response = await axiosInstance.post('/api/v1/auth/logout');
+    console.log("Logout response:", response.data)
   },
 }; 
