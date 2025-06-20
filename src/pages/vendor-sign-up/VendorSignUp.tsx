@@ -10,7 +10,6 @@ import { signupSchema, type SignupFormValues } from "@/lib/validations/auth"
 import DesktopCustomerSignUp from "./DesktopVendorSignUp"
 import MobileCustomerSignUp from "./MobileCustomerSignUp"
 import { authService } from "@/services/auth"
-import { useAuthStore } from "@/store/auth"
 import { useAuthMutation } from "@/hooks/useAuthMutation"
 
 
