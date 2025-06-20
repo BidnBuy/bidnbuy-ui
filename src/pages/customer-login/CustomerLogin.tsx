@@ -1,15 +1,19 @@
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { toast } from "sonner"
+import { useNavigate } from "react-router-dom"
 
 import { Form } from "@/components/ui/form"
+import { authService } from "@/services/auth"
 
 import { loginSchema, type LoginFormValues } from "@/lib/validations/auth"
 import MobileCustomerLogin from "./MobileCustomerLogin"
 import DesktopCustomerLogin from "./DesktopCustomerLogin"
+import { useAuthMutation } from "@/hooks/useAuthMutation"
 
 
 const CustomerLogin = () => {
+  const navigate = useNavigate()
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -18,25 +22,27 @@ const CustomerLogin = () => {
     },
   })
 
-  async function onSubmit(values: LoginFormValues) {
-    try {
-
-      await new Promise((resolve) => setTimeout(resolve, 2000))
-
-      console.log("Form submitted:", values)
+  // Use the reusable auth mutation hook with correct types
+  const loginMutation = useAuthMutation<LoginFormValues, import("@/services/auth").AuthResponse>(authService.login, {
+    onSuccess: () => {
       toast.success("Logged In successfully!")
-
       form.reset()
-    } catch (error) {
-      toast.error("Something went wrong. Please try again.")
+      navigate("/dashboard")
+    },
+    onError: () => {
+      // Error toast handled in hook
     }
+  })
+
+  function onSubmit(values: LoginFormValues) {
+    loginMutation.mutate(values)
   }
 
   return (
     <div className="min-h-screen bg-[#01151C]">
       <Form {...form}>
-        <MobileCustomerLogin form={form} onSubmit={onSubmit} isLoading={form.formState.isSubmitting} />
-        <DesktopCustomerLogin form={form} onSubmit={onSubmit} isLoading={form.formState.isSubmitting} />
+        <MobileCustomerLogin form={form} onSubmit={onSubmit} isLoading={loginMutation.isPending} />
+        <DesktopCustomerLogin form={form} onSubmit={onSubmit} isLoading={loginMutation.isPending} />
       </Form>
     </div>
   )
