@@ -4,7 +4,7 @@ import { MobileCarouselSlide } from "../carousel/MobileCarouselSlide"
 
 import DashboardHeroImg from "@/assets/products/dashboard-hero.jpg"
 import SmartTvImg from "@/assets/products/smart-tv.jpg"
-import NikeAirImg from "@/assets/products/nike-air-2025.png"
+import NikeAirImg from "@/assets/products/nike-air.png"
 
 export function FeaturedCarousel() {
   const [currentSlide, setCurrentSlide] = useState(0)
