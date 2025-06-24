@@ -22,7 +22,7 @@ const CustomerLogin = () => {
     },
   })
 
-  // Use the reusable auth mutation hook with correct types
+  
   const loginMutation = useAuthMutation<LoginFormValues, import("@/services/auth").AuthResponse>(authService.login, {
     onSuccess: () => {
       toast.success("Logged In successfully!")

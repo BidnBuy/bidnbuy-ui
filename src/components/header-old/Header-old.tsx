@@ -33,8 +33,8 @@ export default function Header() {
             <Link to="/about" className="text-gray-700 hover:text-teal-600 transition-colors">
               About
             </Link>
-            <Link to="/" className="text-gray-700 hover:text-teal-600 transition-colors">
-              Contact
+            <Link to="/dashboard" className="text-gray-700 hover:text-teal-600 transition-colors">
+              Dashboard
             </Link>
           </nav>
 
@@ -88,11 +88,11 @@ export default function Header() {
                 About
               </Link>
               <Link
-                to="/"
+                to="/dashboard"
                 className="block px-3 py-2 text-gray-700 hover:text-teal-600 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Contact
+                Dashboard
               </Link>
               <div className="border-t border-gray-200 pt-4 pb-3">
                 <div className="flex items-center space-x-3">
