@@ -12,18 +12,20 @@ export function CategoryTabs({ categories, className = "" }: CategoryTabsProps) 
   const hasMore = isMobile && categories.length > 4 && !showAll
 
   return (
-    <div className={`flex flex-wrap items-center gap-2 w-full max-w-full overflow-x-hidden ${className}`}>
+    <div
+      className={`flex items-center gap-2 w-full ${isMobile ? 'justify-center' : 'overflow-x-auto no-scrollbar'} ${className}`}
+    >
       {visibleCategories.map((category) => (
         <button
           key={category}
-          className="bg-[#004755] text-white px-3 py-1.5 rounded-full text-xs hover:bg-[#00545F] transition-colors"
+          className="bg-[#004755] text-white px-3 py-1.5 rounded-full text-xs whitespace-nowrap hover:bg-[#00545F] transition-colors flex-shrink-0"
         >
           {category}
         </button>
       ))}
       {hasMore && (
         <button
-          className="bg-[#00707B] text-white px-3 py-1.5 rounded-full text-xs hover:bg-[#008a9a] transition-colors"
+          className="bg-[#00707B] text-white px-3 py-1.5 rounded-full text-xs whitespace-nowrap hover:bg-[#008a9a] transition-colors flex-shrink-0"
           onClick={() => setShowAll(true)}
         >
           More
