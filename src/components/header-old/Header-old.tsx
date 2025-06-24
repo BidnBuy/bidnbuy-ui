@@ -34,7 +34,7 @@ export default function Header() {
               About
             </Link>
             <Link to="/dashboard" className="text-gray-700 hover:text-teal-600 transition-colors">
-              Dashboard
+              Product
             </Link>
           </nav>
 
@@ -92,7 +92,7 @@ export default function Header() {
                 className="block px-3 py-2 text-gray-700 hover:text-teal-600 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Dashboard
+                Product
               </Link>
               <div className="border-t border-gray-200 pt-4 pb-3">
                 <div className="flex items-center space-x-3">

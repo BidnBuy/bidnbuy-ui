@@ -45,8 +45,8 @@ export default function Dashboard() {
     "Fashion",
     "Electronics",
     "Health&Beauty",
-    "Home&Office",
-    "Appliances",
+    // "Home&Office",
+    // "Appliances",
   ]
 
   const exploreProducts = [

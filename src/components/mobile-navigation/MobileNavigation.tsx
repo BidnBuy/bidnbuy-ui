@@ -16,9 +16,9 @@ export function MobileNavigation({ isOpen, onClose, isLoggedIn = false }: Mobile
   }
 
   return (
-    <div className="fixed inset-0 z-50 bg-[#01151C]">
+    <div className="fixed inset-0 z-50 bg-[#01151C] w-full max-w-full overflow-x-hidden">
       {/* Close button */}
-      <div className="flex justify-end p-4">
+      <div className="flex justify-end p-4 w-full max-w-full overflow-x-hidden">
         <button onClick={onClose} className="text-white p-2">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -33,8 +33,8 @@ export function MobileNavigation({ isOpen, onClose, isLoggedIn = false }: Mobile
       </div>
 
       {/* Navigation Menu */}
-      <div className="px-6 py-4">
-        <nav className="space-y-6">
+      <div className="px-6 py-4 w-full max-w-full overflow-x-hidden">
+        <nav className="space-y-6 w-full max-w-full overflow-x-hidden">
           <Link to="/" className="flex items-center gap-4 text-white text-lg" onClick={onClose}>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
