@@ -36,7 +36,7 @@
           "style": "Casual"
         },
         "price": 150.35,
-        "itemsInStock": 47,
+        "itemsInStock": 407,
         "_id": "684b8207bdeef305f5d2c105"
       },
       {
