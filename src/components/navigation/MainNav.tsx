@@ -1,4 +1,5 @@
 import { User, Bell } from "lucide-react"
+import { useState } from "react"
 
 import { Link } from "react-router-dom"
 import { AuthButtons } from "../auth-buttons/AuthButtons"
@@ -18,6 +19,7 @@ export function MainNav() {
     "Home&Office",
     "Appliances",
   ]
+  const [selectedCategory, setSelectedCategory] = useState("All")
 
   return (
     <div className="bg-[#01151C] px-6 py-4">
@@ -31,7 +33,11 @@ export function MainNav() {
         <div className="flex-1 max-w-2xl mx-8">
           <SearchInput placeholder="Find everything you have been looking for" className="mb-4" />
         
-          <CategoryTabs categories={categories} />
+          <CategoryTabs 
+            categories={categories} 
+            selectedCategory={selectedCategory}
+            onSelectCategory={setSelectedCategory}
+          />
         </div>
 
         <div className="flex flex-col items-end gap-3">
