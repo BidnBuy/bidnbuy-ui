@@ -1,4 +1,7 @@
 import { useEffect, useState } from "react"
+import { useQuery } from '@tanstack/react-query';
+import { useProductStore, type Product } from '@/store/products';
+import { fetchProducts } from '@/services/products';
 
 import { MobileHeader } from "@/components/header/MobileHeader"
 import { SearchBar } from "@/components/search-bar/SearchBar"
@@ -12,32 +15,17 @@ import { DesktopDiscoverSection } from "@/components/discover-section/DesktopDis
 import { FeaturedCarousel } from "@/components/featured-carousel/FeaturedCarousel"
 
 
-import AntiquePerfumeImg from "@/assets/products/antique-perfume-img.png"
-import BedroomImg from "@/assets/products/bedroom-set.jpg"
-import AirPodsImg from "@/assets/products/earpods-img.jpg"
-import EngagementRingImg from "@/assets/products/engagement-ring.png"
-import IronImg from "@/assets/products/iron-img.jpg"
-import MercedesImg from "@/assets/products/mercedes-benz.jpg"
-import SmartTvImg from "@/assets/products/smart-tv.jpg"
-import MacbookImg from "@/assets/products/macbook-img.png"
-import GasCookerImg from "@/assets/products/gas-cooker.jpg"
-import WashingMachineImg from "@/assets/products/washing-machine-img.jpg"
-
 export default function Dashboard() {
+ 
   const [isMobile, setIsMobile] = useState(true)
-
   useEffect(() => {
-    const checkScreenSize = () => {
-      setIsMobile(window.innerWidth < 1024)
-    }
-
+    const checkScreenSize = () => setIsMobile(window.innerWidth < 1024)
     checkScreenSize()
     window.addEventListener("resize", checkScreenSize)
-
     return () => window.removeEventListener("resize", checkScreenSize)
   }, [])
 
-  // Product data with real images
+ 
   const categories = [
     "All",
     "Accessories",
@@ -45,217 +33,89 @@ export default function Dashboard() {
     "Fashion",
     "Electronics",
     "Health&Beauty",
-    // "Home&Office",
-    // "Appliances",
   ]
+  const [selectedCategory, setSelectedCategory] = useState("All")
 
-  const exploreProducts = [
-    {
-      image: AirPodsImg,
-      title: "AirPods Pro 3rd Generation",
-      rating: 5,
-      reviews: 1500,
-      price: "$249.99",
-      actionType: "bid" as const,
-    },
-    {
-      image: AntiquePerfumeImg,
-      title: "Latafa Antique Emerald Perfume",
-      rating: 5,
-      reviews: 2300,
-      price: "$89.99",
-      actionType: "buy" as const,
-    },
-    {
-      image: SmartTvImg,
-      title: 'Hisense 32" Smart TV 2023',
-      rating: 4,
-      reviews: 800,
-      price: "$299.99",
-      actionType: "buy" as const,
-    },
-    {
-      image: MacbookImg,
-      title: "MacBook Pro 13-inch",
-      rating: 5,
-      reviews: 3200,
-      price: "$1299.99",
-      actionType: "bid" as const,
-    },
-    {
-      image: EngagementRingImg,
-      title: "Diamond Engagement Ring",
-      rating: 5,
-      reviews: 650,
-      price: "$2499.99",
-      actionType: "buy" as const,
-    },
-    {
-      image: MercedesImg,
-      title: "Mercedes-Benz AMG GT",
-      rating: 5,
-      reviews: 180,
-      price: "$89,999.99",
-      actionType: "offer" as const,
-    },
-  ]
+  
+  const { data: products = [], isLoading } = useQuery<Product[]>({
+    queryKey: ['products'],
+    queryFn: fetchProducts,
+  })
+  const setProducts = useProductStore((state) => state.setProducts)
 
-  const electronicsProducts = [
-    {
-      image: GasCookerImg,
-      title: "4-Burner Gas Cooker with Oven",
-      rating: 4,
-      reviews: 2100,
-      price: "$399.99",
-      actionType: "buy" as const,
-    },
-    {
-      image: AirPodsImg,
-      title: "AirPods Pro 3rd Generation",
-      rating: 5,
-      reviews: 3400,
-      price: "$249.99",
-      actionType: "offer" as const,
-    },
-    {
-      image: SmartTvImg,
-      title: 'Hisense 32" Smart TV',
-      rating: 4,
-      reviews: 1200,
-      price: "$299.99",
-      actionType: "buy" as const,
-    },
-    {
-      image: IronImg,
-      title: "Steam Iron Electric Blue",
-      rating: 4,
-      reviews: 950,
-      price: "$59.99",
-      actionType: "buy" as const,
-    },
-  ]
+  useEffect(() => {
+    setProducts(products)
+  }, [products, setProducts])
 
-  const featuredProducts = [
-    {
-      image: BedroomImg,
-      title: "King Size Bedroom Furniture Set",
-      rating: 4,
-      reviews: 850,
-      price: "$1299.99",
-      actionType: "bid" as const,
-    },
-    {
-      image: AntiquePerfumeImg,
-      title: "Latafa Antique Emerald",
-      rating: 5,
-      reviews: 1200,
-      price: "$89.99",
-      actionType: "bid" as const,
-    },
-    {
-      image: MercedesImg,
-      title: "Mercedes-Benz AMG GT",
-      rating: 5,
-      reviews: 75,
-      price: "$89,999.99",
-      actionType: "buy" as const,
-    },
-    {
-      image: BedroomImg,
-      title: "Premium Bedroom Set",
-      rating: 4,
-      reviews: 620,
-      price: "$1599.99",
-      actionType: "bid" as const,
-    },
-    {
-      image: SmartTvImg,
-      title: 'Hisense 32" Smart TV 2023',
-      rating: 5,
-      reviews: 980,
-      price: "$299.99",
-      actionType: "buy" as const,
-    },
-    {
-      image: IronImg,
-      title: "Premium Steam Iron",
-      rating: 4,
-      reviews: 1500,
-      price: "$79.99",
-      actionType: "bid" as const,
-    },
-    {
-      image: EngagementRingImg,
-      title: "Diamond Engagement Ring",
-      rating: 5,
-      reviews: 1200,
-      price: "$2499.99",
-      actionType: "offer" as const,
-    },
-    {
-      image: MacbookImg,
-      title: "MacBook Pro 13-inch",
-      rating: 5,
-      reviews: 800,
-      price: "$1299.99",
-      actionType: "bid" as const,
-    },
-  ]
 
-  const fashionProducts = [
-    {
-      image: EngagementRingImg,
-      title: "Diamond Engagement Ring",
-      rating: 5,
-      reviews: 750,
-      price: "$2499.99",
-      actionType: "buy" as const,
-    },
-    {
-      image: AntiquePerfumeImg,
-      title: "Latafa Antique Emerald Perfume",
-      rating: 5,
-      reviews: 1200,
-      price: "$89.99",
-      actionType: "offer" as const,
-    },
-    {
-      image: WashingMachineImg,
-      title: "Automatic Washing Machine",
-      rating: 4,
-      reviews: 650,
-      price: "$449.99",
-      actionType: "buy" as const,
-    },
-    {
-      image: GasCookerImg,
-      title: "4-Burner Gas Cooker",
-      rating: 4,
-      reviews: 1800,
-      price: "$399.99",
-      actionType: "offer" as const,
-    },
-  ]
+  const actionTypes = ['buy', 'bid', 'offer'] as const;
+  const mapProductToUI = (product: Product, idx: number) => ({
+    image: product.images[0] || '',
+    title: product.name,
+    rating: 5, 
+    reviews: 0, 
+    price: `$${product.discountPrice ?? product.basePrice}`,
+    originalPrice: product.discountPrice && product.discountPrice !== product.basePrice
+      ? `$${product.basePrice}`
+      : undefined,
+    actionType: actionTypes[idx % actionTypes.length],
+  })
+
+
+  const getProductsByCategory = (category: string) =>
+    products.filter((p) => p.categories.includes(category)).map(mapProductToUI)
+
+  
+  const exploreProductsData = products.map(mapProductToUI)
+  const electronicsProductsData = getProductsByCategory('Electronics')
+  const featuredProductsData = products.slice(0, 8).map(mapProductToUI)
+  // const fashionProductsData = getProductsByCategory('Fashion')
+
+  
+  const categoryCounts: Record<string, number> = {}
+  products.forEach((p) => {
+    p.categories.forEach((cat) => {
+      if (cat !== 'All') categoryCounts[cat] = (categoryCounts[cat] || 0) + 1
+    })
+  })
+  const mostPopulatedCategory = Object.entries(categoryCounts).sort((a, b) => b[1] - a[1])[0]?.[0]
+  const mostPopulatedProducts = mostPopulatedCategory ? getProductsByCategory(mostPopulatedCategory) : []
+
+
+  const loadingSection = (
+    <div className="py-8 px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      {[...Array(8)].map((_, i) => (
+        <div key={i} className="animate-pulse bg-[#00222E] rounded-lg p-4 h-64" />
+      ))}
+    </div>
+  )
+
 
   if (isMobile) {
     return (
       <div className="flex flex-col min-h-screen bg-[#01151C] text-white">
         <MobileHeader />
         <SearchBar />
-        <CategoryTabs categories={categories} />
-
+        <CategoryTabs
+          categories={categories}
+          selectedCategory={selectedCategory}
+          onSelectCategory={setSelectedCategory}
+        />
         <div className="flex-1 overflow-auto">
           <div className="flex flex-col gap-6 pb-6">
             <FeaturedCarousel />
-            <MobileProductSection title="Explore Your Interests" products={exploreProducts} />
-            <MobileProductSection title="All things Electronics" products={electronicsProducts} />
-            <MobileDiscoverSection />
-            <MobileProductSection title="Featured Listings" products={featuredProducts} />
-            <MobileProductSection title="Fashion Deals For You" products={fashionProducts} />
+            {isLoading ? loadingSection : <>
+              <MobileProductSection title="Explore Your Interests" products={exploreProductsData} />
+              <MobileProductSection title="All things Electronics" products={electronicsProductsData} />
+              <MobileDiscoverSection />
+              <MobileProductSection title="Featured Listings" products={featuredProductsData} />
+              <MobileProductSection title="Fashion Deals For You" products={exploreProductsData} />
+              {mostPopulatedCategory && mostPopulatedProducts.length > 0 && (
+                <MobileProductSection title={`Top in ${mostPopulatedCategory}`} products={mostPopulatedProducts} />
+              )}
+            </>}
           </div>
         </div>
-
-        {/* <Footer /> */}
       </div>
     )
   }
@@ -264,16 +124,18 @@ export default function Dashboard() {
     <div className="min-h-screen bg-[#01151C] text-white">
       <DesktopHeader />
       <DashboardHeroSection />
-
       <div className="px-6">
-        <DesktopProductSection title="Explore Your Interests" products={exploreProducts} columns={4} />
-        <DesktopProductSection title="All Things Electronics" products={electronicsProducts} columns={4} />
-        <DesktopDiscoverSection />
-        <DesktopProductSection title="Featured Listings" products={featuredProducts} columns={8} />
-        <DesktopProductSection title="Fashion Deals For You" products={fashionProducts} columns={8} />
+        {isLoading ? loadingSection : <>
+          <DesktopProductSection title="Explore Your Interests" products={exploreProductsData} columns={4} />
+          <DesktopProductSection title="All Things Electronics" products={electronicsProductsData} columns={4} />
+          <DesktopDiscoverSection />
+          <DesktopProductSection title="Featured Listings" products={featuredProductsData} columns={8} />
+          <DesktopProductSection title="Fashion Deals For You" products={exploreProductsData} columns={8} />
+          {mostPopulatedCategory && mostPopulatedProducts.length > 0 && (
+            <DesktopProductSection title={`Top in ${mostPopulatedCategory}`} products={mostPopulatedProducts} columns={4} />
+          )}
+        </>}
       </div>
-
-      {/* <Footer /> */}
     </div>
   )
 }

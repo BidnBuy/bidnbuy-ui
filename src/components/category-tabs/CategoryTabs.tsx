@@ -2,10 +2,12 @@ import { useState } from "react"
 
 type CategoryTabsProps = {
   categories: string[]
+  selectedCategory: string
+  onSelectCategory: (category: string) => void
   className?: string
 }
 
-export function CategoryTabs({ categories, className = "" }: CategoryTabsProps) {
+export function CategoryTabs({ categories, selectedCategory, onSelectCategory, className = "" }: CategoryTabsProps) {
   const [showAll, setShowAll] = useState(false)
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024
   const visibleCategories = isMobile && !showAll ? categories.slice(0, 4) : categories
@@ -18,7 +20,12 @@ export function CategoryTabs({ categories, className = "" }: CategoryTabsProps) 
       {visibleCategories.map((category) => (
         <button
           key={category}
-          className="bg-[#004755] text-white px-3 py-1.5 rounded-full text-xs whitespace-nowrap hover:bg-[#00545F] transition-colors flex-shrink-0"
+          onClick={() => onSelectCategory(category)}
+          className={`px-3 py-1.5 rounded-full text-xs whitespace-nowrap transition-colors flex-shrink-0 ${
+            selectedCategory === category
+              ? 'bg-orange-500 text-white'
+              : 'bg-[#004755] text-white hover:bg-[#00545F]'
+          }`}
         >
           {category}
         </button>
