@@ -7,10 +7,10 @@ import { Form } from "@/components/ui/form"
 
 import { signupSchema, type SignupFormValues } from "@/lib/validations/auth"
 
-import DesktopCustomerSignUp from "./DesktopVendorSignUp"
-import MobileCustomerSignUp from "./MobileCustomerSignUp"
 import { authService } from "@/services/auth"
 import { useAuthMutation } from "@/hooks/useAuthMutation"
+import MobileVendorSignUp from "./MobileCustomerSignUp"
+import DesktopVendorSignup from "./DesktopVendorSignUp"
 
 
 const VendorSignup = () => {
@@ -54,8 +54,8 @@ const VendorSignup = () => {
   return (
     <div className="min-h-screen bg-[#01151C]">
       <Form {...form}>
-        <MobileCustomerSignUp form={form} onSubmit={onSubmit} isLoading={signupMutation.isPending} />
-        <DesktopCustomerSignUp form={form} onSubmit={onSubmit} isLoading={signupMutation.isPending} />
+        <MobileVendorSignUp form={form} onSubmit={onSubmit} isLoading={signupMutation.isPending} />
+        <DesktopVendorSignup form={form} onSubmit={onSubmit} isLoading={signupMutation.isPending} />
       </Form>
     </div>
   )

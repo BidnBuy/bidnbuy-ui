@@ -26,21 +26,22 @@ const CustomerSignup = () => {
     },
   })
 
-  // Use the reusable auth mutation hook with correct types
+  
   const signupMutation = useAuthMutation<SignupFormValues, import("@/services/auth").AuthResponse>(async (values) => {
-    // Map form values to API schema
+   
     return await authService.signup({
       name: values.name,
       email: values.email,
       password: values.password,
-      phoneNumber: values.phone, // API expects phoneNumber
-      userRole: "user", // or "customer" if that's your convention
+      phoneNumber: values.phone,
+      userRole: "customer",
     } as any)
   }, {
-    onSuccess: () => {
-      toast.success("Account created successfully!")
+    onSuccess: (data, variables) => {
+      toast.success("Account created successfully! Verification code sent to your email.")
       form.reset()
-      navigate("/dashboard")
+      console.log("Signup response:", data)
+      navigate("/customer-account-verify", { state: { email: variables.email } })
     },
     onError: () => {
       // Error toast handled in hook
@@ -48,6 +49,7 @@ const CustomerSignup = () => {
   })
 
   function onSubmit(values: SignupFormValues) {
+    console.log("Form values:", values);
     signupMutation.mutate(values)
   }
 

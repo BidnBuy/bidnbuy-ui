@@ -30,8 +30,8 @@ export default function Header() {
             <Link to="/" className="text-gray-700 hover:text-teal-600 transition-colors">
               Home
             </Link>
-            <Link to="/about" className="text-gray-700 hover:text-teal-600 transition-colors">
-              About
+            <Link to="/customer-account-verify" className="text-gray-700 hover:text-teal-600 transition-colors">
+              Account Verify
             </Link>
             <Link to="/dashboard" className="text-gray-700 hover:text-teal-600 transition-colors">
               Product
@@ -81,11 +81,11 @@ export default function Header() {
                 Home
               </Link>
               <Link
-                to="/about"
+                to="/customer-account-verify"
                 className="block px-3 py-2 text-gray-700 hover:text-teal-600 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
-                About
+                Account verify
               </Link>
               <Link
                 to="/dashboard"
