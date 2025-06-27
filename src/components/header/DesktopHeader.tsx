@@ -1,10 +1,10 @@
 import { MainNav } from "@/components/navigation/MainNav";
-import { TopNav } from "@/components/navigation/TopNav";
+import { DesktopNavigation } from "@/components/navigation/DesktopNavigation";
 
 export function DesktopHeader() {
   return (
     <header className="text-white">
-      <TopNav />
+      <DesktopNavigation />
       <MainNav />
     </header>
   )
