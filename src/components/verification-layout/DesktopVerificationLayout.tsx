@@ -10,7 +10,6 @@ type DesktopVerificationLayoutProps = {
 export function DesktopVerificationLayout({
   onSubmit,
   isSubmitting,
-  error,
 }: DesktopVerificationLayoutProps) {
   return (
     <div
@@ -45,7 +44,6 @@ export function DesktopVerificationLayout({
           <VerificationForm
             onSubmit={onSubmit}
             isSubmitting={isSubmitting}
-            error={error}
             isMobile={false}
           />
         </div>

@@ -7,11 +7,10 @@ import { VerificationForm } from "../verification-form/VerificationForm"
 interface MobileVerificationLayoutProps {
   onSubmit: (code: string) => Promise<void>
   isSubmitting: boolean
-  error?: string
   onBack?: () => void
 }
 
-export function MobileVerificationLayout({ onSubmit, isSubmitting, error, onBack }: MobileVerificationLayoutProps) {
+export function MobileVerificationLayout({ onSubmit, isSubmitting, onBack }: MobileVerificationLayoutProps) {
   return (
     <div className="min-h-screen flex flex-col md:hidden bg-[#01151C]" style={{ backgroundColor: "#075D66" }}>
       
@@ -41,7 +40,7 @@ export function MobileVerificationLayout({ onSubmit, isSubmitting, error, onBack
             Verify your email with the code sent to you.
           </p>
 
-          <VerificationForm onSubmit={onSubmit} isSubmitting={isSubmitting} error={error} isMobile={true} />
+          <VerificationForm onSubmit={onSubmit} isSubmitting={isSubmitting} isMobile={true} />
         </div>
       </div>
     </div>

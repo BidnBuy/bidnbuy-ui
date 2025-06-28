@@ -29,8 +29,9 @@ const CustomerLogin = () => {
       form.reset()
       navigate("/dashboard")
     },
-    onError: () => {
-      // Error toast handled in hook
+    onError: (error:any) => {
+      const message = error?.response?.data?.message || "An error occurred. Please try again."
+    toast.error(message)
     }
   })
 

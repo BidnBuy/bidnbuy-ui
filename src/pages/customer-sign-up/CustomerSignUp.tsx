@@ -20,7 +20,7 @@ const CustomerSignup = () => {
     defaultValues: {
       name: "",
       email: "",
-      phone: "",
+      phoneNumber: "",
       password: "",
       confirmPassword: "",
     },
@@ -33,7 +33,7 @@ const CustomerSignup = () => {
       name: values.name,
       email: values.email,
       password: values.password,
-      phoneNumber: values.phone,
+      phoneNumber: values.phoneNumber,
       userRole: "customer",
     } as any)
   }, {
@@ -43,8 +43,9 @@ const CustomerSignup = () => {
       console.log("Signup response:", data)
       navigate("/customer-account-verify", { state: { email: variables.email } })
     },
-    onError: () => {
-      // Error toast handled in hook
+    onError: (error: any) => {
+      const message = error?.response?.data?.message || "An error occurred. Please try again."
+      toast.error(message)
     }
   })
 

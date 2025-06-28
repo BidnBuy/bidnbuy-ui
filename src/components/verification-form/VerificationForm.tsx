@@ -8,11 +8,10 @@ import { useVerificationCode } from "@/hooks/useVerificationCode"
 type VerificationFormProps = {
   onSubmit: (code: string) => Promise<void>
   isSubmitting: boolean
-  error?: string
   isMobile?: boolean
 }
 
-export function VerificationForm({ onSubmit, isSubmitting, error, isMobile = false }: VerificationFormProps) {
+export function VerificationForm({ onSubmit, isSubmitting, isMobile = false }: VerificationFormProps) {
   const { code, inputRefs, handleInputChange, handleKeyDown, isCodeComplete, codeString } = useVerificationCode()
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -61,14 +60,7 @@ export function VerificationForm({ onSubmit, isSubmitting, error, isMobile = fal
           ))}
         </div>
 
-        {error && (
-          <p
-            className={`text-red-400 text-sm mb-8 ${isMobile ? "text-center" : "text-left"}`}
-            style={{ fontFamily: "Montserrat, sans-serif" }}
-          >
-            {error}
-          </p>
-        )}
+        
 
         <div className={isMobile ? "" : "flex justify-center"}>
 

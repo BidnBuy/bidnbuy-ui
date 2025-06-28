@@ -5,7 +5,7 @@ import type { SignupFormValues } from "@/lib/validations/auth"
 import { Link } from "react-router-dom"
 import CustomFormField from "../custom-form-field/CustomFormField"
 
-interface SignupFormFieldsProps {
+type SignupFormFieldsProps = {
   form: UseFormReturn<SignupFormValues>
   onSubmit: (values: SignupFormValues) => void
   isLoading?: boolean
@@ -27,7 +27,7 @@ export function SignupFormFields({ form, onSubmit, isLoading = false }: SignupFo
 
       <CustomFormField
         form={form}
-        name="phone"
+        name="phoneNumber"
         label="Phone Number"
         placeholder="+234706748047G"
         type="tel"
