@@ -1,7 +1,5 @@
-import { Button } from "@/components/ui/button"
-
-export function BidSection({ product }: { product: any }) {
-  // Demo bid data
+export function BidSection() {
+  
   const bidHistory = [
     { amount: "₦170,800", user: "User 4", time: "10:25 AM" },
     { amount: "₦170,500", user: "User 3", time: "10:20 AM" },
@@ -10,7 +8,7 @@ export function BidSection({ product }: { product: any }) {
   ]
 
   return (
-    <div className="rounded-xl p-6 border border-slate-700/30" style={{ backgroundColor: "#01212E" }}>
+    <div className="rounded-xl p-6 border border-slate-700/30 bg-[#01212E]">
       <div className="mb-6">
         <h3 className="text-lg font-semibold text-white mb-4">Current Highest Bid</h3>
         <div className="flex justify-between items-center">

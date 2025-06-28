@@ -64,7 +64,7 @@ export default function AuctionProductDetail() {
           <ProductInformation product={product} />
 
       
-          <BidSection product={product} />
+          <BidSection />
         </div>
       </div>
     </div>
