@@ -10,6 +10,8 @@ import CustomerLogin from '@/pages/customer-login/CustomerLogin'
 import VendorLogin from '@/pages/vendor-login/VendorLoginOld'
 import VendorSignup from '@/pages/vendor-sign-up/VendorSignUp'
 import Dashboard from '@/pages/dashboard/Dashboard'
+import VendorUploadProductForm from '@/pages/vendor-upload-product/VendorUploadProduct'
+import AuctionProductDetail from '@/pages/auction-product-detail/AuctionProductDetail'
 
 
 const App = () => {
@@ -24,6 +26,9 @@ const App = () => {
         <Route path="login/customer" element={<CustomerLogin />} />
         <Route path="signup/vendor" element={<VendorSignup />} />
         <Route path="login/vendor" element={<VendorLogin />} />
+        <Route path="vendor-upload-product" element={<VendorUploadProductForm />} />
+        <Route path="auction-product-detail" element={<AuctionProductDetail />} />
+        
       </Route>
     </Routes>
   )

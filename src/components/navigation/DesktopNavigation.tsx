@@ -1,7 +1,7 @@
 import { ShoppingCart } from "lucide-react"
 import { Link } from "react-router-dom"
 
-export function TopNav() {
+export function DesktopNavigation() {
   return (
     <div className="bg-[#00707B] px-6 py-2.5">
       <div className="flex items-center justify-between text-sm font-medium">
@@ -18,7 +18,7 @@ export function TopNav() {
             </svg>
             Home
           </Link>
-          <Link to="#" className="flex items-center gap-2 hover:text-gray-200">
+          <Link to="/vendor-upload-product" className="flex items-center gap-2 hover:text-gray-200">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
               <rect x="3" y="3" width="7" height="7" />
               <rect x="14" y="3" width="7" height="7" />
