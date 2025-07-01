@@ -11,6 +11,7 @@ import VendorLogin from '@/pages/vendor-login/VendorLoginOld'
 import VendorSignup from '@/pages/vendor-sign-up/VendorSignUp'
 import Dashboard from '@/pages/dashboard/Dashboard'
 import CustomerAccountVerification from '@/pages/customer-account-verification/CustomerAccountVerification'
+import VendorAccountVerification from '@/pages/vendor-account-verification/VendorAccountVerification'
 
 
 const App = () => {
@@ -26,6 +27,7 @@ const App = () => {
         <Route path="signup/vendor" element={<VendorSignup />} />
         <Route path="login/vendor" element={<VendorLogin />} />
         <Route path="customer-account-verify" element={<CustomerAccountVerification />} />
+        <Route path="vendor-account-verify" element={<VendorAccountVerification />} />
       </Route>
     </Routes>
   )

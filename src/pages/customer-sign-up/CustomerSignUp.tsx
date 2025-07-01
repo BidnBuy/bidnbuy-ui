@@ -40,7 +40,7 @@ const CustomerSignup = () => {
     onSuccess: (data, variables) => {
       toast.success("Account created successfully! Verification code sent to your email.")
       form.reset()
-      console.log("Signup response:", data)
+      console.log("Customer Signup response:", data)
       navigate("/customer-account-verify", { state: { email: variables.email } })
     },
     onError: (error: any) => {

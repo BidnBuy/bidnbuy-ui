@@ -7,11 +7,10 @@ import { authService } from "@/services/auth";
 import { DesktopVerificationLayout } from "@/components/verification-layout/DesktopVerificationLayout";
 import { MobileVerificationLayout } from "@/components/verification-layout/MobileVerificationLayout";
 
-const CustomerAccountVerification = () => {
+const VendorAccountVerification = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const email = location.state?.email;
-
   if (!email) {
     toast.error("No email provided for verification.");
     navigate("/signup/vendor");
@@ -22,7 +21,7 @@ const CustomerAccountVerification = () => {
     mutationFn: (otpCode: string) => authService.verifyEmail(email, otpCode),
     onSuccess: () => {
       toast.success("Email verified! Please log in.");
-      navigate("/login/customer");
+      navigate("/login/vendor");
     },
     onError: (error: any) => {
       const message =
@@ -62,4 +61,4 @@ const CustomerAccountVerification = () => {
   );
 };
 
-export default CustomerAccountVerification;
+export default VendorAccountVerification;
