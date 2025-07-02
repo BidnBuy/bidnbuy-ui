@@ -49,7 +49,7 @@ export function MobileNavigation({ isOpen, onClose, isLoggedIn = false }: Mobile
             Home
           </Link>
 
-          <Link to="/marketplace" className="flex items-center gap-4 text-white text-lg" onClick={onClose}>
+          <Link to="/vendor-upload-product" className="flex items-center gap-4 text-white text-lg" onClick={onClose}>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect
                 x="3"
