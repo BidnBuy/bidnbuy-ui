@@ -6,7 +6,6 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form"
 
-// Make the component generic for any form type
 
 type CustomFormFieldProps<T extends FieldValues> = {
   form: UseFormReturn<T>

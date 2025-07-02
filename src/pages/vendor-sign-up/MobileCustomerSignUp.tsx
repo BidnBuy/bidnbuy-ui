@@ -6,7 +6,7 @@ import VendorSignUpMobile from "@/assets/vendor-sign-up-mobile.jpg";
 import BidnBuyLogo from "@/assets/bidnbuy-logo.png"
 
 
-const MobileCustomerSignUp = ({ form, onSubmit, isLoading }: SignupProps) => {
+const MobileVendorSignUp = ({ form, onSubmit, isLoading }: SignupProps) => {
   return (
     <div className="lg:hidden">
 
@@ -44,4 +44,4 @@ const MobileCustomerSignUp = ({ form, onSubmit, isLoading }: SignupProps) => {
     </div>
   )
 }
-export default MobileCustomerSignUp
+export default MobileVendorSignUp

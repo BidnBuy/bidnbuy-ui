@@ -9,13 +9,13 @@ import { CategoryTabs } from "@/components/category-tabs/CategoryTabs"
 import { MobileProductSection } from "@/components/product-section/MobileProductSection"
 import { MobileDiscoverSection } from "@/components/discover-section/MobileDiscoverSection"
 import { DesktopHeader } from "@/components/header/DesktopHeader"
-import { DashboardHeroSection } from "@/components/dashboard-hero-section/DashboardHeroSection"
+import { ProductHeroSection } from "@/components/product-hero-section/ProductHeroSection"
 import { DesktopProductSection } from "@/components/product-section/DesktopProductSection"
 import { DesktopDiscoverSection } from "@/components/discover-section/DesktopDiscoverSection"
 import { FeaturedCarousel } from "@/components/featured-carousel/FeaturedCarousel"
 
 
-export default function Dashboard() {
+const ProductHome = () => {
  
   const [isMobile, setIsMobile] = useState(true)
   useEffect(() => {
@@ -139,3 +139,6 @@ export default function Dashboard() {
     </div>
   )
 }
+
+
+export default ProductHome

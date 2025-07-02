@@ -27,10 +27,11 @@ const VendorLogin = () => {
     onSuccess: () => {
       toast.success("Logged In successfully!")
       form.reset()
-      navigate("/dashboard")
+      navigate("/product-home") // This is the correct path
     },
-    onError: () => {
-      // Error toast handled in hook
+    onError: (error:any) => {
+      const message = error?.response?.data?.message || "An error occurred. Please try again."
+      toast.error(message)
     }
   })
 

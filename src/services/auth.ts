@@ -19,13 +19,37 @@ export const authService = {
   },
 
   signup: async (data: SignupFormValues): Promise<AuthResponse> => {
-    const response = await axiosInstance.post<AuthResponse>('/api/v1/auth/signup', data);
-    console.log('Signup response:', response.data);
-    return response.data;
+    try {
+      
+      const payload = {
+        name: data.name,
+        email: data.email,
+        password: data.password,
+        phoneNumber: data.phoneNumber, 
+        userRole: 'customer', 
+      };
+      console.log("Payload for sign up", payload)
+      const response = await axiosInstance.post<AuthResponse>('/api/v1/auth/signup', payload);
+      console.log('Signup response:', response.data);
+      return response.data;
+    } catch (error) {
+      console.error('Error during signup:', error);
+      throw error;
+    }
   },
 
   logout: async (): Promise<void> => {
     const response = await axiosInstance.post('/api/v1/auth/logout');
     console.log("Logout response:", response.data)
   },
-}; 
+
+  verifyEmail: async (email: string, otpCode: string): Promise<void> => {
+    try {
+      const response = await axiosInstance.post('/api/v1/auth/verify-email', { email, otpCode });
+      console.log('Email verification response:', response.data);
+    } catch (error) {
+      console.error('Error during email verification:', error);
+      throw error;
+    }
+  },
+};

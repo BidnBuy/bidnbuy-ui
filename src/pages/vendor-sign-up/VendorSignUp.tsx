@@ -7,10 +7,10 @@ import { Form } from "@/components/ui/form"
 
 import { signupSchema, type SignupFormValues } from "@/lib/validations/auth"
 
-import DesktopCustomerSignUp from "./DesktopVendorSignUp"
-import MobileCustomerSignUp from "./MobileCustomerSignUp"
 import { authService } from "@/services/auth"
 import { useAuthMutation } from "@/hooks/useAuthMutation"
+import MobileVendorSignUp from "./MobileCustomerSignUp"
+import DesktopVendorSignup from "./DesktopVendorSignUp"
 
 
 const VendorSignup = () => {
@@ -20,30 +20,37 @@ const VendorSignup = () => {
     defaultValues: {
       name: "",
       email: "",
-      phone: "",
+      phoneNumber: "",
       password: "",
       confirmPassword: "",
     },
   })
 
-  // Use the reusable auth mutation hook with correct types
+  
   const signupMutation = useAuthMutation<SignupFormValues, import("@/services/auth").AuthResponse>(async (values) => {
-    // Map form values to API schema
+    
     return await authService.signup({
       name: values.name,
       email: values.email,
       password: values.password,
-      phoneNumber: values.phone, // API expects phoneNumber
-      userRole: "vendor", // vendor role for vendor signup
+      phoneNumber: values.phoneNumber, 
+      userRole: "vendor",
     } as any)
   }, {
-    onSuccess: () => {
+    onSuccess: (data, variables) => {
       toast.success("Account created successfully!")
       form.reset()
-      navigate("/dashboard")
+      console.log("Vendor Signup response:", data)
+      navigate("/vendor-account-verify", { state: { email: variables.email } })
+      
     },
-    onError: () => {
-      // Error toast handled in hook
+    onError: (error: any) => {
+
+      const message =
+    error?.response?.data?.message ||
+    error?.message || // This will catch "Network Error"
+    "An error occurred. Please try again.";
+  toast.error(message);
     }
   })
 
@@ -54,8 +61,8 @@ const VendorSignup = () => {
   return (
     <div className="min-h-screen bg-[#01151C]">
       <Form {...form}>
-        <MobileCustomerSignUp form={form} onSubmit={onSubmit} isLoading={signupMutation.isPending} />
-        <DesktopCustomerSignUp form={form} onSubmit={onSubmit} isLoading={signupMutation.isPending} />
+        <MobileVendorSignUp form={form} onSubmit={onSubmit} isLoading={signupMutation.isPending} />
+        <DesktopVendorSignup form={form} onSubmit={onSubmit} isLoading={signupMutation.isPending} />
       </Form>
     </div>
   )
