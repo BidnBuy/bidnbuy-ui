@@ -123,7 +123,7 @@ const ProductHome = () => {
   return (
     <div className="min-h-screen bg-[#01151C] text-white">
       <DesktopHeader />
-      <DashboardHeroSection />
+      <ProductHeroSection />
       <div className="px-6">
         {isLoading ? loadingSection : <>
           <DesktopProductSection title="Explore Your Interests" products={exploreProductsData} columns={4} />
