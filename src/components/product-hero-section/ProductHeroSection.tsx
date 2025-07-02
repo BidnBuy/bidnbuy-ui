@@ -1,6 +1,6 @@
 import DashboardHeroImg from "@/assets/products/dashboard-hero.jpg"
 
-export function DashboardHeroSection() {
+export function ProductHeroSection() {
   return (
     <div className="px-6 py-6">
       <div className="flex gap-6">

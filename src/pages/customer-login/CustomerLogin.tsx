@@ -27,7 +27,7 @@ const CustomerLogin = () => {
     onSuccess: () => {
       toast.success("Logged In successfully!")
       form.reset()
-      navigate("/dashboard")
+      navigate("/product-home")
     },
     onError: (error:any) => {
       const message = error?.response?.data?.message || "An error occurred. Please try again."

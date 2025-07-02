@@ -9,7 +9,7 @@ import AccountTypeSelection from '@/pages/account-type-selection/AccountTypeSele
 import CustomerLogin from '@/pages/customer-login/CustomerLogin'
 import VendorLogin from '@/pages/vendor-login/VendorLogin'
 import VendorSignup from '@/pages/vendor-sign-up/VendorSignUp'
-import Dashboard from '@/pages/dashboard/Dashboard'
+import ProductHome from '@/pages/product-home/ProductHome'
 import CustomerAccountVerification from '@/pages/customer-account-verification/CustomerAccountVerification'
 import VendorAccountVerification from '@/pages/vendor-account-verification/VendorAccountVerification'
 
@@ -21,7 +21,7 @@ const App = () => {
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="account-type" element={<AccountTypeSelection />} />
-        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="product-home" element={<ProductHome />} />
         <Route path="signup/customer" element={<CustomerSignUp />} />
         <Route path="login/customer" element={<CustomerLogin />} />
         <Route path="signup/vendor" element={<VendorSignup />} />
