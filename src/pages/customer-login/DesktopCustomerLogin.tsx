@@ -1,4 +1,4 @@
-import type { SignInProps } from "@/lib/types"
+import type { SignInProps } from "@/types/auth"
 
 import SignInFormFields from "@/components/sign-in-form-field/SignInFormField"
 

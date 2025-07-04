@@ -1,8 +1,10 @@
-import { Bell, Menu, Search, ShoppingCart, User } from 'lucide-react'
-import Image from "next/image"
-import { AppHeader } from "@/components/shared/AppHeader"
 
-interface EscrowStatusMobileProps {
+
+// import { AppHeader } from "@/components/shared/AppHeader"
+import type { EscrowState, Step } from '@/types/escrow'
+import EscrowProductCard from './_components/EscrowProductCard'
+
+type EscrowStatusMobileProps = {
   escrowState: EscrowState
   steps: Step[]
   showActionButtons: boolean
@@ -31,25 +33,9 @@ export function EscrowStatusMobile({
 
   return (
     <div className="lg:hidden">
-      {/* Product Card */}
-      <div
-        className="rounded-lg p-4 mb-6 border w-full"
-        style={{
-          backgroundColor: "#01212E",
-          borderColor: "#00707B",
-          height: "197px",
-        }}
-      >
-        <div className="w-full h-full flex items-center justify-center">
-          <Image
-            src="/hermes-bag.png"
-            alt="Hermes Birkin Bag"
-            width={183}
-            height={183}
-            className="object-contain"
-          />
-        </div>
-      </div>
+      
+      <EscrowProductCard escrowHeight="197px" />
+     
 
       {/* Product Details */}
       <div className="mb-6">
@@ -117,7 +103,7 @@ export function EscrowStatusMobile({
             {/* Step Icon with connecting line */}
             <div className="relative flex items-center">
               <div className="w-4 h-4 flex items-center justify-center">
-                <Image
+                <img
                   src={step.icon || "/placeholder.svg"}
                   alt={step.title}
                   width={16}

@@ -1,4 +1,4 @@
-import type { SignupProps } from "@/lib/types"
+import type { SignupProps } from "@/types/auth"
 
 import { SignupFormFields } from "@/components/sign-up-form-field/SignUpFormField"
 

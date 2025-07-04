@@ -1,3 +1,6 @@
+import type { EscrowState, Step } from "@/types/escrow"
+import EscrowProductCard from "./_components/EscrowProductCard"
+
 type EscrowStatusDesktopProps = {
   escrowState: EscrowState
   steps: Step[]
@@ -30,25 +33,9 @@ export function EscrowStatusDesktop({
 
       <div className="hidden lg:flex lg:gap-8">
         <div className="lg:w-[723px]">
-          {/* Product Card */}
-          <div
-            className="rounded-lg p-4 mb-6 border w-full"
-            style={{
-              backgroundColor: "#01212E",
-              borderColor: "#00707B",
-              height: "360px",
-            }}
-          >
-            <div className="w-full h-full flex items-center justify-center">
-              <Image
-                src="/hermes-bag.png"
-                alt="Hermes Birkin Bag"
-                width={183}
-                height={183}
-                className="object-contain"
-              />
-            </div>
-          </div>
+         
+          <EscrowProductCard escrowHeight="360px" />
+          
 
           {/* Progress Steps - Desktop: Horizontal layout */}
           <div className="flex items-center justify-between mb-4">
@@ -66,7 +53,7 @@ export function EscrowStatusDesktop({
 
                 {/* Step Icon */}
                 <div className="w-4 h-4 flex items-center justify-center mb-2 relative">
-                  <Image
+                  <img
                     src={step.icon || "/placeholder.svg"}
                     alt={step.title}
                     width={16}
