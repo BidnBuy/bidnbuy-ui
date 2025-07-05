@@ -87,7 +87,7 @@ export function EscrowStatus() {
   }
 
   
-  const sharedEscrowProps = {
+  const sharedEscrowStatusProps = {
     escrowState,
     steps,
     showActionButtons,
@@ -110,10 +110,10 @@ export function EscrowStatus() {
         </h1>
         
         
-        <EscrowStatusMobile {...sharedEscrowProps} />
+        <EscrowStatusMobile {...sharedEscrowStatusProps} />
         
     
-        <EscrowStatusDesktop {...sharedEscrowProps} />
+        <EscrowStatusDesktop {...sharedEscrowStatusProps} />
       </div>
     </div>
   )

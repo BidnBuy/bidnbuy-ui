@@ -2,7 +2,7 @@
 
 // import { AppHeader } from "@/components/shared/AppHeader"
 import type { EscrowState, Step } from '@/types/escrow'
-import EscrowProductCard from './_components/EscrowProductCard'
+import EscrowProductCard from '@/components/escrow-product-card/EscrowProductCard'
 
 type EscrowStatusMobileProps = {
   escrowState: EscrowState

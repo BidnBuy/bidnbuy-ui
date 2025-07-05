@@ -1,5 +1,5 @@
 import type { EscrowState, Step } from "@/types/escrow"
-import EscrowProductCard from "./_components/EscrowProductCard"
+import EscrowProductCard from "../../components/escrow-product-card/EscrowProductCard"
 
 type EscrowStatusDesktopProps = {
   escrowState: EscrowState
@@ -37,7 +37,7 @@ export function EscrowStatusDesktop({
           <EscrowProductCard escrowHeight="360px" />
           
 
-          {/* Progress Steps - Desktop: Horizontal layout */}
+          
           <div className="flex items-center justify-between mb-4">
             {steps.map((step, index) => (
               <div key={step.id} className="flex flex-col items-center relative">
