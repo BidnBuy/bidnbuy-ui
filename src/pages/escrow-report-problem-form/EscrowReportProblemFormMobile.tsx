@@ -1,7 +1,7 @@
-import { ProblemSelector } from "./ProblemSelector"
-import { AdditionalDetailsInput } from "./AdditionalDetailsInput"
-import { PhotoUploadSection } from "./PhotoUploadSection"
-import { FormActions } from "./FormActions"
+import { ProblemSelector } from "./components/ProblemSelector"
+import { AdditionalDetailsInput } from "./components/AddiitionalDetailsInput"
+import { PhotoUploadSection } from "./components/PhotoUploadSection"
+import { FormActions } from "./components/FormActions"
 import type { ReportProblemProps } from "./types/report-problem"
 
 const EscrowReportProblemFormMobile = ({

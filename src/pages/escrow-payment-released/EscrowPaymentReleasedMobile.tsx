@@ -1,3 +1,5 @@
+import EscrowSuccessIcon from "@/assets/escrow/escrow-success-icon.svg"
+
 type EscrowPaymentReleasedMobileProps = {
   orderId: string
   onViewOrderDetails: () => void
@@ -20,7 +22,7 @@ export function EscrowPaymentReleasedMobile({
       >
         
         <div className="flex justify-center mb-6">
-          <img src="/escrow-success-icon.svg" alt="Success" width={48} height={48} className="object-contain" />
+          <img src={EscrowSuccessIcon} alt="Success" width={48} height={48} className="object-contain" />
         </div>
 
         

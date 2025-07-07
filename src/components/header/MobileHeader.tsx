@@ -15,7 +15,7 @@ export function MobileHeader() {
 
   return (
     <>
-      <header className="lg:hidden relative sticky top-0 z-10 bg-[#00545F] p-4 flex items-center justify-between rounded-b-3xl">
+      <header className="md:hidden block relative sticky top-0 z-10 bg-[#00545F] p-4 flex items-center justify-between rounded-b-3xl">
         <div className="flex items-center gap-3">
           <button className="p-1" onClick={() => setIsMenuOpen(true)}>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

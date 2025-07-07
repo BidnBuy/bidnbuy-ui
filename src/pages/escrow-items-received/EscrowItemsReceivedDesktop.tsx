@@ -1,8 +1,9 @@
 import EscrowProductCard from "@/components/escrow-product-card/EscrowProductCard";
 import type { EscrowItemsReceivedProps } from "./types/escrow";
-import EscrowActionButton from "./components/EscrowActionButtons";
+import EscrowActionButton from "../../components/escrow-action-buttons/EscrowActionButtons";
 
 const EscrowItemReceivedDesktop = ({
+  escrowData,
   orderId,
   steps,
   isConfirming,
@@ -14,26 +15,8 @@ const EscrowItemReceivedDesktop = ({
     <div className="hidden lg:block">
       <div className="flex gap-8">
         <div className="w-[723px]">
-          <EscrowProductCard escrowHeight="360px" />
-          {/* Product Card */}
-          {/* <div
-            className="rounded-lg p-4 mb-6 border w-full"
-            style={{
-              backgroundColor: "#01212E",
-              borderColor: "#00707B",
-              height: "360px",
-            }}
-          >
-            <div className="w-full h-full flex items-center justify-center">
-              <img
-                src="/hermes-bag.png"
-                alt="Hermes Birkin Bag"
-                width={183}
-                height={183}
-                className="object-contain"
-              />
-            </div>
-          </div> */}
+          <EscrowProductCard image={escrowData?.image} escrowHeight="360px" />
+          
 
           <div className="flex items-center justify-between mb-4">
             {steps.map((step, index) => (
@@ -148,21 +131,7 @@ const EscrowItemReceivedDesktop = ({
         >
           I am satisfied with my order
         </EscrowActionButton>
-        {/* <button
-          onClick={onConfirmSatisfaction}
-          disabled={isConfirming}
-          className="w-full py-4 rounded-lg text-white font-medium transition-all flex items-center justify-center gap-2"
-          style={{ backgroundColor: "#00707B" }}
-        >
-          {isConfirming ? (
-            <>
-              <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-              Processing...
-            </>
-          ) : (
-            "I am satisfied with my order"
-          )}
-        </button> */}
+      
 
         <EscrowActionButton
           onClick={onReportProblem}
@@ -174,21 +143,6 @@ const EscrowItemReceivedDesktop = ({
           Report a problem
         </EscrowActionButton>
 
-        {/* <button
-          onClick={onReportProblem}
-          disabled={isReporting}
-          className="w-full py-4 rounded-lg text-white font-medium border border-gray-600 transition-all flex items-center justify-center gap-2"
-          style={{ backgroundColor: "transparent" }}
-        >
-          {isReporting ? (
-            <>
-              <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-              Processing...
-            </>
-          ) : (
-            "Report a problem"
-          )}
-        </button> */}
       </div>
     </div>
   );

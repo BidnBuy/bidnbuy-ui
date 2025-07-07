@@ -1,25 +1,46 @@
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { useForm } from "react-hook-form"
 
 import { zodResolver } from "@hookform/resolvers/zod"
 
 import { Form } from "@/components/ui/form"
 
-// import { AppHeader } from "@/components/shared/AppHeader"
 
-import { reportProblemSchema, type ReportProblemFormData } from "@/types/report-problem"
-
-import { useReportProblem } from "@/hooks/useReportProblem"
+import { useReportProblem } from "@/hooks/useEscrowReportProblem"
 import { usePhotoUpload } from "@/hooks/usePhotoUpload"
 
 import Header from "@/components/header/Header"
 
 import EscrowReportProblemFormDesktop from "./EscrowReportProblemFormDesktop"
 import EscrowReportProblemFormMobile from "./EscrowReportProblemFormMobile"
+import { reportProblemSchema, type ReportProblemFormData } from "@/lib/validations/report-problem"
+import { exploreEscrows } from "@/data/mockEscrowOrders"
+import type { EscrowOrder } from "@/types/escrow"
 
 
-const EscrowReportProblemForm = ({ orderId }: { orderId: string }) =>{
+const EscrowReportProblemForm = () =>{
   const navigate = useNavigate()
+  const { orderId: paramOrderId } = useParams<{ orderId: string }>()
+  const orderId = paramOrderId ?? "1"
+
+
+  const escrowData = exploreEscrows.find((order: EscrowOrder) => order.id === orderId)
+  if (!escrowData) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-[#01151C] text-white">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold mb-4">Order Not Found</h2>
+          <p className="mb-6">Sorry, we couldn't find the order you are looking for.</p>
+          <button
+            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded"
+            onClick={() => navigate(-1)}
+          >
+            Go Back
+          </button>
+        </div>
+      </div>
+    )
+  }
   
   const { isSubmitting, handleSubmit } = useReportProblem(orderId)
   const { uploadedPhotos, fileInputRef, triggerFileInput, handleFileChange, removePhoto } = usePhotoUpload()
@@ -65,7 +86,7 @@ const EscrowReportProblemForm = ({ orderId }: { orderId: string }) =>{
 
   return (
     <div className="min-h-screen text-white" style={{ backgroundColor: "#01151C" }}>
-      {/* <AppHeader /> */}
+   
       <Header />
       <div className="p-4 max-w-4xl mx-auto">
         <h1 className="text-2xl font-semibold mb-6">Report a problem</h1>

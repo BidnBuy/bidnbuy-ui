@@ -1,3 +1,5 @@
+import EscrowSuccessIcon from "@/assets/escrow/escrow-success-icon.svg"
+
 type PaymentReleasedDesktopProps = {
   orderId: string
   onViewOrderDetails: () => void
@@ -24,7 +26,7 @@ const EscrowPaymentReleasedDesktop = ({
             <div className="text-center">
               <div className="flex justify-center mb-4">
                 <img
-                  src="/escrow-success-icon.svg"
+                  src={EscrowSuccessIcon}
                   alt="Success"
                   width={48}
                   height={48}

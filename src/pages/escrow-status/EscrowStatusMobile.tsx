@@ -1,24 +1,25 @@
-
-
 // import { AppHeader } from "@/components/shared/AppHeader"
-import type { EscrowState, Step } from '@/types/escrow'
-import EscrowProductCard from '@/components/escrow-product-card/EscrowProductCard'
+import type { EscrowOrder, EscrowState, Step } from "@/types/escrow";
+import EscrowProductCard from "@/components/escrow-product-card/EscrowProductCard";
+import EscrowActionButton from "@/components/escrow-action-buttons/EscrowActionButtons";
 
 type EscrowStatusMobileProps = {
-  escrowState: EscrowState
-  steps: Step[]
-  showActionButtons: boolean
-  isConfirming: boolean
-  isReporting: boolean
-  onConfirmSatisfaction: () => void
-  onReportProblem: () => void
-  getLightIndicatorColor: (index: number) => string
-  getStatusColor: () => string
-  getEscrowStatusButton: () => { text: string; color: string }
-}
+  escrowState: EscrowState;
+  escrowData: EscrowOrder;
+  steps: Step[];
+  showActionButtons: boolean;
+  isConfirming: boolean;
+  isReporting: boolean;
+  onConfirmSatisfaction: () => void;
+  onReportProblem: () => void;
+  getLightIndicatorColor: (index: number) => string;
+  getStatusColor: () => string;
+  getEscrowStatusButton: () => { text: string; color: string };
+};
 
 export function EscrowStatusMobile({
   escrowState,
+  escrowData,
   steps,
   showActionButtons,
   isConfirming,
@@ -27,17 +28,14 @@ export function EscrowStatusMobile({
   onReportProblem,
   getLightIndicatorColor,
   getStatusColor,
-  getEscrowStatusButton
+  getEscrowStatusButton,
 }: EscrowStatusMobileProps) {
-  const escrowButton = getEscrowStatusButton()
+  const escrowButton = getEscrowStatusButton();
 
   return (
     <div className="lg:hidden">
-      
-      <EscrowProductCard escrowHeight="197px" />
-     
+      <EscrowProductCard image={escrowData?.image} escrowHeight="197px" />
 
-      {/* Product Details */}
       <div className="mb-6">
         <h2 className="text-lg font-medium mb-2">Hermes Birkin Bag</h2>
         <p className="text-xl font-semibold text-green-400 mb-4">₦200,000</p>
@@ -82,7 +80,6 @@ export function EscrowStatusMobile({
         </div>
       </div>
 
-      {/* Progress Steps - Mobile */}
       <div className="space-y-0 mb-6">
         {steps.map((step, index) => (
           <div
@@ -90,7 +87,6 @@ export function EscrowStatusMobile({
             className="flex items-center gap-3"
             style={{ marginBottom: index < steps.length - 1 ? "31px" : "0" }}
           >
-            {/* Progress Indicator */}
             <div
               className="rounded-full"
               style={{
@@ -100,7 +96,6 @@ export function EscrowStatusMobile({
               }}
             ></div>
 
-            {/* Step Icon with connecting line */}
             <div className="relative flex items-center">
               <div className="w-4 h-4 flex items-center justify-center">
                 <img
@@ -108,7 +103,9 @@ export function EscrowStatusMobile({
                   alt={step.title}
                   width={16}
                   height={16}
-                  className={`object-contain ${step.active ? "opacity-100" : "opacity-60"}`}
+                  className={`object-contain ${
+                    step.active ? "opacity-100" : "opacity-60"
+                  }`}
                 />
               </div>
               {index < steps.length - 1 && (
@@ -125,58 +122,46 @@ export function EscrowStatusMobile({
               )}
             </div>
 
-            {/* Step Text */}
-            <span className={`text-sm ${step.active ? "text-white font-medium" : "text-gray-400"}`}>
+            <span
+              className={`text-sm ${
+                step.active ? "text-white font-medium" : "text-gray-400"
+              }`}
+            >
               {step.title}
             </span>
           </div>
         ))}
       </div>
 
-      {/* Action Buttons - Mobile */}
       {showActionButtons && (
         <div className="space-y-4 mt-8">
-          <button
+          <EscrowActionButton
             onClick={onConfirmSatisfaction}
             disabled={isConfirming}
-            className="w-full py-4 rounded-lg text-white font-medium transition-all flex items-center justify-center gap-2"
+            loading={isConfirming}
             style={{ backgroundColor: "#00707B" }}
           >
-            {isConfirming ? (
-              <>
-                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                Processing...
-              </>
-            ) : (
-              "I am satisfied with my order"
-            )}
-          </button>
+            I am satisfied with my order
+          </EscrowActionButton>
 
-          <button
+          <EscrowActionButton
             onClick={onReportProblem}
             disabled={isConfirming || isReporting}
-            className="w-full py-4 rounded-lg text-white font-medium border border-gray-600 transition-all flex items-center justify-center gap-2"
+            loading={isReporting}
+            className="border border-gray-600"
             style={{ backgroundColor: "transparent" }}
           >
-            {isReporting ? (
-              <>
-                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                Processing...
-              </>
-            ) : (
-              "Report a problem"
-            )}
-          </button>
+            Report a problem
+          </EscrowActionButton>
         </div>
       )}
 
-      {/* Info Text - Mobile */}
       {!showActionButtons && (
         <p className="text-sm text-gray-400 leading-relaxed">
-          Your funds will be held in escrow until you confirm the receipt of the item. Once confirmed, funds will be
-          released to the vendor.
+          Your funds will be held in escrow until you confirm the receipt of the
+          item. Once confirmed, funds will be released to the vendor.
         </p>
       )}
     </div>
-  )
+  );
 }

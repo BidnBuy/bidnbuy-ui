@@ -20,12 +20,12 @@ const EscrowActionButton = ({
   <button
     onClick={onClick}
     disabled={disabled}
-    className={`w-full py-4 rounded-lg text-white font-medium transition-all flex items-center justify-center gap-2 ${className}`}
+    className={`w-full py-4 cursor-pointer rounded-lg text-white font-medium transition-all flex items-center justify-center gap-2 ${className}`}
     style={style}
   >
     {loading ? (
       <>
-        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+        <div className="w-5 h-5 cursor-pointer border-2 border-white border-t-transparent rounded-full animate-spin"></div>
         Processing...
       </>
     ) : (

@@ -30,3 +30,14 @@ export type Step = {
   active: boolean
   icon?: string
 }
+
+
+export type EscrowOrder = { 
+  id: string;
+  productName: string;
+  buyer: string;
+  status: string;
+  amount: string;
+  image: string;
+  details: string;
+}

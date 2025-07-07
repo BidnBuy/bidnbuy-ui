@@ -1,18 +1,50 @@
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 
 import { useEscrowSocket } from "@/hooks/useEscrowSocket"
 // import { AppHeader } from "@/components/shared/AppHeader"
 import { EscrowStatusMobile } from "./EscrowStatusMobile"
 import { EscrowStatusDesktop } from "./EscrowStatusDesktop"
 import type { EscrowState } from "@/types/escrow"
+import type { EscrowOrder } from "@/types/escrow"
+
 import Header from "@/components/header/Header"
+import { exploreEscrows } from "@/data/mockEscrowOrders"
+
+import InEscrowSvg from "@/assets/escrow/in-escrow.svg"
+import ItemsReceivedSvg from "@/assets/escrow/items-received.svg"
+import ItemsReleasedSvg from "@/assets/escrow/funds-released.svg"
+import ItemsRefundedSvg from "@/assets/escrow/funds-refunded.svg"
+
+
+
 
 
 export function EscrowStatus() {
   const navigate = useNavigate()
+  const { orderId: paramOrderId } = useParams<{ orderId: string }>()
+  const orderId = paramOrderId ?? "1"
   const [isConfirming, setIsConfirming] = useState(false)
   const [isReporting, setIsReporting] = useState(false)
+
+  
+  const escrowData = exploreEscrows.find((order: EscrowOrder) => order.id === orderId)
+  if (!escrowData) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-[#01151C] text-white">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold mb-4">Order Not Found</h2>
+          <p className="mb-6">Sorry, we couldn't find the order you are looking for.</p>
+          <button
+            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded"
+            onClick={() => navigate(-1)}
+          >
+            Go Back
+          </button>
+        </div>
+      </div>
+    )
+  }
 
   const initialState: EscrowState = {
     orderStatus: "Pending",
@@ -21,7 +53,7 @@ export function EscrowStatus() {
     isItemReceived: false,
   }
 
-  const { escrowState } = useEscrowSocket("100101", initialState)
+  const { escrowState } = useEscrowSocket(orderId, initialState)
 
   
   const getLightIndicatorColor = (stepIndex: number) => {
@@ -64,10 +96,10 @@ export function EscrowStatus() {
   }
 
   const steps = [
-    { id: 1, title: "In Escrow", completed: true, active: escrowState.activeStep === 0, icon: "/in-escrow.svg" },
-    { id: 2, title: "Item Received", completed: escrowState.activeStep > 1, active: escrowState.activeStep === 1, icon: "/items-received.svg" },
-    { id: 3, title: "Funds Released", completed: escrowState.activeStep > 2, active: escrowState.activeStep === 2, icon: "/funds-released.svg" },
-    { id: 4, title: "Funds Refunded", completed: false, active: escrowState.activeStep === 3, icon: "/funds-refunded.svg" },
+    { id: 1, title: "In Escrow", completed: true, active: escrowState.activeStep === 0, icon: InEscrowSvg },
+    { id: 2, title: "Item Received", completed: escrowState.activeStep > 1, active: escrowState.activeStep === 1, icon: ItemsReceivedSvg },
+    { id: 3, title: "Funds Released", completed: escrowState.activeStep > 2, active: escrowState.activeStep === 2, icon: ItemsReleasedSvg },
+    { id: 4, title: "Funds Refunded", completed: false, active: escrowState.activeStep === 3, icon: ItemsRefundedSvg },
   ]
 
   const showActionButtons = escrowState.orderStatus === "Delivered" || escrowState.orderStatus === "Received"
@@ -75,20 +107,21 @@ export function EscrowStatus() {
   const handleConfirmSatisfaction = () => {
     setIsConfirming(true)
     setTimeout(() => {
-      navigate(`/escrow/100101/payment-released`)
+      navigate(`/escrow/${orderId}/payment-released`)
     }, 3000)
   }
 
   const handleReportProblem = () => {
     setIsReporting(true)
     setTimeout(() => {
-      navigate(`/escrow/100101/report-problem`)
+      navigate(`/escrow/${orderId}/report-problem`)
     }, 3000)
   }
 
   
   const sharedEscrowStatusProps = {
     escrowState,
+    escrowData,
     steps,
     showActionButtons,
     isConfirming,

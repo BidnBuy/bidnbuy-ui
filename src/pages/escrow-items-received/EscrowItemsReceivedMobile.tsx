@@ -1,16 +1,10 @@
 import EscrowProductCard from "@/components/escrow-product-card/EscrowProductCard";
-import EscrowActionButton from "./components/EscrowActionButtons";
+import EscrowActionButton from "../../components/escrow-action-buttons/EscrowActionButtons";
+import type { EscrowItemsReceivedProps } from "./types/escrow";
 
-type EscrowItemsReceivedProps = {
-  orderId: string;
-  steps: any[];
-  isConfirming: boolean;
-  isReporting: boolean;
-  onConfirmSatisfaction: () => void;
-  onReportProblem: () => void;
-};
 
 export function EscrowItemReceivedMobile({
+  escrowData,
   orderId,
   steps,
   isConfirming,
@@ -20,8 +14,8 @@ export function EscrowItemReceivedMobile({
 }: EscrowItemsReceivedProps) {
   return (
     <div className="lg:hidden">
-      {/* Product Card */}
-      <EscrowProductCard escrowHeight="197px" />
+      
+      <EscrowProductCard image={escrowData?.image} escrowHeight="197px" />
       <div
         className="rounded-lg p-4 mb-6 border w-full"
         style={{
@@ -85,7 +79,7 @@ export function EscrowItemReceivedMobile({
         </div>
       </div>
 
-      {/* Progress Steps - Mobile */}
+    
       <div className="space-y-0 mb-6">
         {steps.map((step, index) => (
           <div
@@ -130,7 +124,7 @@ export function EscrowItemReceivedMobile({
               )}
             </div>
 
-            {/* Step Text */}
+         
             <span
               className={`text-sm ${
                 step.active ? "text-white font-medium" : "text-gray-400"
@@ -142,7 +136,7 @@ export function EscrowItemReceivedMobile({
         ))}
       </div>
 
-      {/* Action Buttons - Mobile */}
+      
       <div className="space-y-4 mt-8">
         <EscrowActionButton
           onClick={onConfirmSatisfaction}
@@ -152,21 +146,7 @@ export function EscrowItemReceivedMobile({
         >
           I am satisfied with my order
         </EscrowActionButton>
-        {/* <button
-          onClick={onConfirmSatisfaction}
-          disabled={isConfirming}
-          className="w-full py-4 rounded-lg text-white font-medium transition-all flex items-center justify-center gap-2"
-          style={{ backgroundColor: "#00707B" }}
-        >
-          {isConfirming ? (
-            <>
-              <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-              Processing...
-            </>
-          ) : (
-            "I am satisfied with my order"
-          )}
-        </button> */}
+        
 
         <EscrowActionButton
           onClick={onReportProblem}
@@ -177,21 +157,7 @@ export function EscrowItemReceivedMobile({
         >
           Report a problem
         </EscrowActionButton>
-        {/* <button
-          onClick={onReportProblem}
-          disabled={isReporting}
-          className="w-full py-4 rounded-lg text-white font-medium border border-gray-600 transition-all flex items-center justify-center gap-2"
-          style={{ backgroundColor: "transparent" }}
-        >
-          {isReporting ? (
-            <>
-              <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-              Processing...
-            </>
-          ) : (
-            "Report a problem"
-          )}
-        </button> */}
+        
       </div>
     </div>
   );

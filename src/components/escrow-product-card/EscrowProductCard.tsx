@@ -1,8 +1,9 @@
 type EscrowProductCardProps = {
   escrowHeight: string;
+  image: string;
 };
 
-const EscrowProductCard = ({escrowHeight}: EscrowProductCardProps) => {
+const EscrowProductCard = ({escrowHeight, image}: EscrowProductCardProps) => {
   return (
     <div
         className="rounded-lg p-4 mb-6 border w-full"
@@ -14,7 +15,7 @@ const EscrowProductCard = ({escrowHeight}: EscrowProductCardProps) => {
       >
         <div className="w-full h-full flex items-center justify-center">
           <img
-            src="/hermes-bag.png"
+            src={image}
             alt="Hermes Birkin Bag"
             width={183}
             height={183}
