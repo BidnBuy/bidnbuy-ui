@@ -19,13 +19,13 @@ import type { ReportProblemFormData } from "@/lib/validations/report-problem"
  * @returns Object containing submission state and handler function
  */
 
-export function useReportProblem(orderId: string) {
+export function useReportProblem() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const navigate = useNavigate()
 
   
   const submitProblemReport = async (data: ReportProblemFormData): Promise<ReportProblemResponse> => {
-    
+    console.log('Submit Problem Report', data)
     await new Promise((resolve) => setTimeout(resolve, 2000))
 
     
