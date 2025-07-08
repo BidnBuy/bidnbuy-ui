@@ -135,7 +135,7 @@ export function EscrowStatus() {
 
   return (
     <div className="min-h-screen text-white" style={{ backgroundColor: "#01151C" }}>
-      {/* <AppHeader /> */}
+  
       <Header />
       <div className="p-4 max-w-6xl mx-auto">
         <h1 className="text-xl font-semibold mb-6">
