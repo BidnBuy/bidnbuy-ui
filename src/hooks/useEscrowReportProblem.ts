@@ -19,7 +19,8 @@ import type { ReportProblemFormData } from "@/lib/validations/report-problem"
  * @returns Object containing submission state and handler function
  */
 
-export function useReportProblem() {
+export function useReportProblem(orderId: string) {
+  console.log('Find the real order id:', orderId)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const navigate = useNavigate()
 

@@ -22,6 +22,7 @@ type FormActionsProps = {
  * @param isMobile - Whether to use mobile styling
  */
 export function FormActions({ onCancel, isSubmitting, isFormValid, isMobile = false }: FormActionsProps) {
+  console.log('See isMobile:', isMobile)
   return (
     <div className="space-y-4">
       <Button
