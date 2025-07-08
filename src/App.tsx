@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import './App.css'
 
 import Layout from '@/components/layout/Layout'
@@ -15,6 +15,10 @@ import CustomerAccountVerification from '@/pages/customer-account-verification/C
 import VendorAccountVerification from '@/pages/vendor-account-verification/VendorAccountVerification'
 import VendorUploadProductForm from '@/pages/vendor-upload-product/VendorUploadProduct'
 import AuctionProductDetail from '@/pages/auction-product-detail/AuctionProductDetail'
+import EscrowReportProblemForm from './pages/escrow-report-problem-form/EscrowReportProblemForm'
+import EscrowPaymentReleased from './pages/escrow-payment-released/EscrowPaymentReleased'
+import EscrowItemReceived from './pages/escrow-items-received/EscrowItemsReceived'
+import { EscrowStatus } from './pages/escrow-status/EscrowStatus'
 
 
 
@@ -36,6 +40,12 @@ const App = () => {
 
         <Route path="vendor-upload-product" element={<VendorUploadProductForm />} />
         <Route path="auction-product-detail" element={<AuctionProductDetail />} />
+        
+        <Route path="escrow" element={<Navigate to="/escrow/1" replace />} />
+        <Route path="escrow/:orderId" element={<EscrowStatus />} />
+        <Route path="escrow/:orderId/received" element={<EscrowItemReceived />} />
+        <Route path="escrow/:orderId/payment-released" element={<EscrowPaymentReleased />} />
+        <Route path="escrow/:orderId/report-problem" element={<EscrowReportProblemForm />} />
         
 
       </Route>

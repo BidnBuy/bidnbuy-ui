@@ -1,7 +1,7 @@
 import CustomerSignUpMobileImage from "@/assets/customer-sign-up-mobile-img.jpg"
 import BidnBuyLogo from "@/assets/bidnbuy-logo.png"
 import SignInFormFields from "@/components/sign-in-form-field/SignInFormField"
-import type { SignInProps } from "@/lib/types"
+import type { SignInProps } from "@/types/auth"
 
 
 const MobileCustomerLogin = ({ form, onSubmit, isLoading }: SignInProps) => {

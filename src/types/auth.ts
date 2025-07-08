@@ -1,5 +1,5 @@
 import type { UseFormReturn } from "react-hook-form"
-import type { LoginFormValues, SignupFormValues } from "./validations/auth"
+import type { LoginFormValues, SignupFormValues } from "../lib/validations/auth"
 
 export type SignupProps = {
   form: UseFormReturn<SignupFormValues>
