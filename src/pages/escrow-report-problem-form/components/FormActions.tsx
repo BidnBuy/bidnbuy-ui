@@ -25,7 +25,7 @@ export function FormActions({ onCancel, isSubmitting, isFormValid, isMobile = fa
   console.log('See isMobile:', isMobile)
   return (
     <div className="space-y-4">
-      <Button
+      <button
         type="button"
         onClick={onCancel}
         className="w-full py-4 rounded-lg text-white font-medium border transition-all hover:bg-gray-800/20"
@@ -35,9 +35,9 @@ export function FormActions({ onCancel, isSubmitting, isFormValid, isMobile = fa
         }}
       >
         Cancel
-      </Button>
+      </button>
 
-      <Button
+      <button
         type="submit"
         disabled={!isFormValid || isSubmitting}
         className="w-full py-4 rounded-lg text-white font-medium transition-all flex items-center justify-center gap-2"
@@ -54,7 +54,7 @@ export function FormActions({ onCancel, isSubmitting, isFormValid, isMobile = fa
         ) : (
           "Submit"
         )}
-      </Button>
+      </button>
     </div>
   )
 }
