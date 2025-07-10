@@ -4,7 +4,6 @@ import { MobileCarouselSlide } from "../carousel/MobileCarouselSlide"
 
 import DashboardHeroImg from "@/assets/products/dashboard-hero.jpg"
 import SmartTvImg from "@/assets/products/smart-tv.jpg"
-import NikeAirImg from "@/assets/products/nike-air.png"
 
 export function FeaturedCarousel() {
   const [currentSlide, setCurrentSlide] = useState(0)
@@ -17,7 +16,7 @@ export function FeaturedCarousel() {
       title: "Nike Air 2025",
       subtitle: "Premium Collection",
       buttonText: "Bid now",
-      backgroundImage: NikeAirImg,
+      backgroundImage: DashboardHeroImg,
       textOverlay: {
         title: "Nike Air 2025",
         subtitle: "Premium Collection",

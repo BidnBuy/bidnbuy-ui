@@ -1,7 +1,9 @@
 import type React from "react"
+import type { RefObject } from "react"
 
 import { Button } from "@/components/ui/button"
-import type { RefObject } from "react"
+
+import AddPhotoIconSvg from "@/assets/escrow/add-photo-icon.svg"
 
 interface PhotoUploadSectionProps {
   uploadedPhotos: File[]
@@ -55,7 +57,7 @@ export function PhotoUploadSection({
         onClick={onUploadClick}
       >
         <img
-          src="/add-photo-icon.svg"
+          src={AddPhotoIconSvg}
           alt="Add Photos"
           {...iconSize}
           className={`mx-auto ${isMobile ? "mb-3" : "mb-4"}`}

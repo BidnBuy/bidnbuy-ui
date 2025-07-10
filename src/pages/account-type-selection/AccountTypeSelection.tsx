@@ -1,7 +1,5 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { Button } from "@/components/ui/button"
-import { ArrowRight } from "lucide-react"
 
 import { useMediaQuery } from "@/hooks/useMediaQuery"
 
@@ -71,7 +69,7 @@ export default function AccountTypeSelection() {
                 <div className="space-y-4 md:space-y-4 mb-8 md:mb-8">
                   <button
                     onClick={() => setSelectedType("customer")}
-                    className={`w-full py-5 md:py-4 px-6 rounded-xl md:rounded-lg border-2 text-left text-lg md:text-lg font-medium transition-all cursor-pointer ${
+                    className={`w-full py-5 md:py-4 px-6 border-2 text-left text-lg md:text-lg font-medium transition-all cursor-pointer ${
                       selectedType === "customer"
                         ? "border-teal-400 bg-teal-400/20 text-teal-300"
                         : isDesktop
@@ -84,7 +82,7 @@ export default function AccountTypeSelection() {
 
                   <button
                     onClick={() => setSelectedType("vendor")}
-                    className={`w-full py-5 md:py-4 px-6 rounded-xl md:rounded-lg border-2 text-left text-lg md:text-lg font-medium transition-all cursor-pointer ${
+                    className={`w-full py-5 md:py-4 px-6 border-2 text-left text-lg md:text-lg font-medium transition-all cursor-pointer ${
                       selectedType === "vendor"
                         ? "border-teal-400 bg-teal-400/20 text-teal-300"
                         : isDesktop
@@ -97,14 +95,14 @@ export default function AccountTypeSelection() {
                 </div>
 
               
-                <Button
+                <button
                   onClick={handleProceed}
-                  className={`w-full bg-teal-500 hover:bg-teal-600 text-white py-6 md:py-4 rounded-xl md:rounded-lg font-semibold text-lg md:text-lg cursor-pointer`}
-                  size="lg"
+                  className={`w-full bg-teal-500 hover:bg-teal-600 text-white py-5 md:py-4 font-semibold text-lg md:text-lg cursor-pointer`}
+                
                 >
                   Proceed
-                  {!isDesktop && <ArrowRight className="ml-2 h-5 w-5" />}
-                </Button>
+                  {/* {!isDesktop && <ArrowRight className="ml-2 h-5 w-5" />} */}
+                </button>
               </div>
             </div>
 

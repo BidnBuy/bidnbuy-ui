@@ -9,9 +9,7 @@ import { Label } from "@/components/ui/label"
 import { UploadProductFormField, UploadProductFormInput, UploadProductFormTextarea, UploadProductFormSelect, PriceInput } from "@/components/upload-product-form-field/UploadProductFormField"
 import { FileUploader } from "@/components/file-uploader/FileUploader"
 import { UploadSuccessMessage } from "@/components/upload-success-message/UploadSuccessMessage"
-import { DesktopNavigation } from "@/components/navigation/DesktopNavigation"
 import { SearchInput } from "@/components/search-input/SearchInput"
-import { MobileHeader } from "@/components/header/MobileHeader"
 import { useNavigate } from "react-router-dom"
 import { toast } from "sonner"
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog"
@@ -152,9 +150,9 @@ export default function VendorUploadProductForm() {
   // --- Render ---
   return (
     <div className="min-h-screen bg-[#01151C] text-white">
-      <MobileHeader />
+    
       <div className="desktop-header hidden md:block">
-        <DesktopNavigation />
+       
         <div className="bg-[#01151C] px-4 py-4">
           <div className="max-w-4xl mx-auto px-8 lg:px-16 xl:px-32 flex justify-center">
             <div className="relative max-w-md w-full">
@@ -439,6 +437,7 @@ export default function VendorUploadProductForm() {
           />
         )}
       </div>
+     
     </div>
   )
 }

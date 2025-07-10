@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 
 import ShoppingImage from '@/assets/shopping-person.jpg'
-import { Button } from "@/components/ui/button";
 
 import { useNavigate } from "react-router-dom"
 
@@ -40,11 +39,11 @@ const MobileHome = () => {
         </div>
 
         <div className="space-y-4">
-          <Button 
+          <button
           onClick={handleNavigate}
             className="w-full py-4 bg-[#00707B] hover:bg-[#00636D] cursor-pointer text-white font-medium rounded-md transition-colors">
             Create an account
-          </Button>
+          </button>
           <p className="text-center text-white">
             Already have an account?{" "}
             <Link to="/login" className="text-teal-300 hover:underline">
