@@ -9,8 +9,6 @@ import { Form } from "@/components/ui/form"
 import { useReportProblem } from "@/hooks/useEscrowReportProblem"
 import { usePhotoUpload } from "@/hooks/usePhotoUpload"
 
-import Header from "@/components/header/Header"
-
 import EscrowReportProblemFormDesktop from "./EscrowReportProblemFormDesktop"
 import EscrowReportProblemFormMobile from "./EscrowReportProblemFormMobile"
 import { reportProblemSchema, type ReportProblemFormData } from "@/lib/validations/report-problem"
@@ -87,7 +85,6 @@ const EscrowReportProblemForm = () =>{
   return (
     <div className="min-h-screen text-white" style={{ backgroundColor: "#01151C" }}>
    
-      <Header />
       <div className="p-4 max-w-4xl mx-auto">
         <h1 className="text-2xl font-semibold mb-6">Report a problem</h1>
 

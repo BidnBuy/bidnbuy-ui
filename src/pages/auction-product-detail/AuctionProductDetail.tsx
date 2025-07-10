@@ -1,16 +1,9 @@
-// import { useState } from "react"
-// import { DesktopHeader, DesktopSearchBar, MobileHeader } from "./components/header"
-// import { CategoryTabs } from "./components/category-tabs"
-
-
 import { ProductInfoSection } from "./_components/ProductInfoSection"
 import { ProductDetails } from "./_components/ProductDetails"
 import { ProductDescription } from "./_components/ProductDescription"
 import { ProductInformation } from "./_components/ProductInformation"
 import { BidSection } from "./_components/BidsSection"
 import { ProductCarousel } from "./_components/ProductCarousel"
-import { DesktopHeader } from "@/components/header/DesktopHeader"
-import { MobileHeader } from "@/components/header/MobileHeader"
 import { useParams } from "react-router-dom"
 import { useProductDetail } from "@/hooks/useProductDetail"
 
@@ -27,15 +20,6 @@ export default function AuctionProductDetail() {
   return (
     <div className="min-h-screen text-white" style={{ backgroundColor: "#01151C" }}>
    
-    <div className="hidden md:block">
-
-      <DesktopHeader />
-    </div>
-
-      <MobileHeader />
-
-
-      
 
       <div className="max-w-7xl mx-auto px-4 lg:px-6 py-4 lg:py-8">
         <div className="lg:grid lg:grid-cols-2 lg:gap-12">

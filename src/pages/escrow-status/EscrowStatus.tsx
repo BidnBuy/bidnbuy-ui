@@ -8,7 +8,6 @@ import { EscrowStatusDesktop } from "./EscrowStatusDesktop"
 import type { EscrowState } from "@/types/escrow"
 import type { EscrowOrder } from "@/types/escrow"
 
-import Header from "@/components/header/Header"
 import { exploreEscrows } from "@/data/mockEscrowOrders"
 
 import InEscrowSvg from "@/assets/escrow/in-escrow.svg"
@@ -136,7 +135,6 @@ export function EscrowStatus() {
   return (
     <div className="min-h-screen text-white" style={{ backgroundColor: "#01151C" }}>
   
-      <Header />
       <div className="p-4 max-w-6xl mx-auto">
         <h1 className="text-xl font-semibold mb-6">
           {showActionButtons ? "Item Received" : "Escrow Status"}

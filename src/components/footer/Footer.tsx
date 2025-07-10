@@ -13,7 +13,7 @@ const Footer = () => {
           </Link>
           <Link to="#" className="hover:text-white transition-colors">
             Become a Seller
-          </Link>
+        </Link>
           <Link to="#" className="hover:text-white transition-colors">
             Help & Contact
           </Link>

@@ -3,12 +3,11 @@ import { useQuery } from '@tanstack/react-query';
 import { useProductStore, type Product } from '@/store/products';
 import { fetchProducts } from '@/services/products';
 
-import { MobileHeader } from "@/components/header/MobileHeader"
 import { SearchBar } from "@/components/search-bar/SearchBar"
 import { CategoryTabs } from "@/components/category-tabs/CategoryTabs"
 import { MobileProductSection } from "@/components/product-section/MobileProductSection"
 import { MobileDiscoverSection } from "@/components/discover-section/MobileDiscoverSection"
-import { DesktopHeader } from "@/components/header/DesktopHeader"
+
 import { ProductHeroSection } from "@/components/product-hero-section/ProductHeroSection"
 import { DesktopProductSection } from "@/components/product-section/DesktopProductSection"
 import { DesktopDiscoverSection } from "@/components/discover-section/DesktopDiscoverSection"
@@ -94,7 +93,7 @@ const ProductHome = () => {
   if (isMobile) {
     return (
       <div className="flex flex-col min-h-screen bg-[#01151C] text-white">
-        <MobileHeader />
+      
         <SearchBar />
         <CategoryTabs
           categories={categories}
@@ -122,7 +121,7 @@ const ProductHome = () => {
 
   return (
     <div className="min-h-screen bg-[#01151C] text-white">
-      <DesktopHeader />
+ 
       <ProductHeroSection />
       <div className="px-6">
         {isLoading ? loadingSection : <>

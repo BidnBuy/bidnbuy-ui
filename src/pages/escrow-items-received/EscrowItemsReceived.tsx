@@ -3,9 +3,6 @@ import { useNavigate, useParams } from "react-router-dom"
 
 import type { EscrowOrder } from "@/types/escrow"
 
-import Header from "@/components/header/Header"
-
-
 import { EscrowItemReceivedMobile } from "./EscrowItemsReceivedMobile"
 import EscrowItemReceivedDesktop from "./EscrowItemsReceivedDesktop"
 
@@ -79,7 +76,7 @@ const EscrowItemReceived = () => {
   return (
     <div className="min-h-screen text-white" style={{ backgroundColor: "#01151C" }}>
      
-      <Header />
+    
       <div className="p-4 max-w-6xl mx-auto">
         <h1 className="text-xl font-semibold mb-6">Item Received</h1>
         <EscrowItemReceivedMobile {...sharedEscrowItemReceivedProps} />

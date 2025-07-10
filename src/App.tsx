@@ -1,56 +1,92 @@
-import { Navigate, Route, Routes } from 'react-router-dom'
-import './App.css'
+import "./App.css";
 
-import Layout from '@/components/layout/Layout'
+import { Navigate, Route, Routes } from "react-router-dom";
 
-import Home from '@/pages/home/Home'
-import CustomerSignUp from '@/pages/customer-sign-up/CustomerSignUp'
-import AccountTypeSelection from '@/pages/account-type-selection/AccountTypeSelection'
-import CustomerLogin from '@/pages/customer-login/CustomerLogin'
-import VendorLogin from '@/pages/vendor-login/VendorLogin'
-import VendorSignup from '@/pages/vendor-sign-up/VendorSignUp'
+import Layout from "@/components/layout/Layout";
 
-import ProductHome from '@/pages/product-home/ProductHome'
-import CustomerAccountVerification from '@/pages/customer-account-verification/CustomerAccountVerification'
-import VendorAccountVerification from '@/pages/vendor-account-verification/VendorAccountVerification'
-import VendorUploadProductForm from '@/pages/vendor-upload-product/VendorUploadProduct'
-import AuctionProductDetail from '@/pages/auction-product-detail/AuctionProductDetail'
-import EscrowReportProblemForm from './pages/escrow-report-problem-form/EscrowReportProblemForm'
-import EscrowPaymentReleased from './pages/escrow-payment-released/EscrowPaymentReleased'
-import EscrowItemReceived from './pages/escrow-items-received/EscrowItemsReceived'
-import { EscrowStatus } from './pages/escrow-status/EscrowStatus'
+import Home from "@/pages/home/Home";
+import CustomerSignUp from "@/pages/customer-sign-up/CustomerSignUp";
+import AccountTypeSelection from "@/pages/account-type-selection/AccountTypeSelection";
+import CustomerLogin from "@/pages/customer-login/CustomerLogin";
+import VendorLogin from "@/pages/vendor-login/VendorLogin";
+import VendorSignup from "@/pages/vendor-sign-up/VendorSignUp";
 
-
+import ProductHome from "@/pages/product-home/ProductHome";
+import CustomerAccountVerification from "@/pages/customer-account-verification/CustomerAccountVerification";
+import VendorAccountVerification from "@/pages/vendor-account-verification/VendorAccountVerification";
+import VendorUploadProductForm from "@/pages/vendor-upload-product/VendorUploadProduct";
+import AuctionProductDetail from "@/pages/auction-product-detail/AuctionProductDetail";
+import EscrowReportProblemForm from "@/pages/escrow-report-problem-form/EscrowReportProblemForm";
+import EscrowPaymentReleased from "@/pages/escrow-payment-released/EscrowPaymentReleased";
+import EscrowItemReceived from "@/pages/escrow-items-received/EscrowItemsReceived";
+import { EscrowStatus } from "@/pages/escrow-status/EscrowStatus";
+import LayoutWithHeaderFooter from "@/components/layout-with-header-footer/LayoutWithHeaderFooter";
+import LayoutWithNavigationHeader from "./components/layout-with-navigation-header/LayoutWithNavigationHeader";
 
 const App = () => {
-
   return (
     <Routes>
+
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="account-type" element={<AccountTypeSelection />} />
-        <Route path="product-home" element={<ProductHome />} />
+
         <Route path="signup/customer" element={<CustomerSignUp />} />
         <Route path="login/customer" element={<CustomerLogin />} />
+
         <Route path="signup/vendor" element={<VendorSignup />} />
         <Route path="login/vendor" element={<VendorLogin />} />
 
-        <Route path="customer-account-verify" element={<CustomerAccountVerification />} />
-        <Route path="vendor-account-verify" element={<VendorAccountVerification />} />
+        <Route
+          path="customer-account-verify"
+          element={<CustomerAccountVerification />}
+        />
+        <Route
+          path="vendor-account-verify"
+          element={<VendorAccountVerification />}
+        />
+      </Route>
 
-        <Route path="vendor-upload-product" element={<VendorUploadProductForm />} />
-        <Route path="auction-product-detail" element={<AuctionProductDetail />} />
+      <Route element={<LayoutWithNavigationHeader />}>
+
+        <Route
+          path="vendor-upload-product"
+          element={<VendorUploadProductForm />}
+        />
         
+
         <Route path="escrow" element={<Navigate to="/escrow/1" replace />} />
         <Route path="escrow/:orderId" element={<EscrowStatus />} />
-        <Route path="escrow/:orderId/received" element={<EscrowItemReceived />} />
-        <Route path="escrow/:orderId/payment-released" element={<EscrowPaymentReleased />} />
-        <Route path="escrow/:orderId/report-problem" element={<EscrowReportProblemForm />} />
-        
-
+        <Route
+          path="escrow/:orderId/received"
+          element={<EscrowItemReceived />}
+        />
+        <Route
+          path="escrow/:orderId/payment-released"
+          element={<EscrowPaymentReleased />}
+        />
+        <Route
+          path="escrow/:orderId/report-problem"
+          element={<EscrowReportProblemForm />}
+        />
       </Route>
-    </Routes>
-  )
-}
 
-export default App
+
+
+      <Route element={<LayoutWithHeaderFooter />}>
+        <Route path="product-home" element={<ProductHome />} />
+
+        <Route
+          path="auction-product-detail"
+          element={<AuctionProductDetail />}
+        />
+
+        
+      </Route>
+
+      
+    </Routes>
+  );
+};
+
+export default App;

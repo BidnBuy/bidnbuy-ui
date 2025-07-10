@@ -39,11 +39,11 @@ const DesktopHome = () => {
 
     
           <div className="space-y-4">
-            <Button 
+            <button
             onClick={handleNavigate}
             className="w-full py-4 bg-[#00707B] hover:bg-[#00636D] cursor-pointer text-white font-medium rounded-lg transition-colors text-lg">
               Create an account
-            </Button>
+            </button>
 
             <p className="text-center text-gray-600">
               Already have an account?{" "}

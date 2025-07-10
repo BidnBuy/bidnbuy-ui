@@ -1,6 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom"
 
-import Header from "@/components/header/Header"
 import { exploreEscrows } from "@/data/mockEscrowOrders"
 
 import { EscrowPaymentReleasedMobile } from "./EscrowPaymentReleasedMobile"
@@ -51,8 +50,6 @@ const EscrowPaymentReleased = () => {
   return (
     <div className="min-h-screen text-white pb-4" style={{ backgroundColor: "#01151C" }}>
     
-
-      <Header />
       <div className="p-4 max-w-6xl mx-auto">
         <h1 className="text-xl font-semibold mb-8">Escrow Released</h1>
         
