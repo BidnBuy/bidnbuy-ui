@@ -46,7 +46,7 @@ export function ProductCarousel({ images = [] }: { images?: string[] }) {
                   alt={`Product image ${index + 1}`}
                   width={400}
                   height={400}
-                  className="object-contain max-w-full h-auto"
+                  className="object-contain max-w-full h-[400px]"
                 />
               </div>
             ))
@@ -57,7 +57,7 @@ export function ProductCarousel({ images = [] }: { images?: string[] }) {
                 alt="Default product"
                 width={400}
                 height={400}
-                className="object-contain max-w-full h-auto"
+                className="object-contain max-w-full h-[400px]"
               />
             </div>
           )}

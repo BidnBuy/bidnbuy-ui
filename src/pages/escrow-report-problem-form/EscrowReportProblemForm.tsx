@@ -30,7 +30,7 @@ const EscrowReportProblemForm = () =>{
           <h2 className="text-2xl font-bold mb-4">Order Not Found</h2>
           <p className="mb-6">Sorry, we couldn't find the order you are looking for.</p>
           <button
-            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded"
+            className="bg-teal-500 hover:bg-teal-400 text-white px-4 py-2 rounded cursor-pointer"
             onClick={() => navigate(-1)}
           >
             Go Back

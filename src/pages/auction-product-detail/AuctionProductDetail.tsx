@@ -1,18 +1,24 @@
+import { useNavigate, useParams } from "react-router-dom"
+
 import { ProductInfoSection } from "./_components/ProductInfoSection"
 import { ProductDetails } from "./_components/ProductDetails"
 import { ProductDescription } from "./_components/ProductDescription"
 import { ProductInformation } from "./_components/ProductInformation"
 import { BidSection } from "./_components/BidsSection"
 import { ProductCarousel } from "./_components/ProductCarousel"
-import { useParams } from "react-router-dom"
+
 import { useProductDetail } from "@/hooks/useProductDetail"
 
 export default function AuctionProductDetail() {
+  const navigate = useNavigate()
   const { slug } = useParams<{ slug: string }>()
   console.log("Slug:", slug)
 
+
   const { data: product, isLoading, isError } = useProductDetail(slug || "generic-cotton-pizza")
   console.log("Auction Product Data:", product)
+
+  const onReportItemHandler = () =>  navigate(`/escrow/${slug || "generic-cotton-pizza"}/report-problem`)
 
   if (isLoading) return <div className="text-center py-20">Loading...</div>
   if (isError || !product) return <div className="text-center py-20 text-red-400 text-xl">404 | Product not found</div>
@@ -35,7 +41,9 @@ export default function AuctionProductDetail() {
         <div className="mt-8 lg:mt-12">
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-xl font-bold text-white">About this product</h2>
-            <button className="text-red-400 text-sm underline hover:text-red-300 transition-colors">
+            <button 
+            onClick={onReportItemHandler}
+            className="text-red-400 text-sm underline hover:text-red-300 transition-colors cursor-pointer">
               Report this item
             </button>
           </div>
