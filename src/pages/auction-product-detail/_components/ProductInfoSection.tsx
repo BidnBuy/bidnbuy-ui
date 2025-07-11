@@ -43,7 +43,7 @@ export function ProductInfoSection({ product }: { product: any }) {
         </div>
       </div>
 
-      <Button className="w-full bg-teal-500 hover:bg-teal-400 text-white font-bold py-2 px-4 rounded-lg transition-colors">
+      <Button className="w-full bg-teal-500 hover:bg-teal-400 cursor-pointer text-white font-bold py-2 px-4 rounded-lg transition-colors">
         Place a Bid
       </Button>
     </div>
