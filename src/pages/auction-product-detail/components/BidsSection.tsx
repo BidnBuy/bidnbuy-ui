@@ -1,3 +1,5 @@
+import { Button } from "@/components/ui/button"
+
 export function BidSection() {
   
   const bidHistory = [
@@ -33,6 +35,9 @@ export function BidSection() {
           ))}
         </div>
       </div>
+
+      <Button className="w-full bg-teal-600 hover:bg-teal-700 py-3 text-lg font-semibold rounded-xl">Refresh</Button>
+
     </div>
   )
 }

@@ -1,13 +1,15 @@
 import { useNavigate, useParams } from "react-router-dom"
 
-import { ProductInfoSection } from "./_components/ProductInfoSection"
-import { ProductDetails } from "./_components/ProductDetails"
-import { ProductDescription } from "./_components/ProductDescription"
-import { ProductInformation } from "./_components/ProductInformation"
-import { BidSection } from "./_components/BidsSection"
-import { ProductCarousel } from "./_components/ProductCarousel"
+import { ProductInfoSection } from "./components/ProductInfoSection"
+import { ProductDetails } from "./components/ProductDetails"
+import { ProductDescription } from "./components/ProductDescription"
+import { ProductInformation } from "./components/ProductInformation"
+import { BidSection } from "./components/BidsSection"
+import { ProductCarousel } from "./components/ProductCarousel"
 
 import { useProductDetail } from "@/hooks/useProductDetail"
+import { BidHistorySection } from "./BidHistorySection"
+import { useAuctionStore } from "@/store/auction-store"
 
 export default function AuctionProductDetail() {
   const navigate = useNavigate()
@@ -15,14 +17,26 @@ export default function AuctionProductDetail() {
   console.log("Slug:", slug)
 
 
-  const { data: product, isLoading, isError } = useProductDetail(slug || "generic-cotton-pizza")
+  const { data: product, isLoading, isError } = useProductDetail(slug || "classic-wool-peacoat")
   console.log("Auction Product Data:", product)
 
-  const onReportItemHandler = () =>  navigate(`/escrow/${slug || "generic-cotton-pizza"}/report-problem`)
+  const onReportItemHandler = () =>  navigate(`/escrow/${slug || "classic-wool-peacoat"}/report-problem`)
+
+  const { auction, bidHistory } = useAuctionStore()
 
   if (isLoading) return <div className="text-center py-20">Loading...</div>
   if (isError || !product) return <div className="text-center py-20 text-red-400 text-xl">404 | Product not found</div>
 
+  
+  if (!auction) {
+    return (
+      <div className="min-h-screen flex items-center justify-center text-white" style={{ backgroundColor: "#01151C" }}>
+        Loading auction data...
+      </div>
+    )
+  }
+
+  
   return (
     <div className="min-h-screen text-white" style={{ backgroundColor: "#01151C" }}>
    
@@ -57,6 +71,7 @@ export default function AuctionProductDetail() {
 
       
           <BidSection />
+          <BidHistorySection bidHistory={bidHistory} currentHighestBid={auction.currentBid} />
         </div>
       </div>
     </div>
