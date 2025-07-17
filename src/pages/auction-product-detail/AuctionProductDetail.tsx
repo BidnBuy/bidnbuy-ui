@@ -1,28 +1,31 @@
 import { useNavigate, useParams } from "react-router-dom"
 
-import { ProductInfoSection } from "./components/ProductInfoSection"
+// import { ProductInfoSection } from "./components/ProductInfoSection"
 import { ProductDetails } from "./components/ProductDetails"
 import { ProductDescription } from "./components/ProductDescription"
 import { ProductInformation } from "./components/ProductInformation"
-import { BidSection } from "./components/BidsSection"
+
 import { ProductCarousel } from "./components/ProductCarousel"
 
 import { useProductDetail } from "@/hooks/useProductDetail"
-import { BidHistorySection } from "./BidHistorySection"
+import { BidHistorySection } from "./components/BidHistorySection"
 import { useAuctionStore } from "@/store/auction-store"
+import { ProductSummarySection } from "./components/ProductSummarySection"
+import { useState } from "react"
 
 export default function AuctionProductDetail() {
   const navigate = useNavigate()
   const { slug } = useParams<{ slug: string }>()
   console.log("Slug:", slug)
 
+  const [showBidModal, setShowBidModal] = useState(false)
 
   const { data: product, isLoading, isError } = useProductDetail(slug || "classic-wool-peacoat")
   console.log("Auction Product Data:", product)
 
   const onReportItemHandler = () =>  navigate(`/escrow/${slug || "classic-wool-peacoat"}/report-problem`)
 
-  const { auction, bidHistory } = useAuctionStore()
+  const { auction, timeLeft, isAuctionEnded, canPlaceBid, bidHistory } = useAuctionStore()
 
   if (isLoading) return <div className="text-center py-20">Loading...</div>
   if (isError || !product) return <div className="text-center py-20 text-red-400 text-xl">404 | Product not found</div>
@@ -48,8 +51,15 @@ export default function AuctionProductDetail() {
             <ProductCarousel images={product.images} />
           </div>
 
-         
-          <ProductInfoSection product={product} />
+         <ProductSummarySection
+         product={product}
+            auction={auction}
+            timeLeft={timeLeft}
+            isAuctionEnded={isAuctionEnded()} 
+            canPlaceBid={canPlaceBid()}
+            onPlaceBidClick={() => setShowBidModal(true)}
+          />
+          {/* <ProductInfoSection product={product} /> */}
         </div>
 
         <div className="mt-8 lg:mt-12">
@@ -69,11 +79,11 @@ export default function AuctionProductDetail() {
 
           <ProductInformation product={product} />
 
-      
-          <BidSection />
           <BidHistorySection bidHistory={bidHistory} currentHighestBid={auction.currentBid} />
         </div>
       </div>
+
+      <PlaceBidModal isOpen={showBidModal} onClose={() => setShowBidModal(false)} />
     </div>
   )
 }
