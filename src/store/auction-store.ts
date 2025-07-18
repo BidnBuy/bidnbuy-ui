@@ -58,9 +58,9 @@ type AuctionState = {
 }
 
 
-const isIsoDateString = (value: any): boolean => {
-  return typeof value === "string" && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z$/.test(value)
-}
+// const isIsoDateString = (value: any): boolean => {
+//   return typeof value === "string" && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z$/.test(value)
+// }
 
 
 export const useAuctionStore = create<AuctionState>()(
@@ -162,16 +162,7 @@ export const useAuctionStore = create<AuctionState>()(
           auction: state.auction,
           bidHistory: state.bidHistory,
         }),
-        // Custom deserializer to convert ISO date strings back to Date objects
-        deserialize: (str) => {
-          const data = JSON.parse(str, (key, value) => {
-            if (isIsoDateString(value)) {
-              return new Date(value)
-            }
-            return value
-          })
-          return data
-        },
+        // Removed unsupported 'deserialize' option
       },
     ),
     {
