@@ -1,5 +1,8 @@
+
 import { ShoppingCart } from "lucide-react"
 import { Link } from "react-router-dom"
+
+import MarketPlaceIcon from "../svg-icons/MarketPlaceIcon"
 
 export function DesktopNavigation() {
   return (
@@ -19,12 +22,7 @@ export function DesktopNavigation() {
             Home
           </Link>
           <Link to="/vendor-upload-product" className="flex items-center gap-2 hover:text-gray-200">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-              <rect x="3" y="3" width="7" height="7" />
-              <rect x="14" y="3" width="7" height="7" />
-              <rect x="14" y="14" width="7" height="7" />
-              <rect x="3" y="14" width="7" height="7" />
-            </svg>
+            <MarketPlaceIcon  />
             Marketplace
           </Link>
           <Link to="#" className="flex items-center gap-2 hover:text-gray-200">

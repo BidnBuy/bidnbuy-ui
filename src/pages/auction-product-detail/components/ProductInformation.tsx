@@ -13,14 +13,15 @@ export function ProductInformation({ product }: { product: any }) {
         </div>
       </div>
 
-      {/* Product Information Table */}
+     
       <div className="bg-slate-800/40 backdrop-blur-sm rounded-xl border border-slate-700/30 overflow-hidden">
         <table className="w-full">
           <tbody>
             <tr className="border-b border-slate-700/30">
-              <td className="px-4 py-3 text-gray-400 font-medium border-r border-slate-700/30">Slug:</td>
-              <td className="px-4 py-3 text-white font-medium">{product.slug || "hermes-birkin-bag"}</td>
+              <td className="px-4 py-3 text-gray-400 font-medium border-r border-slate-700/30">Location:</td>
+              <td className="px-4 py-3 text-white font-medium">Lagos, Nigeria</td>
             </tr>
+
             <tr className="border-b border-slate-700/30">
               <td className="px-4 py-3 text-gray-400 font-medium border-r border-slate-700/30">Number of bids:</td>
               <td className="px-4 py-3 text-white font-medium">10</td>
@@ -38,8 +39,12 @@ export function ProductInformation({ product }: { product: any }) {
               <td className="px-4 py-3 text-white font-medium">05-14-2025 11:00pm</td>
             </tr>
             <tr className="border-b border-slate-700/30">
-              <td className="px-4 py-3 text-gray-400 font-medium border-r border-slate-700/30">Variants:</td>
-              <td className="px-4 py-3 text-white font-medium">{product.variants?.length || 0}</td>
+              <td className="px-4 py-3 text-gray-400 font-medium border-r border-slate-700/30">Auction id:</td>
+              <td className="px-4 py-3 text-white font-medium">{product._id || "N/A"}</td>
+            </tr>
+            <tr className="border-b border-slate-700/30">
+              <td className="px-4 py-3 text-gray-400 font-medium border-r border-slate-700/30">Shipping Cost:</td>
+              <td className="px-4 py-3 text-white font-medium">${product.basePrice || 0}</td>
             </tr>
           </tbody>
         </table>

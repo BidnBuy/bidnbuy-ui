@@ -1,13 +1,13 @@
 import { create } from 'zustand';
 
 export type Product = {
-  name: string;
+  itemName: string;
   slug: string;
   basePrice: number;
   discountPrice: number;
   details: string;
-  images: string[];
-  categories: string[];
+  files: string[];
+  category: string;
   offers: string[];
   itemsInStock: number;
   isApproved: boolean;

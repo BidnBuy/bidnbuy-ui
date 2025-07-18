@@ -49,38 +49,46 @@ const ProductHome = () => {
 
   const actionTypes = ['buy', 'bid', 'offer'] as const;
   const mapProductToUI = (product: Product, idx: number) => ({
-    image: product.images[0] || '',
-    title: product.name,
-    rating: 5, 
-    reviews: 0, 
-    price: `$${product.discountPrice ?? product.basePrice}`,
-    originalPrice: product.discountPrice && product.discountPrice !== product.basePrice
-      ? `$${product.basePrice}`
-      : undefined,
-    actionType: actionTypes[idx % actionTypes.length],
-  })
+  image: Array.isArray(product.files) && product.files.length > 0 ? product.files[0] : '', 
+  title: product.itemName,
+  rating: 5,
+  reviews: 0,
+  price: product.discountPrice && product.discountPrice !== product.basePrice
+    ? `$${product.discountPrice}`
+    : `$${product.basePrice}`,
+  originalPrice: product.discountPrice && product.discountPrice !== product.basePrice
+    ? `$${product.basePrice}`
+    : undefined,
+  actionType: actionTypes[idx % actionTypes.length],
+})
 
+
+  // const getProductsByCategory = (category: string) =>
+  //   products.filter((p) => p.categories.includes(category)).map(mapProductToUI)
 
   const getProductsByCategory = (category: string) =>
-    products.filter((p) => p.categories.includes(category)).map(mapProductToUI)
+    category === "All"
+      ? products.map(mapProductToUI)
+      : products.filter((p) => p.category === category).map(mapProductToUI)
+
 
   
   const exploreProductsData = products.map(mapProductToUI)
-  const electronicsProductsData = getProductsByCategory('Electronics')
+  const electronicsProductsData = products.map(mapProductToUI)
   const featuredProductsData = products.slice(0, 8).map(mapProductToUI)
   // const fashionProductsData = getProductsByCategory('Fashion')
 
   
   const categoryCounts: Record<string, number> = {}
   products.forEach((p) => {
-    p.categories.forEach((cat) => {
-      if (cat !== 'All') categoryCounts[cat] = (categoryCounts[cat] || 0) + 1
-    })
+    if (p.category && p.category !== 'All') {
+      categoryCounts[p.category] = (categoryCounts[p.category] || 0) + 1
+    }
   })
   const mostPopulatedCategory = Object.entries(categoryCounts).sort((a, b) => b[1] - a[1])[0]?.[0]
   const mostPopulatedProducts = mostPopulatedCategory ? getProductsByCategory(mostPopulatedCategory) : []
 
-
+  
   const loadingSection = (
     <div className="py-8 px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
       {[...Array(8)].map((_, i) => (
