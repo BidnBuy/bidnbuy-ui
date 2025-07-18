@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import type { BidFormData } from "../schema/bid-schema"
 
 type BidFormContentProps = {
-  bidAmount: string
+  bidAmount: number
   agreedToTerms: boolean
   errors: FieldErrors<BidFormData>
   displayErrorMessage: string | null
@@ -36,8 +36,8 @@ export function BidFormContent({
       <div>
         <label className="block text-white font-medium mb-2">Place Your Bid</label>
         <CustomNumberInput
-          value={bidAmount ?? ''}
-          onChange={(value) => setValue("bidAmount", value, { shouldValidate: true })}
+          value={bidAmount === 0 ? "" : bidAmount}
+          onChange={(value) => setValue("bidAmount", value === "" ? 0 : value, { shouldValidate: true })}
           placeholder="Enter bid amount"
           // min={auction.minimumBid} // This prop should ideally come from auction data passed down
           disabled={!canBid || isProcessing || auctionEnded}

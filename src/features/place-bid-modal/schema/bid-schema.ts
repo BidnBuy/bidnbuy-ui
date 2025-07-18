@@ -2,8 +2,11 @@ import { z } from "zod"
 
 export const bidSchema = z.object({
   bidAmount: z
-    .string()
-    .min(1, "Bid amount is required")
+    .number({
+      required_error: "Bid amount is required",
+      invalid_type_error: "Bid amount must be a number",
+    })
+    .min(1, "Bid amount must be greater than 0")
     .refine((val) => !isNaN(Number(val)) && Number(val) > 0, {
       message: "Please enter a valid bid amount",
     })
@@ -18,17 +21,12 @@ export type BidFormData = z.infer<typeof bidSchema>
 export const createBidValidation = (currentBid: number, minimumBid: number) => {
   return bidSchema.extend({
     bidAmount: z
-      .string()
-      .min(1, "Bid amount is required")
-      .refine((val) => !isNaN(Number(val)) && Number(val) > 0, {
-        message: "Please enter a valid bid amount",
+      .number({
+        required_error: "Bid amount is required",
+        invalid_type_error: "Bid amount must be a number",
       })
-      .refine((val) => Number(val) >= minimumBid, {
-        message: `Minimum bid is ₦${minimumBid.toLocaleString()}`,
-      })
-      .refine((val) => Number(val) > currentBid, {
-        message: `Your bid must be higher than the current bid of ₦${currentBid.toLocaleString()}`,
-      })
-      .transform((val) => Number(val)),
+      .min(minimumBid, `Minimum bid is ₦${minimumBid.toLocaleString()}`)
+      .gt(currentBid, `Your bid must be higher than the current bid of ₦${currentBid.toLocaleString()}`),
   })
 }
+

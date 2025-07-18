@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { Clock } from "lucide-react"
-import { useAuctionStore, type TimeLeft } from "@/store/auction-store" // Import TimeLeft
-import MobileCountdownDisplay from "../../pages/auction-product-detail/components/MobileCountdownDisplay"
+import { useAuctionStore, type TimeLeft } from "@/store/auction-store" 
+import CountdownDisplay from "@/pages/auction-product-detail/components/CountdownDisplay"
 
 type CountdownTimerProps = {
   className?: string
@@ -30,7 +30,7 @@ export function CountdownTimer({ className = "", showIcon = true, timeLeft, isAu
         clearExtensionNotification()
       }, 3000)
 
-      return () => clearTimeout(timer)
+      return (() => clearTimeout(timer))
     }
   }, [extensionNotification, clearExtensionNotification])
 
@@ -52,7 +52,8 @@ export function CountdownTimer({ className = "", showIcon = true, timeLeft, isAu
 
   const getStatusText = () => {
     if (isAuctionEnded) return "Ended in: 0h 0m 0s"
-    return `Ends in: ${timeLeft.hours}h ${timeLeft.minutes}m ${timeLeft.seconds}s`
+    return `Ends in:`
+    // return `Ends in: ${timeLeft.hours}h ${timeLeft.minutes}m ${timeLeft.seconds}s`
   }
 
   return (
@@ -70,7 +71,7 @@ export function CountdownTimer({ className = "", showIcon = true, timeLeft, isAu
       )}
 
      
-      <MobileCountdownDisplay
+      <CountdownDisplay
         hours={timeLeft.hours}
         minutes={timeLeft.minutes}
         seconds={timeLeft.seconds}

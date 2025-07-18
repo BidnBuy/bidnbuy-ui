@@ -1,10 +1,11 @@
-import { DollarSign, ShoppingCart } from "lucide-react"
+import { ShoppingCart } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import type { AuctionData, TimeLeft } from "@/store/auction-store"
 
 import { CountdownTimer } from "@/components/countdown-timer/CountdownTimer"
 import type { Product } from "@/store/products"
+import PlaceBidIcon from "@/components/svg-icons/PlaceBidIcon"
 
 type ProductSummarySectionProps = {
   product: Product
@@ -46,7 +47,6 @@ export function ProductSummarySection({
       </div>
 
       <div className="flex items-center gap-4 mb-6">
-        <span className="text-sm text-gray-300">{auction.totalBids} bids</span>
         <CountdownTimer timeLeft={timeLeft} isAuctionEnded={isAuctionEnded} />
       </div>
 
@@ -63,20 +63,20 @@ export function ProductSummarySection({
         </div>
       </div>
 
-      {/* Action Buttons */}
+    
       <div className="flex gap-3 mb-8">
         <Button
           onClick={onPlaceBidClick}
           disabled={!canPlaceBid}
-          className="flex-1 bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+          className="flex-1 bg-[#F4A300] hover:hover:bg-[#2CD0A5] text-white font-semibold py-3 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          <DollarSign className="w-4 h-4 mr-2" />
+          <PlaceBidIcon className="w-4 h-4 mr-2" />
           Place Bid
         </Button>
         <Button
           variant="outline"
-          className="flex-1 font-semibold py-3 text-white bg-transparent hover:bg-[#DC4822]/10"
-          style={{ borderColor: "#DC4822" }}
+          className="flex-1 font-semibold py-3 text-white bg-transparent border-[#DC4822] hover:bg-[#DC4822]/10"
+          
         >
           <ShoppingCart className="w-4 h-4 mr-2" />
           Buy Now

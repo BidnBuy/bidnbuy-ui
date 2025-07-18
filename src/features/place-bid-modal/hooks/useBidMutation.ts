@@ -1,12 +1,12 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { useAuctionStore } from "@/store/auction-store" 
 
-interface BidData {
+type BidData = {
   auctionId: string
   amount: number
 }
 
-interface BidResponse {
+type BidResponse = {
   success: boolean
   message: string
   newCurrentBid?: number

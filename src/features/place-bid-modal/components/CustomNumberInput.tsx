@@ -3,8 +3,8 @@ import { forwardRef } from "react"
 import { Input } from "@/components/ui/input"
 
 type CustomNumberInputProps = {
-  value: string
-  onChange: (value: string) => void
+  value: number | ""
+  onChange: (value: number | "") => void
   onBlur?: () => void
   placeholder?: string
   min?: number
@@ -25,35 +25,26 @@ type CustomNumberInputProps = {
  */
 
 export const CustomNumberInput = forwardRef<HTMLInputElement, CustomNumberInputProps>(
-  ({ value, onChange, onBlur, placeholder, min = 0, max, disabled, error }, ref) => {
+  ({ value, onChange, onBlur, placeholder, min = 0, disabled, error }, ref) => {
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const inputValue = e.target.value
-
-      // Allow empty string or numbers (and commas for display, but remove for internal value)
-      // This regex allows digits and commas, but we'll strip commas before passing to onChange
-      if (inputValue === "" || /^[\d,]*$/.test(inputValue)) {
-        // Remove commas for the actual value passed to onChange
-        const numericValueString = inputValue.replace(/,/g, "")
-
-        // Only update if it's a valid number string or empty
-        if (numericValueString === "" || /^\d+$/.test(numericValueString)) {
-          onChange(numericValueString) // Pass the unformatted numeric string
-        }
+      const inputValue = e.target.value.replace(/,/g, "")
+      if (inputValue === "") {
+        onChange("")
+        return
+      }
+      const numericValue = Number(inputValue)
+      if (!isNaN(numericValue)) {
+        onChange(numericValue)
       }
     }
 
     const handleBlur = () => {
-      // Ensure minimum value on blur
-      if (value && min !== undefined) {
-        const numericValue = Number(value.replace(/,/g, "")) // Ensure commas are removed for parsing
-        if (numericValue < min) {
-          onChange(min.toString()) // Pass the unformatted numeric string
-        }
+      if (value !== "" && min !== undefined && Number(value) < min) {
+        onChange(min)
       }
       onBlur?.()
     }
 
-    // Format the value for display in the input field
     const displayValue = value === "" ? "" : Number(value).toLocaleString()
 
     return (
@@ -63,18 +54,18 @@ export const CustomNumberInput = forwardRef<HTMLInputElement, CustomNumberInputP
           ref={ref}
           type="text"
           inputMode="numeric"
-          value={displayValue} 
+          value={displayValue}
           onChange={handleInputChange}
           onBlur={handleBlur}
           placeholder={placeholder}
           disabled={disabled}
-          className={`pl-8 text-right bg-slate-800/50 border-slate-600/50 text-white placeholder:text-gray-400 focus:border-teal-500 focus:ring-teal-500/20 ${
+          className={`pl-8 text-white bg-[#00707B4D] border-slate-600/50 text-white placeholder:text-gray-400 focus:border-teal-500 focus:ring-teal-500/20 ${
             error ? "border-red-500 focus:border-red-500 focus:ring-red-500/20" : ""
           }`}
         />
       </div>
     )
-  },
+  }
 )
 
 CustomNumberInput.displayName = "CustomNumberInput"
