@@ -38,7 +38,7 @@ export const useBidMutation = () => {
 
   return useMutation({
     mutationFn: submitBid,
-    onSuccess: (data, variables) => {
+    onSuccess: (data) => {
       // Invalidate and refetch auction data (good for real API)
       queryClient.invalidateQueries({ queryKey: ["auction"] })
 
