@@ -11,15 +11,38 @@ import { useProductDetail } from "@/hooks/useProductDetail";
 import { BidHistorySection } from "./components/BidHistorySection";
 import { useAuctionStore } from "@/store/auction-store";
 import { ProductSummarySection } from "./components/ProductSummarySection";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { PlaceBidModal } from "@/features/place-bid-modal/PlaceBidModal";
+import { calculateTimeLeft } from "@/lib/calculate-time";
+
 
 export default function AuctionProductDetail() {
   const navigate = useNavigate();
   const { slug } = useParams<{ slug: string }>();
   console.log("Slug:", slug);
 
+
+
+  // Only subscribe to auction and updateTimeLeft for timer effect
+  const auction = useAuctionStore((s) => s.auction);
+  const updateTimeLeft = useAuctionStore((s) => s.updateTimeLeft);
+
+  // Get all other values in a single snapshot to avoid multiple subscriptions
+  const store = useAuctionStore();
+  const { timeLeft, isAuctionEnded, canPlaceBid, bidHistory } = store;
+
   const [showBidModal, setShowBidModal] = useState(false);
+
+  // Keep countdown timer in sync with store
+  useEffect(() => {
+    if (!auction) return;
+    const interval = setInterval(() => {
+      updateTimeLeft(calculateTimeLeft(new Date(auction.endTime)));
+    }, 1000);
+    // Set initial time left immediately
+    updateTimeLeft(calculateTimeLeft(new Date(auction.endTime)));
+    return () => clearInterval(interval);
+  }, [auction, updateTimeLeft]);
 
   const {
     data: product,
@@ -31,8 +54,7 @@ export default function AuctionProductDetail() {
   const onReportItemHandler = () =>
     navigate(`/escrow/${slug || "classic-wool-peacoat"}/report-problem`);
 
-  const { auction, timeLeft, isAuctionEnded, canPlaceBid, bidHistory } =
-    useAuctionStore();
+  
 
   if (isLoading) return <div className="text-center py-20">Loading...</div>;
   if (isError || !product)
