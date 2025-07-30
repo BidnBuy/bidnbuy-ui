@@ -4,8 +4,11 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useAuctionStore } from "@/store/auction-store"
 import { useBidMutation } from "./hooks/useBidMutation"
 import { createBidValidation, type BidFormData } from "./schema/bid-schema"
+
 import { DesktopPlaceBidModal } from "./components/DesktopPlaceBidModal"
 import { MobilePlaceBidModal } from "./components/MobilePlaceBidModal"
+import { useEffect } from "react"
+import { calculateTimeLeft } from "@/lib/calculate-time"
 
 
 type PlaceBidModalProps = {
@@ -15,6 +18,7 @@ type PlaceBidModalProps = {
 
 export function PlaceBidModal({ isOpen, onClose }: PlaceBidModalProps) {
   const { auction, canPlaceBid, isAuctionEnded, timeLeft } = useAuctionStore()
+  const updateTimeLeft = useAuctionStore((s) => s.updateTimeLeft)
   const bidMutation = useBidMutation()
 
   const validationSchema = createBidValidation(
@@ -36,6 +40,18 @@ export function PlaceBidModal({ isOpen, onClose }: PlaceBidModalProps) {
       agreedToTerms: false,
     },
   })
+
+
+  // Update countdown timer when modal is open
+  useEffect(() => {
+    if (!isOpen || !auction) return;
+    const interval = setInterval(() => {
+      updateTimeLeft(calculateTimeLeft(new Date(auction.endTime)))
+    }, 1000)
+    // Set initial time left immediately
+    updateTimeLeft(calculateTimeLeft(new Date(auction.endTime)))
+    return () => clearInterval(interval)
+  }, [isOpen, auction, updateTimeLeft])
 
   if (!isOpen || !auction) return null
 

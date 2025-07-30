@@ -63,6 +63,18 @@ type AuctionState = {
 // }
 
 
+// One-time localStorage cleanup to remove old/corrupted auction-store data
+try {
+  const raw = localStorage.getItem('auction-store')
+  if (raw) {
+    const parsed = JSON.parse(raw)
+    if (parsed?.state?.auction && typeof parsed.state.auction.endTime === 'string') {
+      localStorage.removeItem('auction-store')
+      // Optionally, you can log or notify here
+    }
+  }
+} catch (e) {}
+
 export const useAuctionStore = create<AuctionState>()(
   devtools(
     persist(
@@ -162,7 +174,23 @@ export const useAuctionStore = create<AuctionState>()(
           auction: state.auction,
           bidHistory: state.bidHistory,
         }),
-        // Removed unsupported 'deserialize' option
+        // Convert date strings back to Date objects after rehydration
+        onRehydrateStorage: () => (state) => {
+          if (state && state.auction) {
+            if (typeof state.auction.endTime === "string") {
+              state.auction.endTime = new Date(state.auction.endTime)
+            }
+            if (typeof state.auction.startTime === "string") {
+              state.auction.startTime = new Date(state.auction.startTime)
+            }
+          }
+          if (state && Array.isArray(state.bidHistory)) {
+            state.bidHistory = state.bidHistory.map((bid) => ({
+              ...bid,
+              timestamp: typeof bid.timestamp === "string" ? new Date(bid.timestamp) : bid.timestamp,
+            }))
+          }
+        },
       },
     ),
     {
