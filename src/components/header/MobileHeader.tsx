@@ -6,7 +6,7 @@ import BidnBuyLogo from "@/assets/bidnbuy-logo.png"
 
 
 
-export function MobileHeader() {
+const MobileHeader = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   // This would typically come from your auth context/state management
@@ -68,3 +68,5 @@ export function MobileHeader() {
     </>
   )
 }
+
+export default MobileHeader;

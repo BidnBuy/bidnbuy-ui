@@ -3,6 +3,8 @@ import { useQuery } from '@tanstack/react-query';
 import { useProductStore, type Product } from '@/store/products';
 import { fetchProducts } from '@/services/products';
 
+import { useIsMobile } from "@/hooks/useIsMobile";
+
 import { SearchBar } from "@/components/search-bar/SearchBar"
 import { CategoryTabs } from "@/components/category-tabs/CategoryTabs"
 import { MobileProductSection } from "@/components/product-section/MobileProductSection"
@@ -16,14 +18,7 @@ import { FeaturedCarousel } from "@/components/featured-carousel/FeaturedCarouse
 
 const ProductHome = () => {
  
-  const [isMobile, setIsMobile] = useState(true)
-  useEffect(() => {
-    const checkScreenSize = () => setIsMobile(window.innerWidth < 1024)
-    checkScreenSize()
-    window.addEventListener("resize", checkScreenSize)
-    return () => window.removeEventListener("resize", checkScreenSize)
-  }, [])
-
+  const isMobile = useIsMobile()
  
   const categories = [
     "All",
