@@ -106,3 +106,6 @@ function ActionButton({ type }: { type: "buy" | "bid" | "offer" }) {
     </button>
   )
 }
+
+
+

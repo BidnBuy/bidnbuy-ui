@@ -11,7 +11,11 @@ import CustomerLogin from "@/pages/customer-login/CustomerLogin";
 import VendorLogin from "@/pages/vendor-login/VendorLogin";
 import VendorSignup from "@/pages/vendor-sign-up/VendorSignUp";
 
+
 import ProductHome from "@/pages/product-home/ProductHome";
+import Marketplace from "./pages/marketplace/Marketplace";
+
+
 import CustomerAccountVerification from "@/pages/customer-account-verification/CustomerAccountVerification";
 import VendorAccountVerification from "@/pages/vendor-account-verification/VendorAccountVerification";
 import VendorUploadProductForm from "@/pages/vendor-upload-product/VendorUploadProduct";
@@ -75,6 +79,8 @@ const App = () => {
 
       <Route element={<LayoutWithHeaderFooter />}>
         <Route path="product-home" element={<ProductHome />} />
+
+        <Route path="marketplace" element={<Marketplace />} />
 
         <Route
           path="auction-product-detail"

@@ -1,5 +1,5 @@
-import { DesktopNavigation } from "../navigation/DesktopNavigation";
-import { MobileHeader } from "./MobileHeader";
+import DesktopNavigation from "../navigation/DesktopNavigation";
+import MobileHeader from "./MobileHeader";
 
 const NavigationHeader = () => {
   return (

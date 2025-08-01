@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 
 import MarketPlaceIcon from "../svg-icons/MarketPlaceIcon"
 
-export function DesktopNavigation() {
+const DesktopNavigation = () => {
   return (
     <div className="bg-[#00707B] px-6 py-2.5">
       <div className="flex items-center justify-between text-sm font-medium">
@@ -21,7 +21,7 @@ export function DesktopNavigation() {
             </svg>
             Home
           </Link>
-          <Link to="/vendor-upload-product" className="flex items-center gap-2 hover:text-gray-200">
+          <Link to="/marketplace" className="flex items-center gap-2 hover:text-gray-200">
             <MarketPlaceIcon  />
             Marketplace
           </Link>
@@ -52,3 +52,5 @@ export function DesktopNavigation() {
     </div>
   )
 }
+
+export default DesktopNavigation;

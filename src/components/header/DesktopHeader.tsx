@@ -1,7 +1,7 @@
-import { MainNav } from "@/components/navigation/MainNav";
-import { DesktopNavigation } from "@/components/navigation/DesktopNavigation";
+import MainNav from "@/components/navigation/MainNav";
+import DesktopNavigation from "@/components/navigation/DesktopNavigation";
 
-export function DesktopHeader() {
+const DesktopHeader = () => {
   return (
     <header className="hidden md:block text-white">
       <DesktopNavigation />
@@ -9,3 +9,5 @@ export function DesktopHeader() {
     </header>
   )
 }
+
+export default DesktopHeader;
