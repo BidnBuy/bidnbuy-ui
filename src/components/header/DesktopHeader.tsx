@@ -1,5 +1,5 @@
-import { MainNav } from "@/components/navigation/MainNav";
-import { DesktopNavigation } from "@/components/navigation/DesktopNavigation";
+import MainNav from "@/components/navigation/MainNav";
+import DesktopNavigation from "@/components/navigation/DesktopNavigation";
 
 const DesktopHeader = () => {
   return (

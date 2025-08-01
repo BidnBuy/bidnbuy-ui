@@ -8,7 +8,7 @@ import { SearchInput } from "../search-input/SearchInput"
 
 import BidnBuyLogo from "@/assets/bidnbuy-logo.png"
 
-export function MainNav() {
+const MainNav = () => {
   const categories = [
     "All",
     "Accessories",
@@ -63,3 +63,6 @@ export function MainNav() {
     </div>
   )
 }
+
+
+export default MainNav;
