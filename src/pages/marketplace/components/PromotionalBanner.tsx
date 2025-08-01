@@ -1,10 +1,4 @@
-type PromotionalBannerProps = {
-  title: string
-  subtitle?: string
-  buttonText?: string
-  backgroundImage: string
-  className?: string
-}
+import type { PromotionalBannerProps } from "../types/marketplace";
 
 const PromotionalBanner = ({
   title,

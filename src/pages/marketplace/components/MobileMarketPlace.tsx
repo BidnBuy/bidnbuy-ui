@@ -12,7 +12,6 @@ import MarketPlacePromotionalImage from "../assets/marketplace-hero-img.jpg"
 import MarketPlacePromotionalBooksImg from "../assets/marketplace-books.jpg"
 
 
-
 const MobileMarketPlace = ({
   isLoading,
   recentlyAddedProducts,

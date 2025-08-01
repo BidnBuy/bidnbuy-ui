@@ -16,3 +16,20 @@ export type MarketPlaceProps = {
   recommendedItems: UIProduct[];
   topPicksProducts: UIProduct[];
 }
+
+export type MarketplaceHeroBannerProps = {
+  title?: string
+  subtitle?: string
+  buttonText?: string
+  backgroundImage?: string
+  className?: string
+}
+
+
+export type PromotionalBannerProps = {
+  title: string
+  subtitle?: string
+  buttonText?: string
+  backgroundImage: string
+  className?: string
+}
