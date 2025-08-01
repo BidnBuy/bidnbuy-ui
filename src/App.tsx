@@ -11,10 +11,8 @@ import CustomerLogin from "@/pages/customer-login/CustomerLogin";
 import VendorLogin from "@/pages/vendor-login/VendorLogin";
 import VendorSignup from "@/pages/vendor-sign-up/VendorSignUp";
 
-
 import ProductHome from "@/pages/product-home/ProductHome";
 import Marketplace from "./pages/marketplace/Marketplace";
-
 
 import CustomerAccountVerification from "@/pages/customer-account-verification/CustomerAccountVerification";
 import VendorAccountVerification from "@/pages/vendor-account-verification/VendorAccountVerification";
@@ -23,14 +21,16 @@ import AuctionProductDetail from "@/pages/auction-product-detail/AuctionProductD
 import EscrowReportProblemForm from "@/pages/escrow-report-problem-form/EscrowReportProblemForm";
 import EscrowPaymentReleased from "@/pages/escrow-payment-released/EscrowPaymentReleased";
 import EscrowItemReceived from "@/pages/escrow-items-received/EscrowItemsReceived";
-import { EscrowStatus } from "@/pages/escrow-status/EscrowStatus";
+import EscrowStatus from "@/pages/escrow-status/EscrowStatus";
 import LayoutWithHeaderFooter from "@/components/layout-with-header-footer/LayoutWithHeaderFooter";
 import LayoutWithNavigationHeader from "./components/layout-with-navigation-header/LayoutWithNavigationHeader";
+import BidCreditTopUp from "./pages/bidcredit-top-up/BidCreditTopUp";
+import AddBidCredit from "./pages/add-bid-credit/AddBidCredit";
+import BidCreditTopUpSuccess from "./pages/bid-credit-top-up-success/BidCreditTopUpSuccess";
 
 const App = () => {
   return (
     <Routes>
-
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="account-type" element={<AccountTypeSelection />} />
@@ -52,12 +52,14 @@ const App = () => {
       </Route>
 
       <Route element={<LayoutWithNavigationHeader />}>
+        {/* Vendor Upload */}
 
         <Route
           path="vendor-upload-product"
           element={<VendorUploadProductForm />}
         />
-        
+
+        {/* Escrow */}
 
         <Route path="escrow" element={<Navigate to="/escrow/1" replace />} />
         <Route path="escrow/:orderId" element={<EscrowStatus />} />
@@ -73,11 +75,16 @@ const App = () => {
           path="escrow/:orderId/report-problem"
           element={<EscrowReportProblemForm />}
         />
+
+        {/* Bid Credit */}
+
+        <Route path="bid-credit-top-up" element={<BidCreditTopUp />} />
+        <Route path="add-bid-credit" element={<AddBidCredit />} />
+        <Route path="bid-credit-top-up-success" element={<BidCreditTopUpSuccess />} />
       </Route>
 
-
-
       <Route element={<LayoutWithHeaderFooter />}>
+        {/* Products */}
         <Route path="product-home" element={<ProductHome />} />
 
         <Route path="marketplace" element={<Marketplace />} />
@@ -86,11 +93,7 @@ const App = () => {
           path="auction-product-detail"
           element={<AuctionProductDetail />}
         />
-
-        
       </Route>
-
-      
     </Routes>
   );
 };

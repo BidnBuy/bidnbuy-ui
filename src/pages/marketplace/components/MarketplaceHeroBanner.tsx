@@ -1,10 +1,4 @@
-type MarketplaceHeroBannerProps = {
-  title?: string
-  subtitle?: string
-  buttonText?: string
-  backgroundImage?: string
-  className?: string
-}
+import type { MarketplaceHeroBannerProps } from "../types/marketplace";
 
 const MarketplaceHeroBanner = ({
   title = "Redefine Your Kitchen",
