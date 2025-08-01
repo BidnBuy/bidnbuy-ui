@@ -2,7 +2,6 @@ import { useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 
 import { useEscrowSocket } from "@/hooks/useEscrowSocket"
-// import { AppHeader } from "@/components/shared/AppHeader"
 import { EscrowStatusMobile } from "./EscrowStatusMobile"
 import { EscrowStatusDesktop } from "./EscrowStatusDesktop"
 import type { EscrowState } from "@/types/escrow"
@@ -19,7 +18,7 @@ import ItemsRefundedSvg from "@/assets/escrow/funds-refunded.svg"
 
 
 
-export function EscrowStatus() {
+const EscrowStatus = () => {
   const navigate = useNavigate()
   const { orderId: paramOrderId } = useParams<{ orderId: string }>()
   const orderId = paramOrderId ?? "1"
@@ -149,3 +148,5 @@ export function EscrowStatus() {
     </div>
   )
 }
+
+export default EscrowStatus;
