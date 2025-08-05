@@ -10,8 +10,6 @@ import { toast } from "sonner";
 
 import { useBidCreditStore } from "@/store/bid-credit-store";
 
-import Header from "@/components/header/Header";
-
 import UserProfile from "./components/UserProfile";
 import BalanceSummary from "./components/BalanceSummary";
 import UnpaidBidAlert from "./components/UnpaidBidAlert";
