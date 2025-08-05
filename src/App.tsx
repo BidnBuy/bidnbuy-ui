@@ -24,9 +24,12 @@ import EscrowItemReceived from "@/pages/escrow-items-received/EscrowItemsReceive
 import EscrowStatus from "@/pages/escrow-status/EscrowStatus";
 import LayoutWithHeaderFooter from "@/components/layout-with-header-footer/LayoutWithHeaderFooter";
 import LayoutWithNavigationHeader from "./components/layout-with-navigation-header/LayoutWithNavigationHeader";
+
+// Bid Credit and Ledger
 import BidCreditTopUp from "./pages/bidcredit-top-up/BidCreditTopUp";
 import AddBidCredit from "./pages/add-bid-credit/AddBidCredit";
 import BidCreditTopUpSuccess from "./pages/bid-credit-top-up-success/BidCreditTopUpSuccess";
+import WalletLedger from "./pages/wallet-ledger/WalletLedger";
 
 const App = () => {
   return (
@@ -76,11 +79,12 @@ const App = () => {
           element={<EscrowReportProblemForm />}
         />
 
-        {/* Bid Credit */}
+        {/* Bid Credit and Ledger */}
 
         <Route path="bid-credit-top-up" element={<BidCreditTopUp />} />
         <Route path="add-bid-credit" element={<AddBidCredit />} />
         <Route path="bid-credit-top-up-success" element={<BidCreditTopUpSuccess />} />
+        <Route path="wallet-ledger" element={<WalletLedger />} />
       </Route>
 
       <Route element={<LayoutWithHeaderFooter />}>

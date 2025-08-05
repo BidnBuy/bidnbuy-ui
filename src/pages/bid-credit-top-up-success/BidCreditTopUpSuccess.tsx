@@ -24,13 +24,13 @@ import SuccessActions from "./components/SuccessActions"
 const BidCreditTopUpSuccess = () => {
   const navigate = useNavigate()
 
-  // Access state from Zustand store
+
   const currentBalance = useBidCreditStore((state) => state.currentBalance)
   const lastTopUpAmount = useBidCreditStore((state) => state.lastTopUpAmount)
   const lastTransactionId = useBidCreditStore((state) => state.lastTransactionId)
   const resetTransactionDetails = useBidCreditStore((state) => state.resetTransactionDetails)
 
-  // Redirect if no transaction details are found (e.g., direct access)
+  
   useEffect(() => {
     if (lastTopUpAmount === null || lastTransactionId === null) {
       navigate('/bid-credit-top-up', { replace: true });
@@ -44,6 +44,7 @@ const BidCreditTopUpSuccess = () => {
    */
   const handleViewHistory = () => {
     toast.info("View Transaction History page is under development.")
+    navigate("/wallet-ledger") 
   }
 
   /**
@@ -51,11 +52,11 @@ const BidCreditTopUpSuccess = () => {
    * Resets transaction details and navigates back to the initial top-up page.
    */
   const handleBackToDashboard = () => {
-    resetTransactionDetails() // Clear transaction details from store
-    navigate("/bid-credit-top-up") // Navigate back to the initial top-up page
+    resetTransactionDetails()
+    navigate("/bid-credit-top-up")
   }
 
-  // Render null if details are not yet loaded or are invalid, to prevent flickering
+  
   if (lastTopUpAmount === null || lastTransactionId === null) {
     return null
   }
