@@ -4,15 +4,17 @@
  * This component is explicitly exported as a named export.
  */
 
+import type React from "react"
+
 import { Button } from "@/components/ui/button"
 import { useQuery } from "@tanstack/react-query"
 import { Plus, Minus, ChevronDown } from "lucide-react"
-import type React from "react"
+
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 
-// Reference custom SVG icons by their public path
-const ListingFeeIconPath = "/icons/listing-fee.svg"
-const PaymentForUnpaidBidIconPath = "/icons/payment-for-unpaid-bid.svg"
+import ListingFeeIcon from "@/components/svg-icons/ListingFeeIcon";
+import PaymentForUnpaidBidIcon from "@/components/svg-icons/PaymentForUnpaidBid";
+
 
 /**
  * Interface for a single transaction item.
@@ -114,8 +116,8 @@ const fetchTransactions = async (): Promise<Transaction[]> => {
  */
 
 const getTransactionIcon = (description: string, amount: number): React.ElementType | string => {
-  if (description.includes("Listing Fee")) return ListingFeeIconPath
-  if (description.includes("Payment for Unpaid Bid")) return PaymentForUnpaidBidIconPath
+  if (description.includes("Listing Fee")) return ListingFeeIcon
+  if (description.includes("Payment for Unpaid Bid")) return PaymentForUnpaidBidIcon
   // For other transactions, use Plus/Minus based on amount as per previous logic
   if (amount > 0) return Plus
   if (amount < 0) return Minus

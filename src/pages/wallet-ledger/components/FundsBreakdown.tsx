@@ -3,11 +3,9 @@
  * @description Presentational component for displaying a breakdown of funds.
  */
 
-
-// Reference custom SVG icons by their public path
-const AvailableFundsIconPath = "/icons/available-funds.svg"
-const LockedFundsIconPath = "/icons/locked-funds.svg"
-const FrozenIconPath = "/icons/frozen.svg"
+import AvailableFundsIcon from "@/components/svg-icons/AvailableFundsIcon";
+import LockedFundsIcon from "@/components/svg-icons/LockedFundsIcon";
+import FrozenIcon from "@/components/svg-icons/FrozenIcon";
 
 /**
  * Interface for a single fund item.
@@ -21,7 +19,7 @@ const FrozenIconPath = "/icons/frozen.svg"
 type FundItem = {
   label: string
   amount: string
-  iconPath: string 
+  Icon: React.FC<React.SVGProps<SVGSVGElement>>
   description?: string
 }
 
@@ -48,14 +46,14 @@ type FundsBreakdownSectionProps = {
 
 const FundsBreakdown = ({ availableFunds, lockedFunds, frozenFunds }: FundsBreakdownSectionProps) => {
   const funds: FundItem[] = [
-    { label: "Available Funds", amount: availableFunds, iconPath: AvailableFundsIconPath },
+    { label: "Available Funds", amount: availableFunds, Icon: AvailableFundsIcon },
     {
       label: "Locked Funds",
       amount: lockedFunds,
-      iconPath: LockedFundsIconPath,
+      Icon: LockedFundsIcon,
       description: "N250 locked to qualify for bidding",
     },
-    { label: "Frozen", amount: frozenFunds, iconPath: FrozenIconPath },
+    { label: "Frozen", amount: frozenFunds, Icon: FrozenIcon },
   ]
 
   return (
@@ -65,7 +63,7 @@ const FundsBreakdown = ({ availableFunds, lockedFunds, frozenFunds }: FundsBreak
         {funds.map((fund, index) => (
           <div key={index} className="flex items-center gap-4">
             <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center">
-              <img src={fund.iconPath || "/placeholder.svg"} alt={fund.label} width={24} height={24} />
+              <fund.Icon width={24} height={24} aria-label={fund.label} />
             </div>
             <div>
               <p className="text-white text-lg font-semibold">{fund.label}</p>
@@ -78,6 +76,5 @@ const FundsBreakdown = ({ availableFunds, lockedFunds, frozenFunds }: FundsBreak
     </div>
   )
 }
-
 
 export default FundsBreakdown;
