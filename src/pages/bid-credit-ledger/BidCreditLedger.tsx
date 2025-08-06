@@ -43,7 +43,7 @@ const BidCreditLedger = () => {
    * Navigates to the main top-up page.
    */
   const handleTopUpBidCredit = () => {
-    navigate("/")
+    navigate("/bid-credit-top-up")
   }
 
   return (
