@@ -2,7 +2,10 @@ import "./App.css";
 
 import { Navigate, Route, Routes } from "react-router-dom";
 
+// App Layout
 import Layout from "@/components/layout/Layout";
+import LayoutWithHeaderFooter from "@/components/layout-with-header-footer/LayoutWithHeaderFooter";
+import LayoutWithNavigationHeader from "./components/layout-with-navigation-header/LayoutWithNavigationHeader";
 
 import Home from "@/pages/home/Home";
 import CustomerSignUp from "@/pages/customer-sign-up/CustomerSignUp";
@@ -18,15 +21,22 @@ import CustomerAccountVerification from "@/pages/customer-account-verification/C
 import VendorAccountVerification from "@/pages/vendor-account-verification/VendorAccountVerification";
 import VendorUploadProductForm from "@/pages/vendor-upload-product/VendorUploadProduct";
 import AuctionProductDetail from "@/pages/auction-product-detail/AuctionProductDetail";
+
+
+// Escrow
 import EscrowReportProblemForm from "@/pages/escrow-report-problem-form/EscrowReportProblemForm";
 import EscrowPaymentReleased from "@/pages/escrow-payment-released/EscrowPaymentReleased";
 import EscrowItemReceived from "@/pages/escrow-items-received/EscrowItemsReceived";
 import EscrowStatus from "@/pages/escrow-status/EscrowStatus";
-import LayoutWithHeaderFooter from "@/components/layout-with-header-footer/LayoutWithHeaderFooter";
-import LayoutWithNavigationHeader from "./components/layout-with-navigation-header/LayoutWithNavigationHeader";
+
+
+// Bid Credit and Ledger
 import BidCreditTopUp from "./pages/bidcredit-top-up/BidCreditTopUp";
 import AddBidCredit from "./pages/add-bid-credit/AddBidCredit";
 import BidCreditTopUpSuccess from "./pages/bid-credit-top-up-success/BidCreditTopUpSuccess";
+import WalletLedger from "./pages/wallet-ledger/WalletLedger";
+import BidCreditLedgerPage from "./pages/bid-credit-ledger/BidCreditLedger";
+
 
 const App = () => {
   return (
@@ -76,11 +86,14 @@ const App = () => {
           element={<EscrowReportProblemForm />}
         />
 
-        {/* Bid Credit */}
+        {/* Bid Credit and Ledger */}
 
         <Route path="bid-credit-top-up" element={<BidCreditTopUp />} />
         <Route path="add-bid-credit" element={<AddBidCredit />} />
         <Route path="bid-credit-top-up-success" element={<BidCreditTopUpSuccess />} />
+
+        <Route path="wallet-ledger" element={<WalletLedger />} />
+        <Route path="bid-credit-ledger" element={<BidCreditLedgerPage />} />
       </Route>
 
       <Route element={<LayoutWithHeaderFooter />}>
