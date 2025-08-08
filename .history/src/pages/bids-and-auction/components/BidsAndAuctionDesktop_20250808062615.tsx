@@ -55,25 +55,25 @@ const BidsAndAuctionDesktop = (
                 <ProductGrid
                   title="Popular Auction Items"
                   products={recentlyAddedProducts}
-                  columns={4}
+                  columns={2}
                 />
 
                 <ProductGrid
                   title="Gadget Items"
                   products={trendingProducts}
-                  columns={4}
+                  columns={2}
                 />
 
                 <ProductGrid
                   title="Electronics Auction"
                   products={recentlyAddedProducts}
-                  columns={4}
+                  columns={2}
                 />
 
                 <ProductGrid
                   title="Fashion Auction"
                   products={trendingProducts}
-                  columns={4}
+                  columns={2}
                 />
 
                 <PromotionalBanner
@@ -83,28 +83,26 @@ const BidsAndAuctionDesktop = (
               />
 
                 <ProductGrid
-                  title="Home And Auction Kitchen Store"
+                  title="Gadgets(New, Used, Refurbished)"
                   products={gadgetsProducts}
-                  columns={4}
+                  columns={2}
                 />
 
-               
+                <PromotionalBanner
+                title="All Book Lovers Shop Here"
+                backgroundImage={MarketPlacePromotionalBooksImg}
+              />
+
                 <ProductGrid
-                  title="Beauty Care Auction"
+                  title="Recommended Items"
                   products={recommendedItems}
-                  columns={4}
+                  columns={2}
                 />
 
                 <ProductGrid
                   title="Top Picks For You"
                   products={topPicksProducts}
-                  columns={4}
-                />
-
-                <ProductGrid
-                  title="Top Picks For You"
-                  products={topPicksProducts}
-                  columns={4}
+                  columns={2}
                 />
               </>
             )}

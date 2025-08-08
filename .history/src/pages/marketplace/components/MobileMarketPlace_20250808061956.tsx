@@ -1,4 +1,4 @@
-import type { CategoryProductProps } from "@/types/product"
+import type { MarketPlaceProps } from "../types/marketplace"
 
 import LoadingGrid from "@/components/loading-grid/LoadingGrid"
 import ProductGrid from "@/components/shared/product/ProductGrid"
@@ -19,7 +19,7 @@ const MobileMarketPlace = ({
   gadgetsProducts,
   recommendedItems,
   topPicksProducts,
-}: CategoryProductProps) => {
+}: MarketPlaceProps) => {
   return (
     <div className="flex flex-col min-h-screen bg-[#01151C] text-white md:hidden">
         <div className="flex-1 overflow-auto">

@@ -1,4 +1,4 @@
-import type { CategoryProductProps } from "@/types/product"
+
 
 import LoadingGrid from "@/components/loading-grid/LoadingGrid"
 import ProductGrid from "@/components/shared/product/ProductGrid"
@@ -10,6 +10,7 @@ import PromotionalBanner from "./PromotionalBanner"
 import MarketPlaceHeroImage from "../assets/marketplace-hero.png"
 import MarketPlacePromotionalImage from "../assets/marketplace-hero-img.jpg"
 import MarketPlacePromotionalBooksImg from "../assets/marketplace-books.jpg"
+import type { CategoryProductProps } from "@/types/product"
 
 
 const MobileMarketPlace = ({

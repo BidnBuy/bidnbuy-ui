@@ -54,4 +54,4 @@ const AuctionHeroBanner = () => {
   )
 }
 
-export default AuctionHeroBanner;
+

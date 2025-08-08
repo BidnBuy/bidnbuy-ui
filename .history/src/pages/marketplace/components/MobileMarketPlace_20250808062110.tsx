@@ -1,5 +1,6 @@
 import type { CategoryProductProps } from "@/types/product"
 
+
 import LoadingGrid from "@/components/loading-grid/LoadingGrid"
 import ProductGrid from "@/components/shared/product/ProductGrid"
 

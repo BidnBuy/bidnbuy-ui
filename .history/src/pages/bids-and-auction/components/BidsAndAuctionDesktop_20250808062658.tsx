@@ -83,21 +83,15 @@ const BidsAndAuctionDesktop = (
               />
 
                 <ProductGrid
-                  title="Home And Auction Kitchen Store"
+                  title="Gadgets(New, Used, Refurbished)"
                   products={gadgetsProducts}
                   columns={4}
                 />
 
                
                 <ProductGrid
-                  title="Beauty Care Auction"
+                  title="Recommended Items"
                   products={recommendedItems}
-                  columns={4}
-                />
-
-                <ProductGrid
-                  title="Top Picks For You"
-                  products={topPicksProducts}
                   columns={4}
                 />
 

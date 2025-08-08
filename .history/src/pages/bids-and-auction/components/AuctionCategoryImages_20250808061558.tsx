@@ -5,7 +5,7 @@ import AppliancesImage from "../assets/appliances.jpg"
 import AutoMobileImage from "../assets/automobile-image.jpg"
 import FurnitureImage from "../assets/furniture-image.jpg"
 
-const AuctionCategoryImages = () => {
+const AuctionCategoryImages() {
   const categories = [
     {
       id: "home-decor",
@@ -96,5 +96,3 @@ const AuctionCategoryImages = () => {
     </div>
   )
 }
-
-export default AuctionCategoryImages;

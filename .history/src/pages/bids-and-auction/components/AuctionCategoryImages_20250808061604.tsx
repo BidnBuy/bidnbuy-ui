@@ -96,5 +96,3 @@ const AuctionCategoryImages = () => {
     </div>
   )
 }
-
-export default AuctionCategoryImages;

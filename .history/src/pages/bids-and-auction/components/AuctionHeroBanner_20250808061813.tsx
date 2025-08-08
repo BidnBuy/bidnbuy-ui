@@ -53,5 +53,3 @@ const AuctionHeroBanner = () => {
     </div>
   )
 }
-
-export default AuctionHeroBanner;

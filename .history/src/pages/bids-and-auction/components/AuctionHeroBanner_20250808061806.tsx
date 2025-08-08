@@ -8,7 +8,7 @@ import AuctionHero from "@/assets/products/bids-image.jpg"
  * Hero banner component with integrated search functionality
  */
 
-const AuctionHeroBanner = () => {
+const AuctionHeroBanner() {
   return (
     <div className="relative rounded-lg overflow-hidden h-48 lg:h-64 mb-6">
       
@@ -53,5 +53,3 @@ const AuctionHeroBanner = () => {
     </div>
   )
 }
-
-export default AuctionHeroBanner;

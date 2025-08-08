@@ -1,32 +1,51 @@
-import type { CategoryProductProps } from "@/types/product"
+import { useState } from "react"
 
+import { auctionCategories } from "../auction-data"
+
+import AuctionCategoryImages from "./AuctionCategoryImages"
+import AuctionCategoryTabs from "./AuctionCategoryTabs"
+import AuctionHeroBanner from "./AuctionHeroBanner"
 import LoadingGrid from "@/components/loading-grid/LoadingGrid"
 import ProductGrid from "@/components/shared/product/ProductGrid"
 
-import MarketplaceHeroBanner from "./MarketplaceHeroBanner"
-import PromotionalBanner from "./PromotionalBanner"
+
+const BidsAndAuctionDesktop = (
+    {
+      isLoading,
+      recentlyAddedProducts,
+      trendingProducts,
+      gadgetsProducts,
+      recommendedItems,
+      topPicksProducts,
+    }: CategoryProductProps
+) => {
+    const [activeCategory, setActiveCategory] = useState("daily-deals")
 
 
-import MarketPlaceHeroImage from "../assets/marketplace-hero.png"
-import MarketPlacePromotionalImage from "../assets/marketplace-hero-img.jpg"
-import MarketPlacePromotionalBooksImg from "../assets/marketplace-books.jpg"
+  const handleCategoryChange = (categoryId: string) => {
+    setActiveCategory(categoryId)
+  }
 
-
-const MobileMarketPlace = ({
-  isLoading,
-  recentlyAddedProducts,
-  trendingProducts,
-  gadgetsProducts,
-  recommendedItems,
-  topPicksProducts,
-}: CategoryProductProps) => {
+  const categoriesWithActiveState = auctionCategories.map((category) => ({
+    ...category,
+    active: category.id === activeCategory,
+  }))
   return (
-    <div className="flex flex-col min-h-screen bg-[#01151C] text-white md:hidden">
-        <div className="flex-1 overflow-auto">
-          <div className="flex flex-col gap-6 pb-6 pt-4">
-            <MarketplaceHeroBanner backgroundImage={MarketPlaceHeroImage} />
+    <div className="flex flex-col min-h-screen bg-[#01151C] text-white lg:hidden">
+     
 
-            {isLoading ? (
+   
+      <main className="flex-1 overflow-auto">
+        <div className="flex flex-col gap-6 pb-6 pt-4">
+
+            <AuctionHeroBanner />
+
+      <AuctionCategoryImages />
+
+
+      <AuctionCategoryTabs categories={categoriesWithActiveState} onCategoryChange={handleCategoryChange} />
+
+{isLoading ? (
               <LoadingGrid />
             ) : (
               <>
@@ -71,10 +90,12 @@ const MobileMarketPlace = ({
                 />
               </>
             )}
-          </div>
+
         </div>
-      </div>
+      </main>
+
+    </div>
   )
 }
 
-export default MobileMarketPlace
+export default BidsAndAuctionDesktop
