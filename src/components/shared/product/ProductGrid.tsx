@@ -1,7 +1,7 @@
 import { ChevronRight } from "lucide-react"
 
 import { Link } from "react-router-dom"
-import { ProductCard } from "../product-card/ProductCard"
+import { ProductCard } from "./ProductCard"
 
 type ProductGridProps = {
   title: string
