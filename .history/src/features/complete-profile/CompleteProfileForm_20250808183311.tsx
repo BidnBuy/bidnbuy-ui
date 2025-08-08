@@ -95,7 +95,7 @@ export function CompleteProfileForm({ initialData, onSuccessRedirect }: Complete
   };
 
   return (
-    <Card className="w-full max-w-lg mx-auto bg-[#01151C]">
+    <Card className="w-full max-w-lg mx-auto bg-form-background bg-white text-black">
       <CardHeader>
         <CardTitle>Complete Your Profile</CardTitle>
         <CardDescription className="text-gray-300">
@@ -154,7 +154,7 @@ export function CompleteProfileForm({ initialData, onSuccessRedirect }: Complete
                   disabled={mutation.isPending}
                 >
                   <CalendarIcon />
-                  {watchedDateOfBirth
+                  {watchedDateOfBirth && !isNaN(watchedDateOfBirth.e())
                     ? format(watchedDateOfBirth, "PPP")
                     : <span>Pick a date</span>}
                 </Button>

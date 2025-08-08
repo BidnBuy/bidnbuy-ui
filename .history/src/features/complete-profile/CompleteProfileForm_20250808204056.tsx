@@ -95,7 +95,7 @@ export function CompleteProfileForm({ initialData, onSuccessRedirect }: Complete
   };
 
   return (
-    <Card className="w-full max-w-lg mx-auto bg-[#01151C]">
+    <Card className="w-full max-w-lg mx-auto bg-black/50">
       <CardHeader>
         <CardTitle>Complete Your Profile</CardTitle>
         <CardDescription className="text-gray-300">

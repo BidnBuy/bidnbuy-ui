@@ -62,10 +62,10 @@ export function CompleteProfileForm({ initialData, onSuccessRedirect }: Complete
 
   const handleDateChange = (date: Date | undefined) => {
     if (date && !isNaN(date.getTime())) {
-   setValue("dateOfBirth", format(date, "dd-MM-yyyy"), { shouldValidate: true });
- } else {
-   setValue("dateOfBirth", "", { shouldValidate: true });
- }
++   setValue("dateOfBirth", format(date, "dd-MM-yyyy"), { shouldValidate: true });
++ } else {
++   setValue("dateOfBirth", "", { shouldValidate: true });
++ }
   };
 
   
@@ -95,7 +95,7 @@ export function CompleteProfileForm({ initialData, onSuccessRedirect }: Complete
   };
 
   return (
-    <Card className="w-full max-w-lg mx-auto bg-[#01151C]">
+    <Card className="w-full max-w-lg mx-auto bg-form-background bg-white text-black">
       <CardHeader>
         <CardTitle>Complete Your Profile</CardTitle>
         <CardDescription className="text-gray-300">
@@ -154,9 +154,7 @@ export function CompleteProfileForm({ initialData, onSuccessRedirect }: Complete
                   disabled={mutation.isPending}
                 >
                   <CalendarIcon />
-                  {watchedDateOfBirth
-                    ? format(watchedDateOfBirth, "PPP")
-                    : <span>Pick a date</span>}
+                  {watchedDateOfBirth ? format(watchedDateOfBirth, "PPP") : <span>Select your date of birth</span>}
                 </Button>
               </PopoverTrigger>
               <PopoverContent className="w-auto p-0">
