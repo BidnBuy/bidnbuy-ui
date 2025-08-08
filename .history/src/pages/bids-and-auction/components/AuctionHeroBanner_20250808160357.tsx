@@ -2,6 +2,9 @@ import { SearchBar } from '@/components/search-bar/SearchBar'
 
 import AuctionHero from "@/assets/products/bids-image.jpg"
 
+/**
+ * Hero banner component with integrated search functionality
+ */
 
 const AuctionHeroBanner = () => {
   return (

@@ -1,3 +1,10 @@
+
+
+/**
+ * Auction item card component with wider buttons positioned at both ends
+ * Original #00222E background color maintained
+ */
+
 type AuctionItem = {
   image: string
   title: string

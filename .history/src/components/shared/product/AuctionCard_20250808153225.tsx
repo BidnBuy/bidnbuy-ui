@@ -1,3 +1,7 @@
+
+
+
+
 type AuctionItem = {
   image: string
   title: string

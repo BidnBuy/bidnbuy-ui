@@ -2,10 +2,13 @@ import { SearchBar } from '@/components/search-bar/SearchBar'
 
 import AuctionHero from "@/assets/products/bids-image.jpg"
 
+/**
+ * Hero banner component with integrated search functionality
+ */
 
 const AuctionHeroBanner = () => {
   return (
-    <div className="relative rounded-lg overflow-hidden h-48 lg:h-64 mb-6 mx-4">
+    <div className="relative rounded-lg overflow-hidden h-48 lg:h-64 mb-6 mx-8">
       
 
       <div className="">
@@ -17,7 +20,7 @@ const AuctionHeroBanner = () => {
       </div>
 
  
-      <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 lg:px-8">
+      <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 lg:px-8 px-8">
    
         <div className="mb-2 lg:mb-4">
           <h1 className="text-xl lg:text-4xl font-bold text-white mb-2 lg:mb-4">
