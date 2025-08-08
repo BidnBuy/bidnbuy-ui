@@ -1,4 +1,3 @@
-import { AuctionCategoryImages } from "./AuctionCategoryImages"
 import { AuctionHeroBanner } from "./AuctionHeroBanner"
 
 
@@ -13,9 +12,10 @@ const BidsAndAuctionDesktop = () => {
 
             <AuctionHeroBanner />
 
+      {/* Category images - positioned between hero and tabs as per Figma */}
       <AuctionCategoryImages />
 
-
+      {/* Category tabs */}
       <AuctionCategoryTabs categories={categoriesWithActiveState} onCategoryChange={handleCategoryChange} />
 
         </div>

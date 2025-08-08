@@ -1,4 +1,3 @@
-import { AuctionCategoryImages } from "./AuctionCategoryImages"
 import { AuctionHeroBanner } from "./AuctionHeroBanner"
 
 

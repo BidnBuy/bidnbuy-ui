@@ -1,4 +1,3 @@
-import { AuctionCategoryImages } from "./AuctionCategoryImages"
 import { AuctionHeroBanner } from "./AuctionHeroBanner"
 
 
@@ -15,7 +14,7 @@ const BidsAndAuctionDesktop = () => {
 
       <AuctionCategoryImages />
 
-
+      {/* Category tabs */}
       <AuctionCategoryTabs categories={categoriesWithActiveState} onCategoryChange={handleCategoryChange} />
 
         </div>
