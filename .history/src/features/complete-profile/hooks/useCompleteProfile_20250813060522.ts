@@ -12,14 +12,12 @@ import { completeUserProfile } from "../services/kyc-service";
 
 export const useCompleteProfile = () => {
   const navigate = useNavigate(); 
+  const token = useAuthStore.getState().token;// for testing purposes
   // const { token } = useAuthStore();
     const mutation = useMutation({
         mutationFn: (payload: CompleteProfilePayload) => {
-          const token = useAuthStore.getState().token;
-          console.log("Token from profile:", token)
+          
           if (!token) {
-            // toast.error("Please wait while we authenticate you.");
-            // return;
             throw new Error("Authentication token is missing.");
           }
           return completeUserProfile(payload, token);

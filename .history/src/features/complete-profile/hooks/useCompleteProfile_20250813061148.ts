@@ -16,7 +16,7 @@ export const useCompleteProfile = () => {
     const mutation = useMutation({
         mutationFn: (payload: CompleteProfilePayload) => {
           const token = useAuthStore.getState().token;
-          console.log("Token from profile:", token)
+          console.log()
           if (!token) {
             // toast.error("Please wait while we authenticate you.");
             // return;

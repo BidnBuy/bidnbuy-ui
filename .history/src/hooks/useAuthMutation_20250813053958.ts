@@ -30,14 +30,12 @@ export function useAuthMutation<TVariables = any, TData = any>(
       store.setAuth("dev-fake-token", {
         id: "1",
         email: "dev@example.com",
-        phoneNumber: "08130039337",
         name: "Favour the React dev",
         role: "customer",
       })
     }
 
     console.log("Auth store after setAuth:", useAuthStore.getState());
-
       if (options.onSuccess) options.onSuccess(data, variables, context)
         
     },

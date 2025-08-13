@@ -28,7 +28,7 @@ export const useAuthStore = create<AuthState>()(
         set({
           token,
           user,
-          isAuthenticated: !!token,
+          isAuthenticated: true,
         });
       },
         
@@ -57,9 +57,9 @@ useAuthStore.subscribe((state) => {
   console.log("Token:", state.token);
 });
 
-// useAuthStore.getState().setAuth("my-test-token", { id: "1", email: "famos204@gmail.com", name: "Favour", phoneNumber: "08130039337", role: "customer" });
+// useAuthStore.getState().setAuth("my-test-token", { id: "1", email: "famos204@gmail.com", name: "Favour", role: "customer" });
 
-// useAuthStore.getState().logout();
+useAuthStore.getState().logout();
 
 
 // if (typeof window !== 'undefined') {

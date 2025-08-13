@@ -15,31 +15,12 @@ export function useAuthMutation<TVariables = any, TData = any>(
   return useMutation<TData, any, TVariables>({
     mutationFn,
     onSuccess: (data, variables, context) => {
-      const store = useAuthStore.getState()
-      console.log("Raw login response:", data);
       if ((data as any)?.token && (data as any)?.user) {
-        store.setAuth((data as any).token, (data as any).user)
-        console.log("Auth store after setAuth:", store);
+        useAuthStore.getState().setAuth((data as any).token, (data as any).user)
         toast.success("Success!")
 
-      }
-      
-      else {
-      // Dev mode: no token/user returned, use mock
-      console.warn("⚠️ No token/user in response. Using mock data for development.");
-      store.setAuth("dev-fake-token", {
-        id: "1",
-        email: "dev@example.com",
-        phoneNumber: "08130039337",
-        name: "Favour the React dev",
-        role: "customer",
-      })
-    }
-
-    console.log("Auth store after setAuth:", useAuthStore.getState());
-
+        console.log("Auth store after setAuth:", useAuthStore.getState());      }
       if (options.onSuccess) options.onSuccess(data, variables, context)
-        
     },
     onError: (error, variables, context) => {
       toast.error((error as any)?.response?.data?.message || "Something went wrong")

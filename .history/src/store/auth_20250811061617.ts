@@ -23,13 +23,13 @@ export const useAuthStore = create<AuthState>()(
       token: null,
       user: null,
       isAuthenticated: false,
-      setAuth: (token, user) => {
-      console.log("setAuth called with:", token, user);
+      setAuth: (token, user) =>`` {
+console.log("setAuth called with:", token, user)``
         set({
           token,
           user,
-          isAuthenticated: !!token,
-        });
+          isAuthenticated: true,
+        }),
       },
         
       logout: () => {
@@ -57,14 +57,14 @@ useAuthStore.subscribe((state) => {
   console.log("Token:", state.token);
 });
 
-// useAuthStore.getState().setAuth("my-test-token", { id: "1", email: "famos204@gmail.com", name: "Favour", phoneNumber: "08130039337", role: "customer" });
+// useAuthStore.getState().setAuth("my-test-token", { id: "1", email: "a", name: "A", role: "customer" });
 
 // useAuthStore.getState().logout();
 
 
-// if (typeof window !== 'undefined') {
-//   const storedToken = localStorage.getItem('jwt_token');
-//   if (storedToken) {
-//     useAuthStore.setState({ token: storedToken });
-//   }
-// }
+if (typeof window !== 'undefined') {
+  const storedToken = localStorage.getItem('jwt_token');
+  if (storedToken) {
+    useAuthStore.setState({ token: storedToken });
+  }
+}
