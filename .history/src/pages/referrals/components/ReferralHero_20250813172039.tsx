@@ -32,10 +32,19 @@ const ReferralHero = () => {
           </div>
 
        
-          
+          <div className="absolute right-4 top-1/2 transform -translate-y-1/2 w-24 h-24">
+            <img
+              src={ReferralIllustrationImage}
+              alt="Friends giving high five"
+              width={96}
+              height={96}
+              className="object-contain"
+            />
+          </div>
 
 
-          <div className="absolute inset-0 flex items-center justify-end pr-1">
+
+          <div className="absolute inset-0 flex items-center justify-end pr-6">
             <img
               src={ReferralIllustrationImage}
               alt="Friends giving high five"

@@ -38,7 +38,6 @@ import BidCreditTopUpSuccess from "./pages/bid-credit-top-up-success/BidCreditTo
 import WalletLedger from "./pages/wallet-ledger/WalletLedger";
 import BidCreditLedgerPage from "./pages/bid-credit-ledger/BidCreditLedger";
 import Referrals from "./pages/referrals/Referrals";
-import RewardSettingsPage from "./pages/reward-settings/RewardSettings";
 
 
 const App = () => {
@@ -99,7 +98,7 @@ const App = () => {
         <Route path="bid-credit-ledger" element={<BidCreditLedgerPage />} />
 
         <Route path="referrals" element={<Referrals />} />
-        <Route path="rewards-settings" element={<RewardSettingsPage />} />
+        <Route path="rewards-settings" element={<Referrals />} />
       </Route>
 
       <Route element={<LayoutWithHeaderFooter />}>
