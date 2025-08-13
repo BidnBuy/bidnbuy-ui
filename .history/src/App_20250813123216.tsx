@@ -37,7 +37,6 @@ import AddBidCredit from "./pages/add-bid-credit/AddBidCredit";
 import BidCreditTopUpSuccess from "./pages/bid-credit-top-up-success/BidCreditTopUpSuccess";
 import WalletLedger from "./pages/wallet-ledger/WalletLedger";
 import BidCreditLedgerPage from "./pages/bid-credit-ledger/BidCreditLedger";
-import Referrals from "./pages/referrals/Referrals";
 
 
 const App = () => {
@@ -97,7 +96,7 @@ const App = () => {
         <Route path="wallet-ledger" element={<WalletLedger />} />
         <Route path="bid-credit-ledger" element={<BidCreditLedgerPage />} />
 
-        <Route path="referrals" element={<Referrals />} />
+        <Route path="referrals" element={<Referral />} />
       </Route>
 
       <Route element={<LayoutWithHeaderFooter />}>
