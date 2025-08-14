@@ -41,7 +41,6 @@ import Referrals from "./pages/referrals/Referrals";
 import RewardSettingsPage from "./pages/reward-settings/RewardSettings";
 import ProductRatingsAndReviews from "./pages/product-ratings-and-reviews/ProductRatingsAndReviews";
 import VendorRatingsAndReviews from "./pages/vendor-ratings-and-reviews/VendorRatingsAndReviews";
-import Cart from "./pages/cart/Cart";
 
 
 const App = () => {
@@ -106,7 +105,7 @@ const App = () => {
 
         <Route path="product-ratings" element={<ProductRatingsAndReviews />} />
         <Route path="vendor-ratings" element={<VendorRatingsAndReviews />} />
-        <Route path="cart" element={<Cart/>} />
+        <Route path="vendor-ratings" element={<VendorRatingsAndReviews />} />
       </Route>
 
       <Route element={<LayoutWithHeaderFooter />}>
