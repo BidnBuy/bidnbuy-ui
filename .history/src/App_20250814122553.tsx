@@ -40,7 +40,6 @@ import BidCreditLedgerPage from "./pages/bid-credit-ledger/BidCreditLedger";
 import Referrals from "./pages/referrals/Referrals";
 import RewardSettingsPage from "./pages/reward-settings/RewardSettings";
 import ProductRatingsAndReviews from "./pages/product-ratings-and-reviews/ProductRatingsAndReviews";
-import VendorRatingsAndReviews from "./pages/vendor-ratings-and-reviews/VendorRatingsAndReviews";
 
 
 const App = () => {
