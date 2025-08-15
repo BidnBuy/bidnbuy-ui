@@ -42,6 +42,7 @@ import RewardSettingsPage from "./pages/reward-settings/RewardSettings";
 import ProductRatingsAndReviews from "./pages/product-ratings-and-reviews/ProductRatingsAndReviews";
 import VendorRatingsAndReviews from "./pages/vendor-ratings-and-reviews/VendorRatingsAndReviews";
 import Cart from "./pages/cart/Cart";
+import PaymentOption from "./pages/payment-option/PaymentOptions";
 import PaymentOptions from "./pages/payment-option/PaymentOptions";
 
 

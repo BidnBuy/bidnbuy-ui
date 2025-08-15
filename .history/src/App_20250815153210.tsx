@@ -42,7 +42,7 @@ import RewardSettingsPage from "./pages/reward-settings/RewardSettings";
 import ProductRatingsAndReviews from "./pages/product-ratings-and-reviews/ProductRatingsAndReviews";
 import VendorRatingsAndReviews from "./pages/vendor-ratings-and-reviews/VendorRatingsAndReviews";
 import Cart from "./pages/cart/Cart";
-import PaymentOptions from "./pages/payment-option/PaymentOptions";
+import PaymentOption from "./pages/payment-option/PaymentOption";
 
 
 const App = () => {
@@ -108,7 +108,7 @@ const App = () => {
         <Route path="product-ratings" element={<ProductRatingsAndReviews />} />
         <Route path="vendor-ratings" element={<VendorRatingsAndReviews />} />
         <Route path="cart" element={<Cart/>} />
-        <Route path="payment-options" element={<PaymentOptions />} />
+        <Route path="payment-options" element={<PaymentOption />} />
       </Route>
 
       <Route element={<LayoutWithHeaderFooter />}>
