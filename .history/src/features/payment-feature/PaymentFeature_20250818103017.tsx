@@ -2,9 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { usePaymentFeature } from "./hooks/usePaymentFeature";
-
 import PageHeader from "@/components/page-header/PageHeader";
-
 import PaymentMethodSelector from "./components/PaymentMethodSelector";
 import AmountInput from "./components/AmountInput";
 
