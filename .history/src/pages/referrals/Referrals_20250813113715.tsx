@@ -30,7 +30,7 @@ export default function ReferralsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#01151C]">
+  <div className="min-h-screen bg-[#01151C]">
 
       <main className="px-4 py-6 md:px-8 md:py-12">
         <div className="max-w-md mx-auto md:max-w-4xl">

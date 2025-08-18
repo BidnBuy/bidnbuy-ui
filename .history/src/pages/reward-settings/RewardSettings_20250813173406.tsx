@@ -103,7 +103,7 @@ export default function RewardSettingsPage() {
 
       <main className="px-4 py-6 md:px-8 md:py-12">
         <div className="max-w-md mx-auto md:max-w-2xl">
-          {/* Mobile Back Button and Title */}
+          {/*  and Title */}
           <div className="md:hidden flex items-center gap-3 mb-6">
             <Link href="/wallet-ledger" className="text-white">
               <ArrowLeft className="w-6 h-6" />
