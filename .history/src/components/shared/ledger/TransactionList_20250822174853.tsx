@@ -14,7 +14,6 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 
 import ListingFeeIcon from "@/components/svg-icons/ListingFeeIcon";
 import PaymentForUnpaidBidIcon from "@/components/svg-icons/PaymentForUnpaidBid";
-import LoadingGrid from "@/components/loading-grid/LoadingGrid";
 
 
 /**
@@ -80,7 +79,7 @@ const TransactionList = () => {
   const transactions = data?.data?.transactions || [];
 
   if (isLoading) {
-    return <div className="text-gray-300 text-center"><LoadingGrid /></div>;
+    return <div className="text-gray-300 text-center"><Loading transactions...></div>;
   }
   if (isError) {
     return <div className="text-red-500 text-center">Error loading transactions.</div>;

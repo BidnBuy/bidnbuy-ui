@@ -80,7 +80,7 @@ const TransactionList = () => {
   const transactions = data?.data?.transactions || [];
 
   if (isLoading) {
-    return <div className="text-gray-300 text-center"><LoadingGrid /></div>;
+    return <div className="text-gray-300 text-center"><LoadingGrid ></div>;
   }
   if (isError) {
     return <div className="text-red-500 text-center">Error loading transactions.</div>;

@@ -40,7 +40,6 @@ import NewCompleteProfile from "@/features/complete-profile/NewCompleteProfile";
 import WithdrawalCreate from "@/pages/withdrawalcreate/WithdrawalCreate";
 import WithdrawalSuccess from "@/pages/withdrawal-success/WithdrawalSuccess";
 import MarketingDashboard from "@/pages/marketing/Marketing";
-import MarketingReferrals from "./pages/marketing-referrals/MarketingReferrals";
 
 
 const App = () => {

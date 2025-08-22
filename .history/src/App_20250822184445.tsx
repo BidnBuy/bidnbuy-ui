@@ -40,7 +40,6 @@ import NewCompleteProfile from "@/features/complete-profile/NewCompleteProfile";
 import WithdrawalCreate from "@/pages/withdrawalcreate/WithdrawalCreate";
 import WithdrawalSuccess from "@/pages/withdrawal-success/WithdrawalSuccess";
 import MarketingDashboard from "@/pages/marketing/Marketing";
-import MarketingReferrals from "./pages/marketing-referrals/MarketingReferrals";
 
 
 const App = () => {
@@ -111,7 +110,6 @@ const App = () => {
         <Route path="bid-credit-ledger" element={<BidCreditLedgerPage />} />
 
         <Route path="marketing" element={<MarketingDashboard />} />
-        <Route path="marketing/referrals" element={<MarketingReferrals />} />
 
         <Route path="withdraw" element={<WithdrawalCreate />} />
         <Route path="withdraw/success" element={<WithdrawalSuccess />} />

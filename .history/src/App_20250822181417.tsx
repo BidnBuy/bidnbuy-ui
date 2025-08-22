@@ -16,8 +16,8 @@ import VendorSignup from "@/pages/vendor-sign-up/VendorSignUp";
 import CompleteProfile from "./pages/complete-profile/CompleteProfile";
 
 import ProductHome from "@/pages/product-home/ProductHome";
-import Marketplace from "@/pages/marketplace/Marketplace";
-import BidsAndAuction from "@/pages/bids-and-auction/BidsAndAuction";
+import Marketplace from "./pages/marketplace/Marketplace";
+import BidsAndAuction from "./pages/bids-and-auction/BidsAndAuction";
 
 import CustomerAccountVerification from "@/pages/customer-account-verification/CustomerAccountVerification";
 import VendorAccountVerification from "@/pages/vendor-account-verification/VendorAccountVerification";
@@ -31,17 +31,15 @@ import EscrowItemReceived from "@/pages/escrow-items-received/EscrowItemsReceive
 import EscrowStatus from "@/pages/escrow-status/EscrowStatus";
 
 // Bid Credit and Ledger
-import BidCreditTopUp from "@/pages/bidcredit-top-up/BidCreditTopUp";
-import AddBidCredit from "@/pages/add-bid-credit/AddBidCredit";
-import BidCreditTopUpSuccess from "@/pages/bid-credit-top-up-success/BidCreditTopUpSuccess";
-import WalletLedger from "@/pages/wallet-ledger/WalletLedger";
-import BidCreditLedgerPage from "@/pages/bid-credit-ledger/BidCreditLedger";
-import NewCompleteProfile from "@/features/complete-profile/NewCompleteProfile";
-import WithdrawalCreate from "@/pages/withdrawalcreate/WithdrawalCreate";
-import WithdrawalSuccess from "@/pages/withdrawal-success/WithdrawalSuccess";
-import MarketingDashboard from "@/pages/marketing/Marketing";
-import MarketingReferrals from "./pages/marketing-referrals/MarketingReferrals";
-
+import BidCreditTopUp from "./pages/bidcredit-top-up/BidCreditTopUp";
+import AddBidCredit from "./pages/add-bid-credit/AddBidCredit";
+import BidCreditTopUpSuccess from "./pages/bid-credit-top-up-success/BidCreditTopUpSuccess";
+import WalletLedger from "./pages/wallet-ledger/WalletLedger";
+import BidCreditLedgerPage from "./pages/bid-credit-ledger/BidCreditLedger";
+import NewCompleteProfile from "./features/complete-profile/NewCompleteProfile";
+import WithdrawalCreate from "./pages/withdrawalcreate/WithdrawalCreate";
+import WithdrawalSuccess from "./pages/withdrawal-success/WithdrawalSuccess";
+import MarketingDashboard from "./pages/marketing/Marketing";
 
 const App = () => {
   return (
@@ -111,7 +109,6 @@ const App = () => {
         <Route path="bid-credit-ledger" element={<BidCreditLedgerPage />} />
 
         <Route path="marketing" element={<MarketingDashboard />} />
-        <Route path="marketing/referrals" element={<MarketingReferrals />} />
 
         <Route path="withdraw" element={<WithdrawalCreate />} />
         <Route path="withdraw/success" element={<WithdrawalSuccess />} />

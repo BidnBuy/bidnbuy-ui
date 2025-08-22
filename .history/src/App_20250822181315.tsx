@@ -16,13 +16,14 @@ import VendorSignup from "@/pages/vendor-sign-up/VendorSignUp";
 import CompleteProfile from "./pages/complete-profile/CompleteProfile";
 
 import ProductHome from "@/pages/product-home/ProductHome";
-import Marketplace from "@/pages/marketplace/Marketplace";
-import BidsAndAuction from "@/pages/bids-and-auction/BidsAndAuction";
+import Marketplace from "./pages/marketplace/Marketplace";
+import BidsAndAuction from "./pages/bids-and-auction/BidsAndAuction";
 
 import CustomerAccountVerification from "@/pages/customer-account-verification/CustomerAccountVerification";
 import VendorAccountVerification from "@/pages/vendor-account-verification/VendorAccountVerification";
 import VendorUploadProductForm from "@/pages/vendor-upload-product/VendorUploadProduct";
 import AuctionProductDetail from "@/pages/auction-product-detail/AuctionProductDetail";
+
 
 // Escrow
 import EscrowReportProblemForm from "@/pages/escrow-report-problem-form/EscrowReportProblemForm";
@@ -30,17 +31,16 @@ import EscrowPaymentReleased from "@/pages/escrow-payment-released/EscrowPayment
 import EscrowItemReceived from "@/pages/escrow-items-received/EscrowItemsReceived";
 import EscrowStatus from "@/pages/escrow-status/EscrowStatus";
 
+
 // Bid Credit and Ledger
-import BidCreditTopUp from "@/pages/bidcredit-top-up/BidCreditTopUp";
-import AddBidCredit from "@/pages/add-bid-credit/AddBidCredit";
-import BidCreditTopUpSuccess from "@/pages/bid-credit-top-up-success/BidCreditTopUpSuccess";
-import WalletLedger from "@/pages/wallet-ledger/WalletLedger";
-import BidCreditLedgerPage from "@/pages/bid-credit-ledger/BidCreditLedger";
-import NewCompleteProfile from "@/features/complete-profile/NewCompleteProfile";
-import WithdrawalCreate from "@/pages/withdrawalcreate/WithdrawalCreate";
-import WithdrawalSuccess from "@/pages/withdrawal-success/WithdrawalSuccess";
-import MarketingDashboard from "@/pages/marketing/Marketing";
-import MarketingReferrals from "./pages/marketing-referrals/MarketingReferrals";
+import BidCreditTopUp from "./pages/bidcredit-top-up/BidCreditTopUp";
+import AddBidCredit from "./pages/add-bid-credit/AddBidCredit";
+import BidCreditTopUpSuccess from "./pages/bid-credit-top-up-success/BidCreditTopUpSuccess";
+import WalletLedger from "./pages/wallet-ledger/WalletLedger";
+import BidCreditLedgerPage from "./pages/bid-credit-ledger/BidCreditLedger";
+import NewCompleteProfile from "./features/complete-profile/NewCompleteProfile";
+import WithdrawalCreate from "./pages/withdrawalcreate/WithdrawalCreate";
+import WithdrawalSuccess from "./pages/withdrawal-success/WithdrawalSuccess";
 
 
 const App = () => {
@@ -48,7 +48,7 @@ const App = () => {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
-
+        
         {/* Auth */}
 
         <Route path="account-type" element={<AccountTypeSelection />} />
@@ -59,9 +59,15 @@ const App = () => {
         <Route path="signup/vendor" element={<VendorSignup />} />
         <Route path="login/vendor" element={<VendorLogin />} />
 
-        <Route path="complete-profile" element={<CompleteProfile />} />
+        <Route
+          path="complete-profile"
+          element={<CompleteProfile />}
+        />
 
-        <Route path="new-complete-profile" element={<NewCompleteProfile />} />
+        <Route
+          path="new-complete-profile"
+          element={<NewCompleteProfile />}
+        />
 
         <Route
           path="customer-account-verify"
@@ -102,19 +108,15 @@ const App = () => {
 
         <Route path="bid-credit-top-up" element={<BidCreditTopUp />} />
         <Route path="add-bid-credit" element={<AddBidCredit />} />
-        <Route
-          path="bid-credit-top-up-success"
-          element={<BidCreditTopUpSuccess />}
-        />
+        <Route path="bid-credit-top-up-success" element={<BidCreditTopUpSuccess />} />
 
         <Route path="wallet-ledger" element={<WalletLedger />} />
         <Route path="bid-credit-ledger" element={<BidCreditLedgerPage />} />
 
-        <Route path="marketing" element={<MarketingDashboard />} />
-        <Route path="marketing/referrals" element={<MarketingReferrals />} />
-
-        <Route path="withdraw" element={<WithdrawalCreate />} />
-        <Route path="withdraw/success" element={<WithdrawalSuccess />} />
+        
+          <Route path="withdraw" element={<WithdrawalCreate />} />
+          <Route path="withdraw/success" element={<WithdrawalSuccess />} />
+        
       </Route>
 
       <Route element={<LayoutWithHeaderFooter />}>
