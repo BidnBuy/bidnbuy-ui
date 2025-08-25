@@ -1,6 +1,8 @@
 import axios from 'axios';
 import axiosInstance from '@/lib/axios';
 
+import type { CompleteProfileFormData } from "../lib/complete-profile-schema";
+
 // const API_BASE_URL = import.meta.env.VITE_API_URL
 
 type ApiResponse = {
@@ -11,7 +13,7 @@ type ApiResponse = {
 }
 
 export const completeUserProfile = async (
-  data: CompleteProfilePayload,
+  data: CompleteProfileFormData,
 
 ): Promise<ApiResponse> => {
   try {
