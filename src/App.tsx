@@ -31,6 +31,7 @@ import EscrowItemReceived from "@/pages/escrow-items-received/EscrowItemsReceive
 import EscrowStatus from "@/pages/escrow-status/EscrowStatus";
 
 // Bid Credit and Ledger
+
 import BidCreditTopUp from "@/pages/bidcredit-top-up/BidCreditTopUp";
 import AddBidCredit from "@/pages/add-bid-credit/AddBidCredit";
 import BidCreditTopUpSuccess from "@/pages/bid-credit-top-up-success/BidCreditTopUpSuccess";
@@ -40,6 +41,14 @@ import WithdrawalCreate from "@/pages/withdrawalcreate/WithdrawalCreate";
 import WithdrawalSuccess from "@/pages/withdrawal-success/WithdrawalSuccess";
 import MarketingDashboard from "@/pages/marketing/Marketing";
 import MarketingReferrals from "./pages/marketing-referrals/MarketingReferrals";
+        
+import Referrals from "./pages/referrals/Referrals";
+import RewardSettingsPage from "./pages/reward-settings/RewardSettings";
+import ProductRatingsAndReviews from "./pages/product-ratings-and-reviews/ProductRatingsAndReviews";
+import VendorRatingsAndReviews from "./pages/vendor-ratings-and-reviews/VendorRatingsAndReviews";
+import Cart from "./pages/cart/Cart";
+import PaymentOptions from "./pages/payment-option/PaymentOptions";
+
 
 const App = () => {
   return (
@@ -104,6 +113,7 @@ const App = () => {
         <Route path="wallet-ledger" element={<WalletLedger />} />
         <Route path="bid-credit-ledger" element={<BidCreditLedgerPage />} />
 
+
         <Route path="marketing" element={<MarketingDashboard />} />
         <Route path="marketing/referrals" element={<MarketingReferrals />} />
 
@@ -113,6 +123,15 @@ const App = () => {
         {/* KYC Complete Profile */}
 
         <Route path="complete-profile" element={<CompleteProfile />} />
+
+
+        <Route path="referrals" element={<Referrals />} />
+        <Route path="rewards-settings" element={<RewardSettingsPage />} />
+
+        <Route path="product-ratings" element={<ProductRatingsAndReviews />} />
+        <Route path="vendor-ratings" element={<VendorRatingsAndReviews />} />
+        <Route path="cart" element={<Cart/>} />
+        <Route path="payment-options" element={<PaymentOptions />} />
 
       </Route>
 
