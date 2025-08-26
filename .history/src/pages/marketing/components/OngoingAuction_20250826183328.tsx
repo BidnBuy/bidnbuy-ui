@@ -12,7 +12,7 @@ const OngoingAuctions = () => {
 
       <div className="space-y-3">
         {ongoingAuctions.map((auction) => (
-          <Card key={auction.id} className="p-4 bg-[bg-[#00222E] border-[#00707B]">
+          <Card key={auction.id} className="p-4 bg-[bg-[#00222E]] border-teal-600/30">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 md:w-16 md:h-16 relative rounded-lg overflow-hidden bg-teal-800">
                 <img src={AntiquePerfumeImg || auction.image } alt={auction.title} className="w-full h-full object-cover" />
@@ -20,8 +20,8 @@ const OngoingAuctions = () => {
 
               <div className="flex-1 min-w-0">
                 <h3 className="font-semibold text-white text-sm md:text-base truncate">{auction.title}</h3>
-                <p className="text-white text-xs md:text-sm">Current Bid: ₦{auction.currentBid.toLocaleString()}</p>
-                <p className="text-white text-xs">Time Left: {auction.timeLeft}</p>
+                <p className="text-teal-200 text-xs md:text-sm">Current Bid: ₦{auction.currentBid.toLocaleString()}</p>
+                <p className="text-teal-300 text-xs">Time Left: {auction.timeLeft}</p>
               </div>
             </div>
           </Card>

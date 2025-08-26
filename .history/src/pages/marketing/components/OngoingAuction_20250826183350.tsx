@@ -20,8 +20,8 @@ const OngoingAuctions = () => {
 
               <div className="flex-1 min-w-0">
                 <h3 className="font-semibold text-white text-sm md:text-base truncate">{auction.title}</h3>
-                <p className="text-white text-xs md:text-sm">Current Bid: ₦{auction.currentBid.toLocaleString()}</p>
-                <p className="text-white text-xs">Time Left: {auction.timeLeft}</p>
+                <p className="text-teal-200 text-xs md:text-sm">Current Bid: ₦{auction.currentBid.toLocaleString()}</p>
+                <p className="text-teal-300 text-xs">Time Left: {auction.timeLeft}</p>
               </div>
             </div>
           </Card>

@@ -66,15 +66,15 @@ const RegisterUserModal = ({ open, onOpenChange }: RegisterUserModalProps) => {
         <DialogHeader>
           <DialogTitle className="flex items-center justify-between text-white">
             Register New User
-            {/* <Button
+            <Button
               variant="ghost"
               size="icon"
               onClick={handleClose}
               disabled={registerMutation.isPending}
               className="text-white hover:bg-teal-800"
             >
-              <X className="w-4 h-4" />
-            </Button> */}
+              {/* <X className="w-4 h-4" /> */}
+            </Button>
           </DialogTitle>
         </DialogHeader>
 

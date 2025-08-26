@@ -66,7 +66,7 @@ const RegisterUserModal = ({ open, onOpenChange }: RegisterUserModalProps) => {
         <DialogHeader>
           <DialogTitle className="flex items-center justify-between text-white">
             Register New User
-            {/* <Button
+            <Button
               variant="ghost"
               size="icon"
               onClick={handleClose}
@@ -74,7 +74,7 @@ const RegisterUserModal = ({ open, onOpenChange }: RegisterUserModalProps) => {
               className="text-white hover:bg-teal-800"
             >
               <X className="w-4 h-4" />
-            </Button> */}
+            </Button>
           </DialogTitle>
         </DialogHeader>
 
@@ -97,7 +97,7 @@ const RegisterUserModal = ({ open, onOpenChange }: RegisterUserModalProps) => {
                   id="name"
                   {...register("name")}
                   placeholder="John Doe"
-                  className="pl-10 bg-[#00707B4D] border-[#00707B] text-white placeholder:text-teal-300"
+                  className="pl-10 bg-[#00707B4D] border-teal-600 text-white placeholder:text-teal-300"
                 />
               </div>
               {errors.name && <p className="text-red-400 text-sm">{errors.name.message}</p>}
@@ -113,7 +113,7 @@ const RegisterUserModal = ({ open, onOpenChange }: RegisterUserModalProps) => {
                   id="phoneNumber"
                   {...register("phoneNumber")}
                   placeholder="+2347067480476"
-                  className="pl-10 bg-[#00707B4D] border-[#00707B] text-white placeholder:text-teal-300"
+                  className="pl-10 bg-[teal-800/50] border-teal-600 text-white placeholder:text-teal-300"
                 />
               </div>
               {errors.phoneNumber && <p className="text-red-400 text-sm">{errors.phoneNumber.message}</p>}
@@ -130,7 +130,7 @@ const RegisterUserModal = ({ open, onOpenChange }: RegisterUserModalProps) => {
                   type="email"
                   {...register("emailAddress")}
                   placeholder="johndoe@gmail.com"
-                  className="pl-10 bg-[#00707B4D] border-[#00707B] text-white placeholder:text-teal-300"
+                  className="pl-10 bg-[teal-800/50] border-teal-600 text-white placeholder:text-teal-300"
                 />
               </div>
               {errors.emailAddress && <p className="text-red-400 text-sm">{errors.emailAddress.message}</p>}
@@ -145,8 +145,8 @@ const RegisterUserModal = ({ open, onOpenChange }: RegisterUserModalProps) => {
                   onClick={() => setValue("category", "buyer")}
                   className={
                     category === "buyer"
-                      ? "bg-[#00707B] hover:bg-[#00707B] text-white"
-                      : "border-[#00707B] text-teal-300 hover:bg-[#00707B] cursor-pointer"
+                      ? "bg-teal-600 hover:bg-teal-500 text-white"
+                      : "border-teal-600 text-teal-300 hover:bg-teal-800"
                   }
                 >
                   Buyer
@@ -157,8 +157,8 @@ const RegisterUserModal = ({ open, onOpenChange }: RegisterUserModalProps) => {
                   onClick={() => setValue("category", "vendor")}
                   className={
                     category === "vendor"
-                      ? "bg-[#00707B] hover:bg-[#00707B] text-white"
-                      : "border-[#00707B] text-teal-300 hover:bg-[#00707B] cursor-pointer"
+                      ? "bg-teal-600 hover:bg-teal-500 text-white"
+                      : "border-teal-600 text-teal-300 hover:bg-teal-800"
                   }
                 >
                   Vendor
@@ -170,7 +170,7 @@ const RegisterUserModal = ({ open, onOpenChange }: RegisterUserModalProps) => {
             <Button
               type="submit"
               disabled={registerMutation.isPending}
-              className="w-full bg-[#004755] hover:bg-[#00707B] text-white cursor-pointer"
+              className="w-full bg-teal-600 hover:bg-teal-500 text-white"
             >
               {registerMutation.isPending ? "Submitting..." : "Submit"}
             </Button>

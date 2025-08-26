@@ -1,4 +1,6 @@
 import { useState } from "react"
+import { Link } from "react-router-dom"
+import { ArrowLeft } from "lucide-react"
 
 import MarketingStats from "./components/MarketingStats"
 import MarketingActions from "./components/MarketingActions"
@@ -15,8 +17,18 @@ const MarketingDashboard = () => {
 
 
       <main className="px-4 py-6 md:px-8 md:py-12">
-        
-        <PageHeader title="Marketing Dashboard" backUrl="/" />
+        {/* Mobile Back Button and Title */}
+        <div className="md:hidden flex items-center gap-3 mb-6">
+          <Link to="/" className="text-white">
+            <ArrowLeft className="w-6 h-6" />
+          </Link>
+          <h1 className="text-white text-xl font-semibold">Marketing Dashboard</h1>
+        </div>
+
+        {/* Desktop Title */}
+        <h1 className="hidden md:block text-white text-4xl font-bold mb-8">Marketing Dashboard</h1>
+
+        <PageHeader title="Marketing Dashboard" />
 
         <div className="max-w-6xl mx-auto">
           <MarketingStats />

@@ -66,7 +66,7 @@ const RegisterUserModal = ({ open, onOpenChange }: RegisterUserModalProps) => {
         <DialogHeader>
           <DialogTitle className="flex items-center justify-between text-white">
             Register New User
-            {/* <Button
+            <Button
               variant="ghost"
               size="icon"
               onClick={handleClose}
@@ -74,7 +74,7 @@ const RegisterUserModal = ({ open, onOpenChange }: RegisterUserModalProps) => {
               className="text-white hover:bg-teal-800"
             >
               <X className="w-4 h-4" />
-            </Button> */}
+            </Button>
           </DialogTitle>
         </DialogHeader>
 
@@ -97,7 +97,7 @@ const RegisterUserModal = ({ open, onOpenChange }: RegisterUserModalProps) => {
                   id="name"
                   {...register("name")}
                   placeholder="John Doe"
-                  className="pl-10 bg-[#00707B4D] border-[#00707B] text-white placeholder:text-teal-300"
+                  className="pl-10 bg-[#00707B4D] border-teal-600 text-white placeholder:text-teal-300"
                 />
               </div>
               {errors.name && <p className="text-red-400 text-sm">{errors.name.message}</p>}
@@ -146,7 +146,7 @@ const RegisterUserModal = ({ open, onOpenChange }: RegisterUserModalProps) => {
                   className={
                     category === "buyer"
                       ? "bg-[#00707B] hover:bg-[#00707B] text-white"
-                      : "border-[#00707B] text-teal-300 hover:bg-[#00707B] cursor-pointer"
+                      : "border-[#00707B] text-teal-300 hover:bg-teal-800"
                   }
                 >
                   Buyer
@@ -158,7 +158,7 @@ const RegisterUserModal = ({ open, onOpenChange }: RegisterUserModalProps) => {
                   className={
                     category === "vendor"
                       ? "bg-[#00707B] hover:bg-[#00707B] text-white"
-                      : "border-[#00707B] text-teal-300 hover:bg-[#00707B] cursor-pointer"
+                      : "border-[#00707B] text-teal-300 hover:bg-teal-800"
                   }
                 >
                   Vendor
@@ -170,7 +170,7 @@ const RegisterUserModal = ({ open, onOpenChange }: RegisterUserModalProps) => {
             <Button
               type="submit"
               disabled={registerMutation.isPending}
-              className="w-full bg-[#004755] hover:bg-[#00707B] text-white cursor-pointer"
+              className="w-full bg-[#00707B] bg-[#004755] text-white"
             >
               {registerMutation.isPending ? "Submitting..." : "Submit"}
             </Button>
