@@ -3,9 +3,6 @@ import { useMarketingStore } from "@/store/marketing-store"
 
 import AntiquePerfumeImg from '@/assets/products/antique-perfume-img.png';
 import { Skeleton } from "@/components/ui/skeleton";
-import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
 
 type OngoingAuctionsProps = {
   isLoading?: boolean
@@ -17,7 +14,7 @@ const OngoingAuctions = ({ isLoading }: OngoingAuctionsProps) => {
   if (isLoading) {
     return (
       <div className="space-y-4">
-        <Skeleton className="h-6 w-40 bg-[#00222E]" />
+        <Skeleton className="h-6 w-40 bg-teal-700/50" />
         {[...Array(3)].map((_, i) => (
           <Card key={i} className="p-4 bg-[#00222E] border-[#00707B]">
             <div className="flex items-center gap-3">
@@ -35,18 +32,7 @@ const OngoingAuctions = ({ isLoading }: OngoingAuctionsProps) => {
 
   return (
     <div className="space-y-4">
-      <div className="flex flex-row items-center justify-between space-y-0 pb-4">
-
-        <h2 className="text-xl md:text-2xl font-bold text-white mb-4">Ongoing Auctions</h2>
-        
-        <Link to="/auctions/ongoing">
-          <Button variant="ghost" size="sm" className="hover:bg-slate-700/50">
-            View All
-            <ArrowRight className="h-4 w-4 ml-1" />
-          </Button>
-        </Link>
-      </div>
-      
+      <h2 className="text-xl md:text-2xl font-bold text-white mb-4">Ongoing Auctions</h2>
 
       <div className="space-y-3">
         {ongoingAuctions.map((auction) => (

@@ -12,7 +12,7 @@ import RegisterUserModal from "./components/RegisterUserModal"
 
 const MarketingDashboard = () => {
   const [showRegisterModal, setShowRegisterModal] = useState(false)
-  const { isLoading } = useMarketingStats()
+  const { data: stats, isLoading } = useMarketingStats()
 
   return (
     <div className="min-h-screen bg-[#01151C]">
@@ -25,7 +25,7 @@ const MarketingDashboard = () => {
         <div className="max-w-6xl mx-auto">
           <MarketingStats isLoading={isLoading} />
           <MarketingActions onRegisterClick={() => setShowRegisterModal(true)} />
-          <OngoingAuctions isLoading={isLoading} />
+          <OngoingAuctions />
         </div>
       </main>
 

@@ -40,7 +40,7 @@ const OngoingAuctions = ({ isLoading }: OngoingAuctionsProps) => {
         <h2 className="text-xl md:text-2xl font-bold text-white mb-4">Ongoing Auctions</h2>
         
         <Link to="/auctions/ongoing">
-          <Button variant="ghost" size="sm" className="hover:bg-slate-700/50">
+          <Button variant="ghost" size="sm" className="hover:text-teal-300 hover:bg-slate-700/50">
             View All
             <ArrowRight className="h-4 w-4 ml-1" />
           </Button>

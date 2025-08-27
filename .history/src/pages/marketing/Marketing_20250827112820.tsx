@@ -1,18 +1,16 @@
 import { useState } from "react"
 
-import PageHeader from "@/components/page-header/PageHeader"
-
-import { useMarketingStats } from "./hooks/useMarketing"
-
 import MarketingStats from "./components/MarketingStats"
 import MarketingActions from "./components/MarketingActions"
 import OngoingAuctions from "./components/OngoingAuction"
 import RegisterUserModal from "./components/RegisterUserModal"
+import PageHeader from "@/components/page-header/PageHeader"
+import { useMarketingStats } from "./hooks/useMarketing"
 
 
 const MarketingDashboard = () => {
   const [showRegisterModal, setShowRegisterModal] = useState(false)
-  const { isLoading } = useMarketingStats()
+  const { data: stats, isLoading } = useMarketingStats()
 
   return (
     <div className="min-h-screen bg-[#01151C]">
@@ -23,9 +21,9 @@ const MarketingDashboard = () => {
         <PageHeader title="Marketing Dashboard" backUrl="/" />
 
         <div className="max-w-6xl mx-auto">
-          <MarketingStats isLoading={isLoading} />
+          <MarketingStats />
           <MarketingActions onRegisterClick={() => setShowRegisterModal(true)} />
-          <OngoingAuctions isLoading={isLoading} />
+          <OngoingAuctions />
         </div>
       </main>
 

@@ -16,7 +16,7 @@ const MarketingStats = ({ isLoading }: MarketingStatsProps) => {
     return (
       <div className="grid grid-cols-3 gap-3 md:gap-6 mb-6">
         {[...Array(3)].map((_, i) => (
-          <Card key={i} className="p-4 { isLoading }: OngoingAuctionsProps">
+          <Card key={i} className="p-4 bg-[#00222E] border-[#00707B]">
             <Skeleton className="h-8 w-12 mb-2 bg-[#00222E]" />
             <Skeleton className="h-4 w-20 bg-[#00222E]" />
           </Card>

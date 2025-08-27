@@ -3,9 +3,6 @@ import { useMarketingStore } from "@/store/marketing-store"
 
 import AntiquePerfumeImg from '@/assets/products/antique-perfume-img.png';
 import { Skeleton } from "@/components/ui/skeleton";
-import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
 
 type OngoingAuctionsProps = {
   isLoading?: boolean
@@ -38,13 +35,8 @@ const OngoingAuctions = ({ isLoading }: OngoingAuctionsProps) => {
       <div className="flex flex-row items-center justify-between space-y-0 pb-4">
 
         <h2 className="text-xl md:text-2xl font-bold text-white mb-4">Ongoing Auctions</h2>
-        
-        <Link to="/auctions/ongoing">
-          <Button variant="ghost" size="sm" className="hover:bg-slate-700/50">
-            View All
-            <ArrowRight className="h-4 w-4 ml-1" />
-          </Button>
-        </Link>
+        {/* <Link href="/auctions/ongoing" className="text-sm text-teal-400 hover:text-teal-300 hover:underline">
+          View All
       </div>
       
 

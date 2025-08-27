@@ -12,7 +12,7 @@ import RegisterUserModal from "./components/RegisterUserModal"
 
 const MarketingDashboard = () => {
   const [showRegisterModal, setShowRegisterModal] = useState(false)
-  const { isLoading } = useMarketingStats()
+  const { data: stats, isLoading } = useMarketingStats()
 
   return (
     <div className="min-h-screen bg-[#01151C]">

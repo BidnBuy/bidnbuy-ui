@@ -27,7 +27,7 @@ const MarketingActions = ({ onRegisterClick }: MarketingActionsProps) => {
       </Link>
 
       <Link to="/auctions/ongoing">
-        <Button className="w-full flex flex-col items-center gap-2 h-auto py-4 md:py-6 bg-[#004755] hover:bg-[#00707B] border-[#00707B] text-white">
+        <Button className="flex flex-col items-center gap-2 h-auto py-4 md:py-6 bg-[#004755] hover:bg-[#00707B] border-[#00707B] text-white">
           <Clock className="w-6 h-6 md:w-8 md:h-8" />
           <span className="text-xs md:text-sm font-medium">Ongoing Auctions</span>
         </Button>
