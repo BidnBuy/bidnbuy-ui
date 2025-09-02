@@ -63,7 +63,7 @@ const BidCreditLedger = () => {
           {/* Desktop Title */}
           <h1 className="hidden md:block text-white text-4xl font-bold mb-8">BidCredit Ledger</h1> 
           <UserProfile name="Amelia" handle="@amelia_123" avatarSrc={AmeliaProfileImage} />
-          <BalanceSummary walletBalance="N1,250" bidCreditBalance={`${currentBidCreditBalance.toLocaleString()} B.C`} />
+          <BalanceSummary walletBalance="N1,250" bidCreditBalance={`${currentBidCreditBalance.toLocaleString()} BDC`} />
           <UnpaidBidAlert onPayNow={handlePayNow} />
 
           <BonusTiersSection />
