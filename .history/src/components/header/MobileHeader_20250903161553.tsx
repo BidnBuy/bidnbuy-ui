@@ -13,7 +13,6 @@ import { useNavigate } from "react-router-dom"
 const MobileHeader = () => {
   const navigate = useNavigate()
   const handleCartNavigate = () => navigate("/cart")
-
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   // This would typically come from your auth context/state management
@@ -30,7 +29,7 @@ const MobileHeader = () => {
           <img src={BidnBuyLogo} alt="BidnBuy Logo" width={40} height={40} className="object-contain" />
         </div>
         <div className="flex items-center gap-4">
-          <button onClick={handleCartNavigate}>
+          <button>
             <ShoppingCart size={20} />
           </button>
           <button>

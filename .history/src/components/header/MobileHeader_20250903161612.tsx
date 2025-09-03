@@ -30,7 +30,7 @@ const MobileHeader = () => {
           <img src={BidnBuyLogo} alt="BidnBuy Logo" width={40} height={40} className="object-contain" />
         </div>
         <div className="flex items-center gap-4">
-          <button onClick={handleCartNavigate}>
+          <button onClick={}>
             <ShoppingCart size={20} />
           </button>
           <button>
