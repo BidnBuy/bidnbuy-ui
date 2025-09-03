@@ -52,6 +52,11 @@ export function MobileNavigation({ isOpen, onClose, isLoggedIn = false }: Mobile
             Bids & Auctions
           </Link>
 
+          {/* <Link to="/cart" className="flex items-center gap-4 text-white text-lg" onClick={onClose}>
+          <AddToCartIcon width={24} height={24} />
+           
+            Cart
+          </Link> */}
 
           <Link to="/sell" className="flex items-center gap-4 text-white text-lg" onClick={onClose}>
         
