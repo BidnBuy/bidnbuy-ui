@@ -7,14 +7,12 @@ import MenuIcon from "../svg-icons/MenuIcon";
 
 import BidnBuyLogo from "@/assets/bidnbuy-logo.png";
 import { useNavigate } from "react-router-dom";
+import { Button } from "../ui/button";
 import { useNotificationsStore } from "@/store/notification-store";
 
 const MobileHeader = () => {
   const navigate = useNavigate();
   const handleCartNavigate = () => navigate("/cart");
- 
-  
-  const notificationNavigateHandler = () => navigate("/notification");
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const unreadCount = useNotificationsStore((state) => state.unreadCount);
@@ -45,12 +43,7 @@ const MobileHeader = () => {
           <button onClick={handleCartNavigate}>
             <ShoppingCart size={20} />
           </button>
-
-
-          <button
-            className="text-white p-2 relative"
-            onClick={notificationNavigateHandler}
-          >
+          <button>
             <Bell size={20} />
             {unreadCount > 0 && (
               <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
@@ -58,6 +51,19 @@ const MobileHeader = () => {
               </span>
             )}
           </button>
+
+          <Button
+            variant="ghost"
+            size="sm"
+            className="text-white hover:bg-teal-700 p-2 relative"
+          >
+            <Bell size={20} />
+            {unreadCount > 0 && (
+              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                {unreadCount > 9 ? "9+" : unreadCount}
+              </span>
+            )}
+          </Button>
 
           <button>
             <svg

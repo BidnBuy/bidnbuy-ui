@@ -58,7 +58,7 @@ const DesktopNavigation = () => {
 
           <button
             className="text-white p-2 relative"
-            onClick={notificationNavigateHandler}
+            onClick={no}
           >
             <Bell size={20} />
             {unreadCount > 0 && (

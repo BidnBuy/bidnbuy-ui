@@ -50,7 +50,6 @@ import Cart from "@/pages/cart/Cart";
 import PaymentOptions from "@/pages/payment-option/PaymentOptions";
 import MarketingOngoingAuctions from "@/pages/marketing-ongoing-auctions/MarketingOngoingAuctions";
 import TermsAndCondition from "@/pages/terms-and-condition/TermsAndCondition";
-import Notifications from "./pages/notification/Notification";
 
 
 const App = () => {
@@ -130,7 +129,7 @@ const App = () => {
 
         {/* Notification */}
 
-        <Route path="notification" element={<Notifications />} />
+        <Route path="notification" element={<Notification />} />
 
         {/* KYC Complete Profile */}
 

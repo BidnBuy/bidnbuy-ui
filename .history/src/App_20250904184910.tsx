@@ -49,8 +49,7 @@ import VendorRatingsAndReviews from "@/pages/vendor-ratings-and-reviews/VendorRa
 import Cart from "@/pages/cart/Cart";
 import PaymentOptions from "@/pages/payment-option/PaymentOptions";
 import MarketingOngoingAuctions from "@/pages/marketing-ongoing-auctions/MarketingOngoingAuctions";
-import TermsAndCondition from "@/pages/terms-and-condition/TermsAndCondition";
-import Notifications from "./pages/notification/Notification";
+import TermsAndCondition from "@/pages/terms-and-condition";
 
 
 const App = () => {
@@ -127,10 +126,6 @@ const App = () => {
 
         <Route path="withdraw" element={<WithdrawalCreate />} />
         <Route path="withdraw/success" element={<WithdrawalSuccess />} />
-
-        {/* Notification */}
-
-        <Route path="notification" element={<Notifications />} />
 
         {/* KYC Complete Profile */}
 

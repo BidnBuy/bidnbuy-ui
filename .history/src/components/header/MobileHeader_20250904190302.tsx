@@ -49,7 +49,7 @@ const MobileHeader = () => {
 
           <button
             className="text-white p-2 relative"
-            onClick={notificationNavigateHandler}
+            on
           >
             <Bell size={20} />
             {unreadCount > 0 && (

@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import MarketPlaceIcon from "../svg-icons/MarketPlaceIcon";
 import BidIcon from "../svg-icons/BidIcon";
@@ -6,14 +6,11 @@ import AddToCartIcon from "../svg-icons/AddToCartIcon";
 import SellOutlineIcon from "../svg-icons/SellOutlineIcon";
 import HelpAndContactIcon from "../svg-icons/HelpAndContactIcon";
 import MainHomeIcon from "../svg-icons/MainHomeIcon";
+import { Button } from "../ui/button";
 import { Bell } from "lucide-react";
 import { useNotificationsStore } from "@/store/notification-store";
 
 const DesktopNavigation = () => {
-  const navigate = useNavigate();
-
-  const notificationNavigateHandler = () => navigate("/notification");
-
   const unreadCount = useNotificationsStore((state) => state.unreadCount);
   return (
     <div className="bg-[#00707B] px-6 py-2.5">
@@ -56,9 +53,10 @@ const DesktopNavigation = () => {
             Help & Contact
           </Link>
 
-          <button
-            className="text-white p-2 relative"
-            onClick={notificationNavigateHandler}
+          <Button
+            variant="ghost"
+            size="sm"
+            className="text-white hover:bg-teal-700 p-2 relative"
           >
             <Bell size={20} />
             {unreadCount > 0 && (
@@ -66,7 +64,7 @@ const DesktopNavigation = () => {
                 {unreadCount > 9 ? "9+" : unreadCount}
               </span>
             )}
-          </button>
+          </Button>
         </div>
       </div>
     </div>

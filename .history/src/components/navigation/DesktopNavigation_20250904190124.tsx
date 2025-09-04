@@ -10,10 +10,7 @@ import { Bell } from "lucide-react";
 import { useNotificationsStore } from "@/store/notification-store";
 
 const DesktopNavigation = () => {
-  const navigate = useNavigate();
-
-  const notificationNavigateHandler = () => navigate("/notification");
-
+  const navigate = useNavigate()
   const unreadCount = useNotificationsStore((state) => state.unreadCount);
   return (
     <div className="bg-[#00707B] px-6 py-2.5">
@@ -58,7 +55,6 @@ const DesktopNavigation = () => {
 
           <button
             className="text-white p-2 relative"
-            onClick={notificationNavigateHandler}
           >
             <Bell size={20} />
             {unreadCount > 0 && (

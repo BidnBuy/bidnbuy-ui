@@ -12,9 +12,9 @@ import { useNotificationsStore } from "@/store/notification-store";
 const MobileHeader = () => {
   const navigate = useNavigate();
   const handleCartNavigate = () => navigate("/cart");
- 
+  const navigate = useNavigate();
   
-  const notificationNavigateHandler = () => navigate("/notification");
+    const notificationNavigateHandler = () => navigate("/notification");
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const unreadCount = useNotificationsStore((state) => state.unreadCount);
@@ -49,7 +49,6 @@ const MobileHeader = () => {
 
           <button
             className="text-white p-2 relative"
-            onClick={notificationNavigateHandler}
           >
             <Bell size={20} />
             {unreadCount > 0 && (
