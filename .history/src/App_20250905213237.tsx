@@ -41,7 +41,7 @@ import WithdrawalCreate from "@/pages/withdrawalcreate/WithdrawalCreate";
 import WithdrawalSuccess from "@/pages/withdrawal-success/WithdrawalSuccess";
 import MarketingDashboard from "@/pages/marketing/Marketing";
 import MarketingReferrals from "@/pages/marketing-referrals/MarketingReferrals";
-
+        
 import Referrals from "@/pages/referrals/Referrals";
 import RewardSettingsPage from "@/pages/reward-settings/RewardSettings";
 import ProductRatingsAndReviews from "@/pages/product-ratings-and-reviews/ProductRatingsAndReviews";
@@ -53,6 +53,7 @@ import TermsAndCondition from "@/pages/terms-and-condition/TermsAndCondition";
 import Notifications from "@/pages/notification/Notification";
 import NotificationOrders from "@/pages/notification-orders/NotificationOrders";
 
+
 const App = () => {
   return (
     <Routes>
@@ -63,14 +64,15 @@ const App = () => {
 
         <Route path="account-type" element={<AccountTypeSelection />} />
 
-        <Route path="signup/customer" element={<CustomerSignUp />} />
-        <Route path="login/customer" element={<CustomerLogin />} />
 
-        <Route path="signup/vendor" element={<VendorSignup />} />
-        <Route path="login/vendor" element={<VendorLogin />} />
+    <Route path="signup/customer" element={<CustomerSignUp />} />
+    <Route path="login/customer" element={<CustomerLogin />} />
 
-        {/* Terms and Conditions */}
-        <Route path="terms" element={<TermsAndCondition />} />
+    <Route path="signup/vendor" element={<VendorSignup />} />
+    <Route path="login/vendor" element={<VendorLogin />} />
+
+    {/* Terms and Conditions */}
+    <Route path="terms" element={<TermsAndCondition />} />
 
         <Route
           path="customer-account-verify"
@@ -119,12 +121,10 @@ const App = () => {
         <Route path="wallet-ledger" element={<WalletLedger />} />
         <Route path="bid-credit-ledger" element={<BidCreditLedgerPage />} />
 
+
         <Route path="marketing" element={<MarketingDashboard />} />
         <Route path="marketing/referrals" element={<MarketingReferrals />} />
-        <Route
-          path="marketing-auctions/ongoing"
-          element={<MarketingOngoingAuctions />}
-        />
+        <Route path="marketing-auctions/ongoing" element={<MarketingOngoingAuctions />} />
 
         <Route path="withdraw" element={<WithdrawalCreate />} />
         <Route path="withdraw/success" element={<WithdrawalSuccess />} />
@@ -132,19 +132,21 @@ const App = () => {
         {/* Notification */}
 
         <Route path="notification" element={<Notifications />} />
-        <Route path="orders/:orderId" element={<NotificationOrders />} />
+        <Route path="notification-o/:orderId" element={<NotificationOrders />} />
 
         {/* KYC Complete Profile */}
 
         <Route path="complete-profile" element={<CompleteProfile />} />
+
 
         <Route path="referrals" element={<Referrals />} />
         <Route path="rewards-settings" element={<RewardSettingsPage />} />
 
         <Route path="product-ratings" element={<ProductRatingsAndReviews />} />
         <Route path="vendor-ratings" element={<VendorRatingsAndReviews />} />
-        <Route path="cart" element={<Cart />} />
+        <Route path="cart" element={<Cart/>} />
         <Route path="payment-options" element={<PaymentOptions />} />
+
       </Route>
 
       <Route element={<LayoutWithHeaderFooter />}>

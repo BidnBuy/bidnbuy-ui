@@ -1,31 +1,20 @@
 import { useNavigate } from "react-router-dom";
 
-import { useShallow } from "zustand/shallow"
-
 import { useNotificationsStore } from "@/store/notification-store";
 
 import type { NotificationData } from "./components/NotificationItem";
 import { NotificationsList } from "./components/NotificationsList";
-import { useEffect } from "react";
-import NotificationSkeleton from "./components/NotificationSkeleton";
 
 
 const Notifications = () => {
   const navigate = useNavigate()
 
-  const { isLoading, notifications, markAsRead, fetchNotifications } = useNotificationsStore(
-    useShallow((state) => ({
-      isLoading: state.isLoading,
-      notifications: state.notifications,
-      markAsRead: state.markAsRead,
-      fetchNotifications: state.fetchNotifications
-    }))
-  );
+  const { notifications, markAsRead } = useNotificationsStore()
 
   useEffect(() => {
     fetchNotifications();
-  }, [fetchNotifications])
-
+  }, [fetchNotifications]);
+  
   const handleNotificationClick = (notification: NotificationData) => {
     // Mark as read
     if (!notification.isRead) {
@@ -45,10 +34,6 @@ const Notifications = () => {
         break
     }
   }
-
-  if (isLoading) {
-    return <NotificationSkeleton />
-  };
 
   return (
     <div className="min-h-screen mt-8 bg-[#01151C]">

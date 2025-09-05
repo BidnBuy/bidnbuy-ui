@@ -46,7 +46,7 @@ const Notifications = () => {
     }
   }
 
-  if (isLoading) {
+  if (isLoading && notifications.length === 0) {
     return <NotificationSkeleton />
   };
 

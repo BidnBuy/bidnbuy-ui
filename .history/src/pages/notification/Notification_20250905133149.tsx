@@ -7,7 +7,6 @@ import { useNotificationsStore } from "@/store/notification-store";
 import type { NotificationData } from "./components/NotificationItem";
 import { NotificationsList } from "./components/NotificationsList";
 import { useEffect } from "react";
-import NotificationSkeleton from "./components/NotificationSkeleton";
 
 
 const Notifications = () => {
@@ -46,9 +45,7 @@ const Notifications = () => {
     }
   }
 
-  if (isLoading) {
-    return <NotificationSkeleton />
-  };
+  if (isLoading && notifications.length === 0) return </>
 
   return (
     <div className="min-h-screen mt-8 bg-[#01151C]">

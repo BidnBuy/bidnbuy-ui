@@ -1,7 +1,7 @@
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { fetchProducts } from "@/services/products";
-import type { Product } from "@/store/products";
+import { type Product } from "@/store/products";
 
 type UIProduct = {
   image: string;

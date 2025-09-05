@@ -1,6 +1,5 @@
-import { create } from "zustand"
-
 import type { NotificationData } from "@/pages/notification/components/NotificationItem"
+import { create } from "zustand"
 
 type NotificationsState = {
   isLoading: boolean;
@@ -12,7 +11,6 @@ type NotificationsState = {
   addNotification: (notification: Omit<NotificationData, "id">) => void
   fetchNotifications: () => Promise<void>;
 }
-
 
 const mockNotifications: NotificationData[] = [
   {

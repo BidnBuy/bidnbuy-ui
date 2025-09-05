@@ -1,18 +1,15 @@
+import type { NotificationData } from "@/pages/notification/components/NotificationItem"
 import { create } from "zustand"
 
-import type { NotificationData } from "@/pages/notification/components/NotificationItem"
-
 type NotificationsState = {
-  isLoading: boolean;
-  // setIsLoading: (state: boolean) => void;
+  loading: boolean;
+  setIsLoading
   notifications: NotificationData[]
   unreadCount: number
   markAsRead: (id: string) => void
   markAllAsRead: () => void
   addNotification: (notification: Omit<NotificationData, "id">) => void
-  fetchNotifications: () => Promise<void>;
 }
-
 
 const mockNotifications: NotificationData[] = [
   {
@@ -72,8 +69,8 @@ const mockNotifications: NotificationData[] = [
 ]
 
 export const useNotificationsStore = create<NotificationsState>((set) => ({
-  isLoading: false,
-  // setIsLoading: (state: boolean) => set({ isLoading: state }),
+  loading: false,
+  setIsLoading: (state: boolean) => set({ loading: state }),
   notifications: mockNotifications,
   unreadCount: mockNotifications.filter((n) => !n.isRead).length,
 
@@ -106,14 +103,4 @@ export const useNotificationsStore = create<NotificationsState>((set) => ({
         unreadCount: updatedNotifications.filter((n) => !n.isRead).length,
       }
     }),
-
-    fetchNotifications: async () => {
-    set({isLoading: true });
-    await new Promise((resolve) => setTimeout(resolve, 1500)); // simulate delay
-    set({
-      notifications: mockNotifications,
-      unreadCount: mockNotifications.filter((n) => !n.isRead).length,
-      isLoading: false,
-    });
-  },
 }))

@@ -1,6 +1,5 @@
-import { create } from "zustand"
-
 import type { NotificationData } from "@/pages/notification/components/NotificationItem"
+import { create } from "zustand"
 
 type NotificationsState = {
   isLoading: boolean;

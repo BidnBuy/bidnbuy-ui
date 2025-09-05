@@ -1,7 +1,7 @@
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { fetchProducts } from "@/services/products";
-import type { Product } from "@/store/products";
+import { useProductStore, type Product } from "@/store/products";
 
 type UIProduct = {
   image: string;
@@ -18,6 +18,12 @@ export const useProducts = () => {
     queryKey: ["products"],
     queryFn: fetchProducts,
   });
+
+  const setProducts = useProductStore((state) => state.setProducts);
+
+  useEffect(() => {
+    setProducts(products);
+  }, [products, setProducts]);
 
   const actionTypes = ["buy", "bid", "offer"] as const;
 
