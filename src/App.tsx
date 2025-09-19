@@ -53,6 +53,7 @@ import TermsAndCondition from "@/pages/terms-and-condition/TermsAndCondition";
 import Notifications from "@/pages/notification/Notification";
 import NotificationOrders from "@/pages/notification-orders/NotificationOrders";
 import HelpAndContact from "./pages/help-and-contact/HelpAndContact";
+import BecomeASellerPage from "./pages/become-a-seller-page/BecomeASellerPage";
 
 const App = () => {
   return (
@@ -73,6 +74,7 @@ const App = () => {
         {/* Terms and Conditions */}
         <Route path="terms" element={<TermsAndCondition />} />
         <Route path="help-and-contact" element={<HelpAndContact />} />
+        <Route path="become-a-seller" element={<BecomeASellerPage />} />
         
 
         <Route
