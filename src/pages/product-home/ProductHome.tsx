@@ -21,11 +21,15 @@ const ProductHome = () => {
 
   const categories = [
     "All",
-    "Accessories",
-    "Gadgets",
-    "Fashion",
-    "Electronics",
-    "Health&Beauty",
+    "Automotive",
+    "Beauty & Personal Care",
+    "Toys & Games",
+    "Home & Garden",
+    "Clothing & Accessories",
+    "Books & Media",
+    "Jewelry & Watches",
+    "Health & Wellness",
+    "Electronics"
   ];
   const [selectedCategory, setSelectedCategory] = useState("All");
 
@@ -59,23 +63,38 @@ const ProductHome = () => {
     actionType: actionTypes[idx % actionTypes.length],
   });
 
-  // const getProductsByCategory = (category: string) =>
-  //   products.filter((p) => p.categories.includes(category)).map(mapProductToUI)
-
   const getProductsByCategory = (category: string) =>
     category === "All"
       ? products.map(mapProductToUI)
-      : products.filter((p) => p.category === category).map(mapProductToUI);
+      : products.filter((product) => product.categories.includes(category)).map(mapProductToUI)
 
-  const exploreProductsData = products.map(mapProductToUI);
-  const electronicsProductsData = products.map(mapProductToUI);
-  const featuredProductsData = products.slice(0, 8).map(mapProductToUI);
-  // const fashionProductsData = getProductsByCategory('Fashion')
+  console.log('Get products by category', getProductsByCategory)
+
+  // const getProductsByCategory = (category: string) =>
+  //   category === "All"
+  //     ? products.map(mapProductToUI)
+  //     : products.filter((p) => p.category === category).map(mapProductToUI);
+
+  // const exploreProductsData = products.map(mapProductToUI);
+  // const electronicsProductsData = products.map(mapProductToUI);
+  // const featuredProductsData = products.slice(0, 8).map(mapProductToUI);
+  const allProductData = getProductsByCategory('All')
+  const fashionProductsData = getProductsByCategory('Fashion')
+  const electronicsProductsData = getProductsByCategory('Electronics')
+  const automotiveProductsData = getProductsByCategory('Automotive')
+  const beautyCareProductsData = getProductsByCategory('Beauty & Personal Care')
+  const toysAndGamesProductsData = getProductsByCategory('Toys & Games')
+  const homeAndGardenProductsData = getProductsByCategory('Home & Garden')
+  const clothingAndAccessoriesProductsData = getProductsByCategory('Clothing & Accessories')
+  const booksAndMediaProductsData = getProductsByCategory('Books & Media')
+  const jewelryAndWatchesProductsData = getProductsByCategory('Jewelry & Watches')
+  const healthAndWellnessProductsData = getProductsByCategory('Health & Wellness')
+
 
   const categoryCounts: Record<string, number> = {};
-  products.forEach((p) => {
-    if (p.category && p.category !== "All") {
-      categoryCounts[p.category] = (categoryCounts[p.category] || 0) + 1;
+  products.forEach((product) => {
+    if (product.categories && product.categories !== "All") {
+      categoryCounts[product.categories] = (categoryCounts[product.categories] || 0) + 1;
     }
   });
   const mostPopulatedCategory = Object.entries(categoryCounts).sort(
@@ -103,7 +122,7 @@ const ProductHome = () => {
               <>
                 <MobileProductSection
                   title="Explore Your Interests"
-                  products={exploreProductsData}
+                  products={allProductData}
                 />
                 <MobileProductSection
                   title="All things Electronics"
@@ -111,12 +130,43 @@ const ProductHome = () => {
                 />
                 <MobileDiscoverSection />
                 <MobileProductSection
-                  title="Featured Listings"
-                  products={featuredProductsData}
+                  title="All things Fashion"
+                  products={fashionProductsData}
                 />
                 <MobileProductSection
-                  title="Fashion Deals For You"
-                  products={exploreProductsData}
+                  title="Automotive Essentials"
+                  products={automotiveProductsData}
+                />
+                <MobileProductSection
+                  title="Beauty And Personal Care"
+                  products={beautyCareProductsData}
+                />
+                <MobileDiscoverSection />
+                <MobileProductSection
+                  title="For Children - Toys And Games"
+                  products={toysAndGamesProductsData}
+                />
+                <MobileProductSection
+                  title="Home and Garden Must-Haves"
+                  products={homeAndGardenProductsData}
+                />
+                <MobileProductSection
+                  title="Clothing And Accessories"
+                  products={clothingAndAccessoriesProductsData}
+                />
+
+                <MobileDiscoverSection />
+                <MobileProductSection
+                  title="Books and Media"
+                  products={booksAndMediaProductsData}
+                />
+                <MobileProductSection
+                  title="All Things Style and Accessories"
+                  products={jewelryAndWatchesProductsData}
+                />
+                <MobileProductSection
+                  title="AHealth And Wellness Essentials"
+                  products={healthAndWellnessProductsData}
                 />
                 {mostPopulatedCategory && mostPopulatedProducts.length > 0 && (
                   <MobileProductSection

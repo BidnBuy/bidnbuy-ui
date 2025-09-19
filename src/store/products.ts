@@ -7,7 +7,7 @@ export type Product = {
   discountPrice: number;
   details: string;
   files: string[];
-  category: string;
+  categories: string;
   offers: string[];
   itemsInStock: number;
   isApproved: boolean;
