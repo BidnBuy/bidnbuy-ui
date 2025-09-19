@@ -45,7 +45,7 @@ function SignInFormFields<T extends FieldValues>({ form, onSubmit, isLoading = f
         <p className="text-teal-100 text-sm">
           Don't have an account?{" "}
           <Link
-            to="/signup/customer"
+            to="/account-type"
             className="text-white hover:text-teal-200 font-medium underline underline-offset-2 transition-colors"
           >
             Sign Up
