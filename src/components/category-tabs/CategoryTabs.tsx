@@ -1,5 +1,3 @@
-import { useState } from "react"
-
 type CategoryTabsProps = {
   categories: string[]
   selectedCategory: string
@@ -8,19 +6,27 @@ type CategoryTabsProps = {
 }
 
 export function CategoryTabs({ categories, selectedCategory, onSelectCategory, className = "" }: CategoryTabsProps) {
-  const [showAll, setShowAll] = useState(false)
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024
-  const visibleCategories = isMobile && !showAll ? categories.slice(0, 4) : categories
-  const hasMore = isMobile && categories.length > 4 && !showAll
+  // Always show all categories, no horizontal scroll or hidden tabs
+  // const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024
+
+  // Scroll to section logic
+  const handleTabClick = (category: string) => {
+    onSelectCategory(category);
+    const sectionId = `category-section-${category.replace(/\s+/g, '-')}`;
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
 
   return (
     <div
-      className={`flex items-center gap-2 w-full ${isMobile ? 'justify-center' : 'overflow-x-auto no-scrollbar'} ${className}`}
+      className={`flex flex-wrap items-center gap-2 w-full justify-center ${className}`}
     >
-      {visibleCategories.map((category) => (
+      {categories.map((category) => (
         <button
           key={category}
-          onClick={() => onSelectCategory(category)}
+          onClick={() => handleTabClick(category)}
           className={`px-3 py-1.5 rounded-full text-xs whitespace-nowrap transition-colors flex-shrink-0 ${
             selectedCategory === category
               ? 'bg-orange-500 text-white'
@@ -30,14 +36,6 @@ export function CategoryTabs({ categories, selectedCategory, onSelectCategory, c
           {category}
         </button>
       ))}
-      {hasMore && (
-        <button
-          className="bg-[#00707B] text-white px-3 py-1.5 rounded-full text-xs whitespace-nowrap hover:bg-[#008a9a] transition-colors flex-shrink-0"
-          onClick={() => setShowAll(true)}
-        >
-          More
-        </button>
-      )}
     </div>
   )
 }

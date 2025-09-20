@@ -78,17 +78,6 @@ const ProductHome = () => {
   // const exploreProductsData = products.map(mapProductToUI);
   // const electronicsProductsData = products.map(mapProductToUI);
   // const featuredProductsData = products.slice(0, 8).map(mapProductToUI);
-  const allProductData = getProductsByCategory('All')
-  const fashionProductsData = getProductsByCategory('Fashion')
-  const electronicsProductsData = getProductsByCategory('Electronics')
-  const automotiveProductsData = getProductsByCategory('Automotive')
-  const beautyCareProductsData = getProductsByCategory('Beauty & Personal Care')
-  const toysAndGamesProductsData = getProductsByCategory('Toys & Games')
-  const homeAndGardenProductsData = getProductsByCategory('Home & Garden')
-  const clothingAndAccessoriesProductsData = getProductsByCategory('Clothing & Accessories')
-  const booksAndMediaProductsData = getProductsByCategory('Books & Media')
-  const jewelryAndWatchesProductsData = getProductsByCategory('Jewelry & Watches')
-  const healthAndWellnessProductsData = getProductsByCategory('Health & Wellness')
 
 
   const categoryCounts: Record<string, number> = {};
@@ -120,59 +109,28 @@ const ProductHome = () => {
               <LoadingGrid />
             ) : (
               <>
-                <MobileProductSection
-                  title="Explore Your Interests"
-                  products={allProductData}
-                />
-                <MobileProductSection
-                  title="All things Electronics"
-                  products={electronicsProductsData}
-                />
+                {/* Render each category section with matching id for scroll */}
+                {categories.map((category) => {
+                  const productsForCategory = getProductsByCategory(category);
+                  if (productsForCategory.length === 0) return null;
+                  return (
+                    <div key={category} id={`category-section-${category.replace(/\s+/g, '-')}`}>
+                      <MobileProductSection
+                        title={category}
+                        products={productsForCategory}
+                      />
+                    </div>
+                  );
+                })}
+                {/* Discover section can be placed after some categories if needed */}
                 <MobileDiscoverSection />
-                <MobileProductSection
-                  title="All things Fashion"
-                  products={fashionProductsData}
-                />
-                <MobileProductSection
-                  title="Automotive Essentials"
-                  products={automotiveProductsData}
-                />
-                <MobileProductSection
-                  title="Beauty And Personal Care"
-                  products={beautyCareProductsData}
-                />
-                <MobileDiscoverSection />
-                <MobileProductSection
-                  title="For Children - Toys And Games"
-                  products={toysAndGamesProductsData}
-                />
-                <MobileProductSection
-                  title="Home and Garden Must-Haves"
-                  products={homeAndGardenProductsData}
-                />
-                <MobileProductSection
-                  title="Clothing And Accessories"
-                  products={clothingAndAccessoriesProductsData}
-                />
-
-                <MobileDiscoverSection />
-                <MobileProductSection
-                  title="Books and Media"
-                  products={booksAndMediaProductsData}
-                />
-                <MobileProductSection
-                  title="All Things Style and Accessories"
-                  products={jewelryAndWatchesProductsData}
-                />
-                <MobileProductSection
-                  title="AHealth And Wellness Essentials"
-                  products={healthAndWellnessProductsData}
-                />
                 {mostPopulatedCategory && mostPopulatedProducts.length > 0 && (
-                  <MobileProductSection
-                    title={`Top in ${mostPopulatedCategory}`}
-                    products={mostPopulatedProducts}
-                  />
+                  <div id={`category-section-${mostPopulatedCategory.replace(/\s+/g, '-')}`}>
+                    <MobileProductSection
+                      title={`Top in ${mostPopulatedCategory}`}
+                      products={mostPopulatedProducts}
+                    />
+                  </div>
                 )}
               </>
             )}
@@ -190,33 +148,29 @@ const ProductHome = () => {
           <LoadingGrid />
         ) : (
           <>
-            <DesktopProductSection
-              title="Explore Your Interests"
-              products={exploreProductsData}
-              columns={4}
-            />
-            <DesktopProductSection
-              title="All Things Electronics"
-              products={electronicsProductsData}
-              columns={4}
-            />
+            {/* Render each category section with matching id for scroll */}
+            {categories.map((category) => {
+              const productsForCategory = getProductsByCategory(category);
+              if (productsForCategory.length === 0) return null;
+              return (
+                <div key={category} id={`category-section-${category.replace(/\s+/g, '-')}`}>
+                  <DesktopProductSection
+                    title={category}
+                    products={productsForCategory}
+                    columns={category === 'All' ? 4 : 8}
+                  />
+                </div>
+              );
+            })}
             <DesktopDiscoverSection />
-            <DesktopProductSection
-              title="Featured Listings"
-              products={featuredProductsData}
-              columns={8}
-            />
-            <DesktopProductSection
-              title="Fashion Deals For You"
-              products={exploreProductsData}
-              columns={8}
-            />
             {mostPopulatedCategory && mostPopulatedProducts.length > 0 && (
-              <DesktopProductSection
-                title={`Top in ${mostPopulatedCategory}`}
-                products={mostPopulatedProducts}
-                columns={4}
-              />
+              <div id={`category-section-${mostPopulatedCategory.replace(/\s+/g, '-')}`}>
+                <DesktopProductSection
+                  title={`Top in ${mostPopulatedCategory}`}
+                  products={mostPopulatedProducts}
+                  columns={4}
+                />
+              </div>
             )}
           </>
         )}

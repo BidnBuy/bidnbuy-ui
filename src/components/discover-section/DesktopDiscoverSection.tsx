@@ -12,14 +12,14 @@ import FootwearsImg from "@/assets/products/footwears-img.jpg"
 
 export function DesktopDiscoverSection() {
   const categories = [
-    { image: AntiquePerfumeImg, title: "Beauty" },
-    { image: SmartTvImg, title: "Gadgets" },
+    { image: AntiquePerfumeImg, title: "Beauty and Personal Care" },
+    { image: SmartTvImg, title: "Electronics" },
     { image: WashingMachineImg, title: "Appliances" },
     { image: FashionImg, title: "Fashion" },
     { image: BedroomImg, title: "Home Interior" },
     { image: FootwearsImg, title: "Footwears" },
-    { image: MercedesImg, title: "Automobiles" },
-    { image: BedroomImg, title: "Furnitures" },
+    { image: MercedesImg, title: "Automotive" },
+    { image: BedroomImg, title: "Home Must-Haves" },
   ]
 
   return (

@@ -1,7 +1,10 @@
+
 import AddToCartIcon from "@/components/svg-icons/AddToCartIcon"
 import BidIcon from "@/components/svg-icons/BidIcon"
 import HeartIcon from "@/components/svg-icons/HeartIcon"
 import StarRatingIcon from "@/components/svg-icons/StarRatingIcon"
+import { useNavigate } from "react-router-dom"
+import { toast } from "sonner"
 
 type ProductCardProps = {
   image: string
@@ -15,6 +18,7 @@ type ProductCardProps = {
 
 
 
+
 export function ProductCard({
   image,
   title,
@@ -24,6 +28,22 @@ export function ProductCard({
   originalPrice,
   actionType,
 }: ProductCardProps) {
+  const navigate = useNavigate();
+
+  // Button click handlers
+  const handleBid = () => {
+    navigate("/auction-product-detail");
+    toast.success("You placed a bid");
+  };
+  const handleBuy = () => {
+    // Simulate buy page route or notify if unavailable
+   
+    toast.info("Buy page opened");
+  };
+  const handleAddToCart = () => {
+    toast.info("Added to cart");
+  };
+
   return (
     <div className="bg-[#00222E] rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
       <div className="relative">
@@ -46,7 +66,6 @@ export function ProductCard({
           <div className="flex">
             {[...Array(5)].map((_, i) => (
               <StarRatingIcon keyNum={i} rating={rating} />
-              
             ))}
           </div>
           <span className="text-xs text-gray-300">({reviews.toLocaleString()})</span>
@@ -59,14 +78,21 @@ export function ProductCard({
               <span className="text-sm text-gray-400 line-through">{originalPrice}</span>
             )}
           </div>
-          <ActionButton type={actionType} />
+          <ActionButton type={actionType} onBid={handleBid} onBuy={handleBuy} onAddToCart={handleAddToCart} />
         </div>
       </div>
     </div>
   )
 }
 
-function ActionButton({ type }: { type: "buy" | "bid" | "offer" }) {
+type ActionButtonProps = {
+  type: "buy" | "bid" | "offer"
+  onBid: () => void
+  onBuy: () => void
+  onAddToCart: () => void
+}
+
+function ActionButton({ type, onBid, onBuy, onAddToCart }: ActionButtonProps) {
   const styles = {
     buy: "bg-orange-500 hover:bg-orange-600 text-white",
     bid: "bg-red-500 hover:bg-red-600 text-white",
@@ -91,9 +117,16 @@ function ActionButton({ type }: { type: "buy" | "bid" | "offer" }) {
     ),
   }
 
+  const handleClick = () => {
+    if (type === "bid") onBid();
+    else if (type === "buy") onBuy();
+    else if (type === "offer") onAddToCart();
+  };
+
   return (
     <button
       className={`${styles[type]} text-xs md:text-sm px-2 py-1 md:px-3 md:py-2.5 rounded-md font-medium flex items-center gap-1 md:gap-2 mt-2 md:mt-0`}
+      onClick={handleClick}
     >
       {icons[type]}
       {labels[type]}

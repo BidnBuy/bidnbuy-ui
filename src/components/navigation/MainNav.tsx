@@ -11,14 +11,16 @@ import BidnBuyLogo from "@/assets/bidnbuy-logo.png"
 const MainNav = () => {
   const categories = [
     "All",
-    "Accessories",
-    "Gadgets",
-    "Fashion",
-    "Electronics",
-    "Health&Beauty",
-    "Home&Office",
-    "Appliances",
-  ]
+    "Automotive",
+    "Beauty & Personal Care",
+    "Toys & Games",
+    "Home & Garden",
+    "Clothing & Accessories",
+    "Books & Media",
+    "Jewelry & Watches",
+    "Health & Wellness",
+    "Electronics"
+  ];
   const [selectedCategory, setSelectedCategory] = useState("All")
 
   return (
