@@ -53,6 +53,7 @@ import TermsAndCondition from "@/pages/terms-and-condition/TermsAndCondition";
 import Notifications from "@/pages/notification/Notification";
 import NotificationOrders from "@/pages/notification-orders/NotificationOrders";
 import HelpAndContact from "./pages/help-and-contact/HelpAndContact";
+import AdminDashboard from "./pages/admin/AdminDashboard";
 
 const App = () => {
   return (
@@ -148,6 +149,8 @@ const App = () => {
         <Route path="vendor-ratings" element={<VendorRatingsAndReviews />} />
         <Route path="cart" element={<Cart />} />
         <Route path="payment-options" element={<PaymentOptions />} />
+
+        <Route path="admin" element={<AdminDashboard />} />
       </Route>
 
       <Route element={<LayoutWithHeaderFooter />}>
