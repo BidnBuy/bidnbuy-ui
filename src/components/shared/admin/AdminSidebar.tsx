@@ -60,7 +60,7 @@ const navigationItems = [
   },
   {
     title: "Marketer / Affiliate",
-    url: "/admin/marketers",
+    url: "/admin/affiliates",
     icon: UserCheck,
   },
   {
@@ -139,7 +139,7 @@ const AdminSidebar = () => {
           <SidebarMenu className="mb-4">
             <SidebarMenuItem>
               <SidebarMenuButton asChild className="text-white hover:bg-[#004755]">
-                <a href="/admin/settings" className="flex items-center gap-3 px-3 py-2">
+                <a href="/admin/rewards-settings" className="flex items-center gap-3 px-3 py-2">
                   <Settings className="w-5 h-5" />
                   <span>Settings</span>
                 </a>
@@ -147,7 +147,7 @@ const AdminSidebar = () => {
             </SidebarMenuItem>
             <SidebarMenuItem>
               <SidebarMenuButton asChild className="text-white hover:bg-[#004755]">
-                <a href="/admin/help" className="flex items-center gap-3 px-3 py-2">
+                <a href="/help-and-contact" className="flex items-center gap-3 px-3 py-2">
                   <HelpCircle className="w-5 h-5" />
                   <span>Help</span>
                 </a>

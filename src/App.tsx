@@ -55,14 +55,22 @@ import NotificationOrders from "@/pages/notification-orders/NotificationOrders";
 import HelpAndContact from "./pages/help-and-contact/HelpAndContact";
 import AdminLayout from "@/pages/admin/AdminLayout";
 import AdminDashboard from "@/pages/admin/AdminDashboard";
-import Users from "@/pages/admin/Users";
-import Vendors from "./pages/admin/Vendors";
-import Products from "@/pages/admin/Products";
-import Marketers from "./pages/admin/Marketers";
-import Bids from "@/pages/admin/Bids";
-import Orders from "@/pages/admin/Orders";
-import Payments from "@/pages/admin/Payments";
-import Disputes from "./pages/admin/Disputes";
+import VendorsPage from "./pages/admin/vendors/vendors";
+import VendorDetailPage from "./pages/admin/vendors/vendor-detail";
+import UsersPage from "./pages/admin/users/users";
+import UserDetailPage from "./pages/admin/users/user-detail";
+import ProductsPage from "./pages/admin/products/products";
+import ProductDetailPage from "./pages/admin/products/product-detail";
+import AffiliatesPage from "./pages/admin/affiliates/affiliates";
+import AffiliateDetailsPage from "./pages/admin/affiliates/affiliate-detail";
+import BidsPage from "./pages/admin/bids/bids";
+import BidDetailsPage from "./pages/admin/bids/bids-detail";
+import OrdersPage from "./pages/admin/orders/orders";
+import OrderDetailsPage from "./pages/admin/orders/order-detail";
+import PaymentsPage from "./pages/admin/payments/payments";
+import PaymentDetailsPage from "./pages/admin/payments/payment-detail";
+import DisputesPage from "./pages/admin/dispute/dispute";
+import DisputeDetailsPage from "./pages/admin/dispute/dispute-detail";
 
 const App = () => {
   return (
@@ -161,14 +169,32 @@ const App = () => {
 
         <Route path="admin" element={<AdminLayout />}>
           <Route index element={<AdminDashboard />} />
-          <Route path="users" element={<Users />} />
-          <Route path="vendors" element={<Vendors />} />
-          <Route path="products" element={<Products />} />
-          <Route path="marketers" element={<Marketers />} />
-          <Route path="bids" element={<Bids />} />
-          <Route path="orders" element={<Orders />} />
-          <Route path="payments" element={<Payments />} />
-          <Route path="disputes" element={<Disputes />} />
+          <Route path="users" element={<UsersPage />} />
+          <Route path="users/:id" element={<UserDetailPage />} />
+
+          <Route path="vendors" element={<VendorsPage />} />
+          <Route path="vendors/:id" element={<VendorDetailPage />} />
+
+          <Route path="products" element={<ProductsPage />} />
+          <Route path="products/:id" element={<ProductDetailPage />} />
+
+          <Route path="affiliates" element={<AffiliatesPage />} />
+          <Route path="affiliates/:id" element={<AffiliateDetailsPage />} />
+
+          <Route path="bids" element={<BidsPage />} />
+          <Route path="bids/:id" element={<BidDetailsPage />} />
+
+          <Route path="orders" element={<OrdersPage />} />
+          <Route path="orders/:id" element={<OrderDetailsPage />} />
+
+          <Route path="payments" element={<PaymentsPage />} />
+          <Route path="payments/:id" element={<PaymentDetailsPage />} />
+
+          <Route path="disputes" element={<DisputesPage />} />
+          <Route path="disputes/:id" element={<DisputeDetailsPage />} />
+
+          <Route path="rewards-settings" element={<RewardSettingsPage />} />
+
         </Route>
       </Route>
 

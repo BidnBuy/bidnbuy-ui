@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import AdminSidebar from "./AdminSidebar";
-// import Footer from "@/components/footer/Footer";
 import AdminSkeleton from "./AdminSkeleton";
 
 interface AdminPageWrapperProps {

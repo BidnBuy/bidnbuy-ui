@@ -3,7 +3,7 @@ import type { SignupProps } from "@/types/auth";
 import { SignupFormFields } from "@/components/forms/SignUpFormField"
 
 import VendorBackgroundImage from "@/assets/vendor-bg-img.jpg";
-import VendorOverlayImage from "@/assets/vendor-overlay-img.jpg";
+import VendorLayoutImage from "@/assets/vendor-layout-img.jpg";
 import BidnBuyLogo from "@/assets/bidnbuy-logo.png"
 
 
@@ -40,7 +40,7 @@ const DesktopVendorSignup = ({ form, onSubmit, isLoading }: SignupProps) => {
           <div className="w-1/2 relative">
             <div
               className="absolute inset-0 rounded-r-3xl bg-cover bg-center"
-              style={{ backgroundImage: `url('${VendorOverlayImage}')` }}
+              style={{ backgroundImage: `url('${VendorLayoutImage}')` }}
             />
           </div>
         </div>
