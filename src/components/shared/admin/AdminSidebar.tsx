@@ -5,6 +5,9 @@
 
 import { useLocation } from "react-router-dom"
 
+import BidnBuyLogo from "@/assets/bidnbuy-logo.png";
+import AmeliaProfileImage from "@/assets/user/amelia-profile-image.jpg"
+
 import {
   LayoutDashboard,
   Users,
@@ -95,7 +98,7 @@ const AdminSidebar = () => {
         <SidebarHeader className="p-4">
           <div className="flex items-center gap-3">
             <img
-              src="/images/bidnbuy-logo.png"
+              src={BidnBuyLogo}
               alt="BidnBuy Logo"
               width={56}
               height={56}
@@ -155,7 +158,7 @@ const AdminSidebar = () => {
           {/* Admin Profile */}
           <div className="flex items-center gap-3 pt-4 border-t border-[#004755]">
             <img
-              src="/images/amelia-profile.jpg"
+              src={AmeliaProfileImage}
               alt="Admin Profile"
               width={32}
               height={32}

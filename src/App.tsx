@@ -53,7 +53,16 @@ import TermsAndCondition from "@/pages/terms-and-condition/TermsAndCondition";
 import Notifications from "@/pages/notification/Notification";
 import NotificationOrders from "@/pages/notification-orders/NotificationOrders";
 import HelpAndContact from "./pages/help-and-contact/HelpAndContact";
-import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminLayout from "@/pages/admin/AdminLayout";
+import AdminDashboard from "@/pages/admin/AdminDashboard";
+import Users from "@/pages/admin/Users";
+import Vendors from "./pages/admin/Vendors";
+import Products from "@/pages/admin/Products";
+import Marketers from "./pages/admin/Marketers";
+import Bids from "@/pages/admin/Bids";
+import Orders from "@/pages/admin/Orders";
+import Payments from "@/pages/admin/Payments";
+import Disputes from "./pages/admin/Disputes";
 
 const App = () => {
   return (
@@ -150,7 +159,17 @@ const App = () => {
         <Route path="cart" element={<Cart />} />
         <Route path="payment-options" element={<PaymentOptions />} />
 
-        <Route path="admin" element={<AdminDashboard />} />
+        <Route path="admin" element={<AdminLayout />}>
+          <Route index element={<AdminDashboard />} />
+          <Route path="users" element={<Users />} />
+          <Route path="vendors" element={<Vendors />} />
+          <Route path="products" element={<Products />} />
+          <Route path="marketers" element={<Marketers />} />
+          <Route path="bids" element={<Bids />} />
+          <Route path="orders" element={<Orders />} />
+          <Route path="payments" element={<Payments />} />
+          <Route path="disputes" element={<Disputes />} />
+        </Route>
       </Route>
 
       <Route element={<LayoutWithHeaderFooter />}>

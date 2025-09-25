@@ -88,7 +88,7 @@ const WalletLedger = () => {
           />
           <BalanceSummary
             walletBalance={`N${currentWalletBalance.toLocaleString()}`}
-            bidCreditBalance={`${currentBidCreditBalance.toLocaleString()} B.C`}
+            bidCreditBalance={`${currentBidCreditBalance.toLocaleString()} BDC`}
           />
           <UnpaidBidAlert onPayNow={handlePayNow} />
 

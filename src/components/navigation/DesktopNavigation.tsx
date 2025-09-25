@@ -18,10 +18,10 @@ const DesktopNavigation = () => {
   return (
     <div className="bg-[#00707B] px-6 py-2.5">
       <div className="flex items-center justify-between text-sm font-medium">
-        <div className="flex items-center gap-2">
+        <Link to="/signup/vendor" className="flex items-center gap-2">
           <SellOutlineIcon width={14} height={14} />
           <span>Sell on BidnBuy</span>
-        </div>
+        </Link>
         <div className="flex items-center gap-6">
           <Link
             to="/product-home"
@@ -51,7 +51,7 @@ const DesktopNavigation = () => {
             <AddToCartIcon />
             Cart
           </Link>
-          <Link to="#" className="flex items-center gap-2 hover:text-gray-200">
+          <Link to="/help-and-contact" className="flex items-center gap-2 hover:text-gray-200">
             <HelpAndContactIcon width={14} height={14} />
             Help & Contact
           </Link>
