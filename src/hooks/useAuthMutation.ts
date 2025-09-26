@@ -14,7 +14,12 @@ export function useAuthMutation<TVariables = any, TData = any>(
 ): UseMutationResult<TData, any, TVariables> {
   return useMutation<TData, any, TVariables>({
     mutationFn,
-    onSuccess: (data, variables, context) => {
+    onSuccess: (
+      data: TData,
+      variables: TVariables,
+      onMutateResult: unknown,
+      context: any
+    ) => {
       const store = useAuthStore.getState()
       console.log("Raw login response:", data);
       if ((data as any)?.token && (data as any)?.user) {
@@ -38,13 +43,19 @@ export function useAuthMutation<TVariables = any, TData = any>(
 
     console.log("Auth store after setAuth:", useAuthStore.getState());
 
-      if (options.onSuccess) options.onSuccess(data, variables, context)
+  if (options.onSuccess) options.onSuccess(data, variables, onMutateResult, context)
         
     },
-    onError: (error, variables, context) => {
+    onError: (
+      error: unknown,
+      variables: TVariables,
+      onMutateResult: unknown,
+      context: any
+    ) => {
       toast.error((error as any)?.response?.data?.message || "Something went wrong")
-      if (options.onError) options.onError(error, variables, context)
+  if (options.onError) options.onError(error, variables, onMutateResult, context)
     },
     ...options,
   })
 }
+
