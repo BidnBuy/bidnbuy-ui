@@ -49,13 +49,13 @@ const MainNav = () => {
               <User size={16} />
               Account
             </Link>
-            <Link to="#" className="flex items-center gap-1.5 text-sm hover:text-gray-300">
+            {/* <Link to="#" className="flex items-center gap-1.5 text-sm hover:text-gray-300">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M3 12h18l-2 7H5l-2-7z" />
                 <path d="M5 12V7a7 7 0 0114 0v5" stroke="white" strokeWidth="1" fill="none" />
               </svg>
               Ship to
-            </Link>
+            </Link> */}
             <Bell size={16} className="text-gray-300" />
           </div>
 

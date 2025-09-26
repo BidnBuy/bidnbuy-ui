@@ -5,6 +5,9 @@
 
 import { useLocation } from "react-router-dom"
 
+import BidnBuyLogo from "@/assets/bidnbuy-logo.png";
+import AmeliaProfileImage from "@/assets/user/amelia-profile-image.jpg"
+
 import {
   LayoutDashboard,
   Users,
@@ -57,7 +60,7 @@ const navigationItems = [
   },
   {
     title: "Marketer / Affiliate",
-    url: "/admin/marketers",
+    url: "/admin/affiliates",
     icon: UserCheck,
   },
   {
@@ -95,7 +98,7 @@ const AdminSidebar = () => {
         <SidebarHeader className="p-4">
           <div className="flex items-center gap-3">
             <img
-              src="/images/bidnbuy-logo.png"
+              src={BidnBuyLogo}
               alt="BidnBuy Logo"
               width={56}
               height={56}
@@ -136,7 +139,7 @@ const AdminSidebar = () => {
           <SidebarMenu className="mb-4">
             <SidebarMenuItem>
               <SidebarMenuButton asChild className="text-white hover:bg-[#004755]">
-                <a href="/admin/settings" className="flex items-center gap-3 px-3 py-2">
+                <a href="/admin/rewards-settings" className="flex items-center gap-3 px-3 py-2">
                   <Settings className="w-5 h-5" />
                   <span>Settings</span>
                 </a>
@@ -144,7 +147,7 @@ const AdminSidebar = () => {
             </SidebarMenuItem>
             <SidebarMenuItem>
               <SidebarMenuButton asChild className="text-white hover:bg-[#004755]">
-                <a href="/admin/help" className="flex items-center gap-3 px-3 py-2">
+                <a href="/help-and-contact" className="flex items-center gap-3 px-3 py-2">
                   <HelpCircle className="w-5 h-5" />
                   <span>Help</span>
                 </a>
@@ -155,7 +158,7 @@ const AdminSidebar = () => {
           {/* Admin Profile */}
           <div className="flex items-center gap-3 pt-4 border-t border-[#004755]">
             <img
-              src="/images/amelia-profile.jpg"
+              src={AmeliaProfileImage}
               alt="Admin Profile"
               width={32}
               height={32}

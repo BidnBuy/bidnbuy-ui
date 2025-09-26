@@ -37,7 +37,7 @@ export function ProductCard({
   };
   const handleBuy = () => {
     // Simulate buy page route or notify if unavailable
-   
+   navigate("/cart")
     toast.info("Buy page opened");
   };
   const handleAddToCart = () => {

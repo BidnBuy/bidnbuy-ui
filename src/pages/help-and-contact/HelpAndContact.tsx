@@ -6,8 +6,7 @@ const HelpAndContact = () => {
       </h1>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold mb-2">Bid&Buy Scripts</h2>
-        <p className="text-base text-gray-200">GET TO KNOW US</p>
+        <h2 className="text-base text-gray-200">GET TO KNOW US</h2>
         <p className="text-base text-gray-200 mt-2">
           <strong>Our Vision:</strong> To innovate African commerce by becoming
           the continent’s most trusted, innovative, and inclusive
@@ -54,7 +53,7 @@ const HelpAndContact = () => {
         </ul>
       </section>
 
-      <section className="mb-8">
+      {/* <section className="mb-8">
         <h2 className="text-xl font-semibold mb-2">Leadership</h2>
         <ul className="list-disc pl-5 text-base text-gray-200">
           <li>
@@ -67,7 +66,7 @@ const HelpAndContact = () => {
           <li>Chief Technology Officer (CTO)</li>
           <li>Chief Human Resources Officer (CHRO)</li>
         </ul>
-      </section>
+      </section> */}
 
       <section className="mb-8">
         <p className="text-base text-gray-200 mb-2">

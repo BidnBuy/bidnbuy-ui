@@ -53,7 +53,24 @@ import TermsAndCondition from "@/pages/terms-and-condition/TermsAndCondition";
 import Notifications from "@/pages/notification/Notification";
 import NotificationOrders from "@/pages/notification-orders/NotificationOrders";
 import HelpAndContact from "./pages/help-and-contact/HelpAndContact";
-import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminLayout from "@/pages/admin/AdminLayout";
+import AdminDashboard from "@/pages/admin/AdminDashboard";
+import VendorsPage from "./pages/admin/vendors/vendors";
+import VendorDetailPage from "./pages/admin/vendors/vendor-detail";
+import UsersPage from "./pages/admin/users/users";
+import UserDetailPage from "./pages/admin/users/user-detail";
+import ProductsPage from "./pages/admin/products/products";
+import ProductDetailPage from "./pages/admin/products/product-detail";
+import AffiliatesPage from "./pages/admin/affiliates/affiliates";
+import AffiliateDetailsPage from "./pages/admin/affiliates/affiliate-detail";
+import BidsPage from "./pages/admin/bids/bids";
+import BidDetailsPage from "./pages/admin/bids/bids-detail";
+import OrdersPage from "./pages/admin/orders/orders";
+import OrderDetailsPage from "./pages/admin/orders/order-detail";
+import PaymentsPage from "./pages/admin/payments/payments";
+import PaymentDetailsPage from "./pages/admin/payments/payment-detail";
+import DisputesPage from "./pages/admin/dispute/dispute";
+import DisputeDetailsPage from "./pages/admin/dispute/dispute-detail";
 
 const App = () => {
   return (
@@ -150,7 +167,35 @@ const App = () => {
         <Route path="cart" element={<Cart />} />
         <Route path="payment-options" element={<PaymentOptions />} />
 
-        <Route path="admin" element={<AdminDashboard />} />
+        <Route path="admin" element={<AdminLayout />}>
+          <Route index element={<AdminDashboard />} />
+          <Route path="users" element={<UsersPage />} />
+          <Route path="users/:id" element={<UserDetailPage />} />
+
+          <Route path="vendors" element={<VendorsPage />} />
+          <Route path="vendors/:id" element={<VendorDetailPage />} />
+
+          <Route path="products" element={<ProductsPage />} />
+          <Route path="products/:id" element={<ProductDetailPage />} />
+
+          <Route path="affiliates" element={<AffiliatesPage />} />
+          <Route path="affiliates/:id" element={<AffiliateDetailsPage />} />
+
+          <Route path="bids" element={<BidsPage />} />
+          <Route path="bids/:id" element={<BidDetailsPage />} />
+
+          <Route path="orders" element={<OrdersPage />} />
+          <Route path="orders/:id" element={<OrderDetailsPage />} />
+
+          <Route path="payments" element={<PaymentsPage />} />
+          <Route path="payments/:id" element={<PaymentDetailsPage />} />
+
+          <Route path="disputes" element={<DisputesPage />} />
+          <Route path="disputes/:id" element={<DisputeDetailsPage />} />
+
+          <Route path="rewards-settings" element={<RewardSettingsPage />} />
+
+        </Route>
       </Route>
 
       <Route element={<LayoutWithHeaderFooter />}>
