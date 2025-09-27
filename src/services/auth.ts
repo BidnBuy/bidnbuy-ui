@@ -9,11 +9,16 @@ export type AuthResponse = {
   user: {
     id: string;
     email: string;
-    name: string;
+    firstName: string;
+    middleName: string;
+    lastName: string;
     phoneNumber: string;
     role: 'customer' | 'vendor';
+    referralCode: string;
+    storeName: string;
   };
 }
+
 
 export const authService = {
   login: async (data: LoginFormValues): Promise<AuthResponse> => {
@@ -26,11 +31,15 @@ export const authService = {
     try {
       
       const payload = {
-        name: data.name,
+        firstName: data.firstName,
+        middleName: data.middleName,
+        lastName: data.lastName,
         email: data.email,
         password: data.password,
         phoneNumber: data.phoneNumber, 
         userRole: 'customer', 
+        referralCode: data.referralCode,
+        storeName: data.storeName
       };
       console.log("Payload for sign up", payload)
       const response = await axiosInstance.post<AuthResponse>('/api/v1/auth/signup', payload);

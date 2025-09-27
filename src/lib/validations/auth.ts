@@ -6,8 +6,12 @@ export const loginSchema = z.object({
 });
 
 export const signupSchema = z.object({
-  name: z.string().min(2, 'Name must be at least 2 characters'),
+  firstName: z.string().min(2, 'First Name must be at least 5 characters'),
+  middleName: z.string().min(2, 'Middle Name must be at least 5 characters'),
+  lastName: z.string().min(2, 'Last Name must be at least 5 characters'),
   email: z.string().email('Invalid email address'),
+  referralCode: z.string().optional(),
+  storeName: z.string().optional(),
   phoneNumber: z.string().min(11, 'Phone number must be at least 11 characters'),
   password: z
     .string()
@@ -23,7 +27,9 @@ export const signupSchema = z.object({
 }).refine((data) => data.password === data.confirmPassword, {
   message: "Passwords don't match",
   path: ["confirmPassword"],
+  
 });
+
 
 export type LoginFormValues = z.infer<typeof loginSchema>;
 export type SignupFormValues = z.infer<typeof signupSchema>; 

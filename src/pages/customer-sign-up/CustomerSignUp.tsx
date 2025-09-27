@@ -18,11 +18,15 @@ const CustomerSignup = () => {
   const form = useForm<SignupFormValues>({
     resolver: zodResolver(signupSchema),
     defaultValues: {
-      name: "",
+      firstName: "",
+      middleName: "",
+      lastName: "",
       email: "",
       phoneNumber: "",
       password: "",
       confirmPassword: "",
+      referralCode: "",
+      storeName: ""
     },
   })
 
@@ -30,11 +34,15 @@ const CustomerSignup = () => {
   const signupMutation = useAuthMutation<SignupFormValues, import("@/services/auth").AuthResponse>(async (values) => {
    
     return await authService.signup({
-      name: values.name,
+      firstName: values.firstName,
+      middleName: values.middleName,
+      lastName: values.lastName,
       email: values.email,
       password: values.password,
       phoneNumber: values.phoneNumber,
       userRole: "customer",
+      referralCode: values.referralCode,
+      storeName: values.storeName,
     } as any)
   }, {
     onSuccess: (data, variables) => {

@@ -20,7 +20,9 @@ type SignupFormFieldsProps = {
 export function SignupFormFields({ form, onSubmit, isLoading = false }: SignupFormFieldsProps) {
   return (
     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
-      <CustomFormField form={form} name="name" label="Name" placeholder="johndoe" icon="user" />
+      <CustomFormField form={form} name="firstName" label="First Name" placeholder="John" icon="user" />
+      <CustomFormField form={form} name="middleName" label="Middle Name" placeholder="Michael" icon="user" />
+      <CustomFormField form={form} name="lastName" label="Last Name" placeholder="Doe" icon="user" />
 
       <CustomFormField
         form={form}
@@ -56,6 +58,21 @@ export function SignupFormFields({ form, onSubmit, isLoading = false }: SignupFo
         showPasswordToggle
       />
 
+      <CustomFormField
+        form={form}
+        name="referralCode"
+        label="Referal Code (Optional)"
+        placeholder="ABC12345"
+       
+      />
+
+      <CustomFormField
+        form={form}
+        name="storeName"
+        label="Store Name (Optional)"
+        placeholder="John's Electronics Store"
+       
+      />
       {/* Terms and Conditions Checkbox below password fields, above submit */}
       <TermsCheckbox
         control={form.control}

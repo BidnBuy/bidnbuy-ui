@@ -1,37 +1,61 @@
 // TODO: Fix data mapping once API schema aligns with Figma UI
 
 
-import { useState } from "react"
-import { useForm, Controller } from "react-hook-form"
-import { Button } from "@/components/ui/button"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { Label } from "@/components/ui/label"
-import { UploadProductFormField, UploadProductFormInput, UploadProductFormTextarea, UploadProductFormSelect, PriceInput } from "@/components/upload-product-form-field/UploadProductFormField"
-import { FileUploader } from "@/components/file-uploader/FileUploader"
-import { UploadSuccessMessage } from "@/components/upload-success-message/UploadSuccessMessage"
-import { SearchInput } from "@/components/search-input/SearchInput"
+import { useState, useRef } from "react"
+import { Controller, useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useMutation } from "@tanstack/react-query"
+import { uploadProductSchema, type UploadProductFormValues } from "@/lib/validations/upload-product"
+import { productService } from "@/services/product"
+import { useAuthStore } from "@/store/auth"
+
 import { useNavigate } from "react-router-dom"
 import { toast } from "sonner"
+
+import { PriceInput, UploadProductFormField, UploadProductFormInput, UploadProductFormSelect, UploadProductFormTextarea } from "@/components/upload-product-form-field/UploadProductFormField"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { Label } from "@/components/ui/label"
+import { FileUploader } from "@/components/file-uploader/FileUploader"
+import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import { UploadSuccessMessage } from "@/components/upload-success-message/UploadSuccessMessage"
 
 
-type FormData = {
-  itemName: string
-  category: string
-  condition: string
-  description: string
-  startingBidPrice: string
-  buyItNowPrice: string
-  reservePrice: string
-  quantity: string
-  deliveryType: string
-  handlingTime: string
-  length: string
-  width: string
-  height: string
-  weight: string
-  files: File[]
-}
+// "product": {
+//     "_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+//     "itemName": "string",
+//     "slug": "string",
+//     "category": "string",
+//     "condition": "string",
+//     "description": "string",
+//     "files": [
+//       "string"
+//     ],
+//     "basePrice": 0,
+//     "discountPrice": 0,
+//     "startingBidPrice": 0,
+//     "buyItNowPrice": 0,
+//     "reservePrice": 0,
+//     "quantity": 0,
+//     "deliveryType": "string",
+//     "handlingTime": "string",
+//     "length": "string",
+//     "width": "string",
+//     "height": "string",
+//     "weight": "string",
+//     "_vendor": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+//     "isApproved": true,
+//     "auctionPrice": 0,
+//     "categories": "string",
+//     "offers": [
+//       "string"
+//     ],
+//     "createdAt": "2025-09-26T16:55:09.676Z",
+//     "updatedAt": "2025-09-26T16:55:09.676Z"
+//   }
+// }
+
+// Form type now comes from zod schema
 
 const categoryOptions = [
   { value: "electronics", label: "Electronics" },
@@ -53,16 +77,15 @@ const handlingOptions = [
   { value: "7-days", label: "7 business days" },
 ]
 
-export default function VendorUploadProductForm() {
-  // --- Step 0: State ---
-  const [files, setFiles] = useState<File[]>([])
+const VendorUploadProduct = () => {
   const [showSuccess, setShowSuccess] = useState(false)
-  const [isSubmitting, setIsSubmitting] = useState(false)
   const [showConfirm, setShowConfirm] = useState(false)
-  const [pendingData, setPendingData] = useState<FormData | null>(null)
   const navigate = useNavigate()
+  const auth = useAuthStore()
+  const token = auth.token || ""
 
-  // --- Step 0: Form Setup ---
+  const formDataRef = useRef<UploadProductFormValues | null>(null)
+
   const {
     register,
     handleSubmit,
@@ -71,71 +94,53 @@ export default function VendorUploadProductForm() {
     watch,
     formState: { errors },
     reset,
-  } = useForm<FormData>({
+    trigger,
+  } = useForm<UploadProductFormValues>({
+    resolver: zodResolver(uploadProductSchema),
     defaultValues: {
       condition: "new",
       deliveryType: "standard",
       handlingTime: "3-days",
+      files: [],
+      startingBidPrice: 1,
     },
   })
 
-  // Get token (adjust as needed for your auth)
-  const userToken = localStorage.getItem("userToken") || ""
-
-  // --- Step 1: Confirmation Modal Before Final Submission ---
-  // onSubmit: open modal and store data
-  const onSubmit = (data: FormData) => {
-    setPendingData(data)
+  // Store latest form data and open modal
+  const onSubmit = (data: UploadProductFormValues) => {
+    formDataRef.current = data
     setShowConfirm(true)
   }
 
-  // --- Step 2: Actually submit to backend if confirmed ---
-  const handleConfirm = () => {
-    if (pendingData) handleFinalSubmit(pendingData)
-  }
-
-  // --- Step 3: Submit to backend, handle loading, errors, success, 401 ---
-  const handleFinalSubmit = async (data: FormData) => {
-    setIsSubmitting(true)
-    try {
-      const formData = new FormData()
-      Object.entries(data).forEach(([key, value]) => {
-        if (key !== "files" && value) {
-          formData.append(key, value.toString())
-        }
-      })
-      files.forEach((file, index) => {
-        formData.append(`file_${index}`, file)
-      })
-      const response = await fetch("/api/products", {
-        method: "POST",
-        headers: {
-          "Authorization": `Bearer ${userToken}`
-          // 'Content-Type' is NOT set for FormData
-        },
-        body: formData,
-      })
-      if (response.status === 401) {
-        toast.error("Session expired. Please log in again.")
-        navigate("/login")
-        return
-      }
-      if (!response.ok) {
-        const errorData = await response.json()
-        toast.error(errorData.message || "Failed to upload product.")
-        return
-      }
+  const uploadMutation = useMutation({
+    mutationFn: (data: UploadProductFormValues) => productService.upload(data, token!),
+    onSuccess: () => {
       toast.success("Product listed successfully!")
       setShowSuccess(true)
       reset()
-      setFiles([])
       setTimeout(() => navigate("/seller-dashboard"), 1500)
-    } catch (error) {
-      toast.error("Submission error. Please try again.")
-    } finally {
-      setIsSubmitting(false)
+    },
+    onError: (error: any) => {
+      const message = error?.response?.data?.message || error?.message || "Failed to upload product."
+      toast.error(message)
+    },
+    onSettled: () => {
       setShowConfirm(false)
-      setPendingData(null)
+      formDataRef.current = null
+    }
+  })
+
+  // Validate and submit latest form data on modal confirm
+  const handleConfirm = async () => {
+    console.log('Submitting files:', watch('files'))
+    const isValid = await trigger()
+    if (isValid && formDataRef.current) {
+      uploadMutation.mutate(formDataRef.current)
+    } else {
+      // Debug: log which fields are failing validation
+      console.log('Validation failed. Errors:', errors)
+      toast.error("Please fill all required fields correctly.")
+      setShowConfirm(false)
     }
   }
 
@@ -143,8 +148,8 @@ export default function VendorUploadProductForm() {
   const maxChars = 2000
 
   const handleFilesChange = (newFiles: File[]) => {
-    setFiles(newFiles)
-    setValue("files", newFiles)
+    console.log('handleFilesChange received:', newFiles)
+    setValue("files", newFiles, { shouldValidate: true })
   }
 
   // --- Render ---
@@ -155,9 +160,8 @@ export default function VendorUploadProductForm() {
        
         <div className="bg-[#01151C] px-4 py-4">
           <div className="max-w-4xl mx-auto px-8 lg:px-16 xl:px-32 flex justify-center">
-            <div className="relative max-w-md w-full">
-              <SearchInput placeholder="Find everything you have been looking for" className="mb-4" />
-            </div>
+      <div className="relative max-w-md w-full">
+      </div>
           </div>
         </div>
       </div>
@@ -166,10 +170,7 @@ export default function VendorUploadProductForm() {
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           <UploadProductFormField label="Item name" error={errors.itemName?.message} required>
             <UploadProductFormInput
-              {...register("itemName", {
-                required: "Item name is required",
-                minLength: { value: 3, message: "Item name must be at least 3 characters" },
-              })}
+              {...register("itemName")}
               placeholder="e.g. What are you selling"
               error={!!errors.itemName}
             />
@@ -179,7 +180,6 @@ export default function VendorUploadProductForm() {
             <Controller
               name="category"
               control={control}
-              rules={{ required: "Please select a category" }}
               render={({ field }) => (
                 <UploadProductFormSelect
                   placeholder="Select a category"
@@ -195,19 +195,13 @@ export default function VendorUploadProductForm() {
             <Controller
               name="condition"
               control={control}
-              rules={{ required: "Please select item condition" }}
               render={({ field }) => (
                 <RadioGroup
                   value={field.value}
                   onValueChange={field.onChange}
                   className="md:flex md:gap-8 space-y-3 md:space-y-0"
                 >
-                  {[
-                    { value: "new", label: "New" },
-                    { value: "fairly-used", label: "Fairly Used" },
-                    { value: "refurbished", label: "Refurbished" },
-                    { value: "parts-not-working", label: "Some parts not working" },
-                  ].map((option) => (
+                  {[{ value: "fairly-used", label: "Fairly Used" }, { value: "refurbished", label: "Refurbished" }, { value: "parts-not-working", label: "Some parts not working" }].map((option) => (
                     <div key={option.value} className="flex items-center space-x-3">
                       <RadioGroupItem
                         value={option.value}
@@ -227,13 +221,9 @@ export default function VendorUploadProductForm() {
           <UploadProductFormField label="Item description" error={errors.description?.message} required>
             <div className="relative">
               <UploadProductFormTextarea
-                {...register("description", {
-                  required: "Item description is required",
-                  minLength: { value: 10, message: "Description must be at least 10 characters" },
-                  maxLength: { value: maxChars, message: `Description cannot exceed ${maxChars} characters` },
-                })}
+                {...register("description")}
                 placeholder="Describe your item in detail..."
-                error={!!errors.description}
+
                 maxLength={maxChars}
               />
               <div className="absolute bottom-3 right-3 text-xs text-gray-500">
@@ -255,6 +245,25 @@ export default function VendorUploadProductForm() {
             <h3 className="text-white text-sm font-normal">Pricing and Quantity</h3>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <UploadProductFormField label="Base Price" error={errors.basePrice?.message} required>
+                <Controller
+                  name="basePrice"
+                  control={control}
+                  rules={{
+                    required: "Base price is required",
+                    pattern: { value: /^\d+(\.\d{1,2})?$/, message: "Please enter a valid price" },
+                    min: { value: 1, message: "Price must be at least ₦1" },
+                  }}
+                  render={({ field }) => (
+                    <PriceInput
+                      value={typeof field.value === "string" ? field.value : String(field.value ?? "")}
+                      onChange={field.onChange}
+                      error={!!errors.basePrice}
+                      placeholder="0.00"
+                    />
+                  )}
+                />
+              </UploadProductFormField>
               <UploadProductFormField label="Starting bid price" error={errors.startingBidPrice?.message} required>
                 <Controller
                   name="startingBidPrice"
@@ -266,7 +275,7 @@ export default function VendorUploadProductForm() {
                   }}
                   render={({ field }) => (
                     <PriceInput
-                      value={field.value || ""}
+                      value={typeof field.value === "string" ? field.value : String(field.value ?? "")}
                       onChange={field.onChange}
                       error={!!errors.startingBidPrice}
                       placeholder="0.00"
@@ -284,7 +293,7 @@ export default function VendorUploadProductForm() {
                   }}
                   render={({ field }) => (
                     <PriceInput
-                      value={field.value || ""}
+                      value={typeof field.value === "string" ? field.value : String(field.value ?? "")}
                       onChange={field.onChange}
                       error={!!errors.buyItNowPrice}
                       placeholder="0.00"
@@ -295,11 +304,7 @@ export default function VendorUploadProductForm() {
 
               <UploadProductFormField label="Quantity" error={errors.quantity?.message} required>
                 <UploadProductFormInput
-                  {...register("quantity", {
-                    required: "Quantity is required",
-                    pattern: { value: /^\d+$/, message: "Please enter a valid quantity" },
-                    min: { value: 1, message: "Quantity must be at least 1" },
-                  })}
+                  {...register("quantity")}
                   type="number"
                   min="1"
                   placeholder="1"
@@ -316,7 +321,7 @@ export default function VendorUploadProductForm() {
                   }}
                   render={({ field }) => (
                     <PriceInput
-                      value={field.value || ""}
+                      value={typeof field.value === "string" ? field.value : String(field.value ?? "")}
                       onChange={field.onChange}
                       error={!!errors.reservePrice}
                       placeholder="0.00"
@@ -377,9 +382,7 @@ export default function VendorUploadProductForm() {
                   <Label className="text-white text-xs font-normal">{field.label}</Label>
                   <div className="flex">
                     <UploadProductFormInput
-                      {...register(field.name as keyof FormData, {
-                        pattern: { value: /^\d+(\.\d+)?$/, message: "Please enter a valid number" },
-                      })}
+                      {...register(field.name as keyof UploadProductFormValues)}
                       type="number"
                       min="0"
                       step="0.1"
@@ -398,15 +401,16 @@ export default function VendorUploadProductForm() {
           <div className="space-y-3 pt-6">
             <Button
               type="submit"
-              disabled={isSubmitting}
-              className="w-full bg-[#00707B] hover:bg-[#005a66] text-white py-3 text-base font-medium h-12 rounded-md disabled:opacity-50"
+              disabled={uploadMutation.isPending}
+              className="w-full bg-[#00707B] hover:bg-[#005a66] text-white py-3 text-base font-medium h-12 rounded-md disabled:opacity-50 cursor-pointer"
+              onClick={() => setShowConfirm(true)}
             >
-              {isSubmitting ? "Listing Item..." : "List Item"}
+              {uploadMutation.isPending ? "Listing Item..." : "List Item"}
             </Button>
             <Button
               type="button"
               variant="outline"
-              className="w-full border-[#00707B] text-white hover:bg-[#00707B]/10 py-3 text-base font-medium bg-[#01151C] h-12 rounded-md"
+              className="w-full border-[#00707B] text-white hover:bg-[#00707B]/10 py-3 text-base font-medium bg-[#01151C] h-12 rounded-md cursor-pointer"
             >
               Preview
             </Button>
@@ -414,16 +418,16 @@ export default function VendorUploadProductForm() {
         </form>
         {/* Confirmation Modal */}
         <Dialog open={showConfirm} onOpenChange={setShowConfirm}>
-          <DialogContent>
+          <DialogContent className="bg-white">
             <DialogHeader>
-              <DialogTitle>Confirm Listing</DialogTitle>
+              <DialogTitle className="text-black">Confirm Listing</DialogTitle>
             </DialogHeader>
-            <p>Are you sure you want to list this item for sale?</p>
+            <p className="text-black">Are you sure you want to list this item for sale?</p>
             <DialogFooter>
-              <Button onClick={handleConfirm} disabled={isSubmitting}>
-                {isSubmitting ? "Listing..." : "Yes, List Item"}
+              <Button type="button" onClick={handleConfirm} disabled={uploadMutation.isPending} className="bg-[#00707B] hover:bg-[#00707B] text-white cursor-pointer">
+                {uploadMutation.isPending ? "Listing..." : "Yes, List Item"}
               </Button>
-              <Button variant="outline" onClick={() => setShowConfirm(false)} disabled={isSubmitting}>
+              <Button className="text-black hover:text-black cursor-pointer" variant="outline" onClick={() => setShowConfirm(false)} disabled={uploadMutation.isPending}>
                 Cancel
               </Button>
             </DialogFooter>
@@ -441,3 +445,5 @@ export default function VendorUploadProductForm() {
     </div>
   )
 }
+
+export default VendorUploadProduct;
